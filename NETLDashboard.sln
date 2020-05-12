@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NETLDashboard", "NETLDashboard\NETLDashboard.csproj", "{D0D4A6DF-2527-4A99-B626-F60121947E1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0D4A6DF-2527-4A99-B626-F60121947E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0D4A6DF-2527-4A99-B626-F60121947E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0D4A6DF-2527-4A99-B626-F60121947E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0D4A6DF-2527-4A99-B626-F60121947E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {06E0FC84-DF72-434A-9886-310373F02611}
+	EndGlobalSection
+EndGlobal
