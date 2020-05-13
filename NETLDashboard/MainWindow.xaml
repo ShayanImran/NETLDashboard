@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:NETLDashboard"
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" x:Class="NETLDashboard.MainWindow"
         mc:Ignorable="d"
-        Title="NETL Command Center" Height="705.267" Width="1097.569">
+        Title="NETL Command Center" Height="705.267" Width="1097.569" SizeToContent="WidthAndHeight" MinWidth="1200" MinHeight="720">
     <Grid>
-        <TabControl HorizontalAlignment="Left" Height="674" VerticalAlignment="Top" Width="1090">
+        <TabControl IsSynchronizedWithCurrentItem="True">
             <TabItem Header="Dashboard">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
@@ -18,7 +18,7 @@
                         <ColumnDefinition Width="13*"/>
                         <ColumnDefinition Width="380*"/>
                     </Grid.ColumnDefinitions>
-                    <TreeView Name="sensorTreeList" Grid.ColumnSpan="2" Margin="0,0,867,0" >
+                    <TreeView Name="sensorTreeList" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="131" >
                         <TreeViewItem Header="Temperature" IsSelected="True">
                             <TreeViewItem Header="Sensor 1">
                                 <TreeViewItem Header="Live Graph"/>
@@ -60,7 +60,9 @@
                             </TreeViewItem>
                         </TreeViewItem>
                     </TreeView>
-                    <Wpf:CartesianChart Grid.Column="1" HorizontalAlignment="Left" Height="305" Margin="302,61,0,0" VerticalAlignment="Top" Width="563"/>
+                    <Grid Grid.Column="1" Margin="97,10,0,0">
+                        <Wpf:CartesianChart Margin="10,10,0,0"/>
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>
