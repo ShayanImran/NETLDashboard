@@ -4,21 +4,95 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NETLDashboard"
-        xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" x:Class="NETLDashboard.MainWindow"
+        xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:Points="clr-namespace:LiveCharts.Wpf.Points;assembly=LiveCharts.Wpf" x:Class="NETLDashboard.MainWindow"
         mc:Ignorable="d"
-        Title="NETL Command Center" Height="705.267" Width="1097.569" SizeToContent="WidthAndHeight" MinWidth="1200" MinHeight="720">
-    <Grid>
+
+        Title="NETL Command Center" Height="705.267" Width="1097.569" ResizeMode="CanResizeWithGrip">
+    <Grid ClipToBounds="True">
+
         <TabControl IsSynchronizedWithCurrentItem="True">
             <TabItem Header="Dashboard">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="White" Margin="-9,-1,3,-3">
+                    <TextBlock HorizontalAlignment="Left" Margin="51,61,0,0" TextWrapping="Wrap" Text="Temperature (Celsius)" VerticalAlignment="Top" Height="28" Width="178" FontSize="18"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="453,10,452,0" TextWrapping="Wrap" Text="Dashboard" VerticalAlignment="Top" Height="51" Width="179" FontSize="25"/>
+                    <Button Content="Live Graph" HorizontalAlignment="Left" Margin="51,125,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="-0.453,1.2"/>
+                    <Button Content="Historical Graph" HorizontalAlignment="Left" Margin="51,171,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0,0.65"/>
+                    <ProgressBar HorizontalAlignment="Left" Height="10" Margin="135,143,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" Value="50">
+                        <ProgressBar.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="270"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ProgressBar.RenderTransform>
+                    </ProgressBar>
+                    <TextBlock HorizontalAlignment="Left" Margin="51,242,0,0" TextWrapping="Wrap" Text="          Pressure" VerticalAlignment="Top" Height="28" Width="178" FontSize="18"/>
+                    <Button Content="Live Graph" HorizontalAlignment="Left" Margin="51,301,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="-0.453,1.2"/>
+                    <Button Content="Historical Graph" HorizontalAlignment="Left" Margin="51,344,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0,0.65"/>
+                    <Wpf:Gauge HorizontalAlignment="Left" Height="97" Margin="184,278,0,0" VerticalAlignment="Top" Width="78" To="100" Value="70"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="51,411,0,0" TextWrapping="Wrap" Text="&#x9;Gas" VerticalAlignment="Top" Height="28" Width="178" FontSize="18"/>
+                    <Button Content="Live Graph" HorizontalAlignment="Left" Margin="51,484,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="-0.453,1.2"/>
+                    <Button Content="Historical Graph" HorizontalAlignment="Left" Margin="51,526,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0,0.65"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="717,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="178" FontSize="18" RenderTransformOrigin="0.925,0.5"><Run Text="           Airflow"/><LineBreak/><Run/></TextBlock>
+                    <ComboBox HorizontalAlignment="Left" Margin="234,67,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem x:Name="Sensor_1" Height="22" FontSize="15" Content="Sensor 1"/>
+                        <ComboBoxItem x:Name="Sensor_2" Height="22" FontSize="15" Content="Sensor 2"/>
+                    </ComboBox>
+                    <ComboBox HorizontalAlignment="Left" Margin="234,248,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem x:Name="Sensor_3" Height="22" FontSize="15" Content="Sensor 1"/>
+                        <ComboBoxItem x:Name="Sensor_4" Height="22" FontSize="15" Content="Sensor 2"/>
+                    </ComboBox>
+                    <ComboBox HorizontalAlignment="Left" Margin="234,417,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem x:Name="Sensor_5" Height="22" FontSize="15" Content="Sensor 1"/>
+                        <ComboBoxItem x:Name="Sensor_6" Height="22" FontSize="15" Content="Sensor 2"/>
+                    </ComboBox>
+                    <ComboBox HorizontalAlignment="Left" Margin="918,67,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.361,5.848">
+                        <ComboBoxItem x:Name="Sensor_7" Height="22" FontSize="15" Content="Sensor 1"/>
+                        <ComboBoxItem x:Name="Sensor_8" Height="22" FontSize="15" Content="Sensor 2"/>
+                    </ComboBox>
+                    <Image Margin="754,99,213,434" Source="airflow.png" Stretch="Fill"/>
+                    <ProgressBar HorizontalAlignment="Left" Height="10" Margin="860,150,0,0" VerticalAlignment="Top" Width="100" Foreground="LightCoral" RenderTransformOrigin="0.5,0.5" Value="50">
+                        <ProgressBar.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="270"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ProgressBar.RenderTransform>
+                    </ProgressBar>
+                    <Image Margin="769,314,225,244" Source="button_rotate-512.png" Stretch="Fill"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="717,261,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="178" FontSize="18" Text="            RPM"/>
+                    <ProgressBar HorizontalAlignment="Left" Height="10" Margin="860,352,0,0" VerticalAlignment="Top" Width="100" Foreground="LightCoral" RenderTransformOrigin="0.5,0.5" Value="50">
+                        <ProgressBar.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="270"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ProgressBar.RenderTransform>
+                    </ProgressBar>
+                    <Button Content="Live Graph" HorizontalAlignment="Left" Margin="653,130,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="-0.453,1.2"/>
+                    <Button Content="Historical Graph" HorizontalAlignment="Left" Margin="653,176,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0,0.65"/>
+                    <Button Content="Live Graph" HorizontalAlignment="Left" Margin="653,301,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="-0.453,1.2"/>
+                    <Button Content="Historical Graph" HorizontalAlignment="Left" Margin="653,344,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0,0.65"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="918,267,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="2.361,5.848">
+                        <ComboBoxItem x:Name="Sensor_9" Height="22" FontSize="15" Content="Sensor 1"/>
+                        <ComboBoxItem x:Name="Sensor_10" Height="22" FontSize="15" Content="Sensor 2"/>
+                    </ComboBox>
+                </Grid>
             </TabItem>
             <TabItem Header="Detailed View">
-                <Grid Background="#FFE5E5E5">
+                <Grid Background="White">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="13*"/>
                         <ColumnDefinition Width="380*"/>
                     </Grid.ColumnDefinitions>
-                    <TreeView Name="sensorTreeList" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="131" >
+
+                    <TreeView x:Name="sensorTreeList" Grid.ColumnSpan="2" Margin="-3,0,0,-3" HorizontalAlignment="Left" Width="163" >
+
                         <TreeViewItem Header="Temperature" IsSelected="True">
                             <TreeViewItem Header="Sensor 1">
                                 <TreeViewItem Header="Live Graph"/>
@@ -60,9 +134,11 @@
                             </TreeViewItem>
                         </TreeViewItem>
                     </TreeView>
+
                     <Grid Grid.Column="1" Margin="97,10,0,0">
                         <Wpf:CartesianChart Margin="10,10,0,0"/>
                     </Grid>
+
                 </Grid>
             </TabItem>
         </TabControl>

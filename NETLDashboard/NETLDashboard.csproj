@@ -102,5 +102,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="airflow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="button_rotate-512.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

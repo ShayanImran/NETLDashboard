@@ -24,6 +24,7 @@ namespace NETLDashboard
             //InitializeComponent();
         }
 
+
     }
 }
 /*
@@ -33,6 +34,7 @@ namespace Wpf.CartesianChart.ConstantChanges
     {
         public DateTime DateTime { get; set; }
         public double Value { get; set; }
+
     }
 }
 
