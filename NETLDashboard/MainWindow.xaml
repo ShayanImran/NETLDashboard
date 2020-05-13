@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:NETLDashboard"
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:Points="clr-namespace:LiveCharts.Wpf.Points;assembly=LiveCharts.Wpf" x:Class="NETLDashboard.MainWindow"
         mc:Ignorable="d"
+
         Title="NETL Command Center" Height="705.267" Width="1097.569" ResizeMode="CanResizeWithGrip">
     <Grid ClipToBounds="True">
+
         <TabControl IsSynchronizedWithCurrentItem="True">
             <TabItem Header="Dashboard">
                 <Grid Background="White" Margin="-9,-1,3,-3">
@@ -88,7 +90,9 @@
                         <ColumnDefinition Width="13*"/>
                         <ColumnDefinition Width="380*"/>
                     </Grid.ColumnDefinitions>
+
                     <TreeView x:Name="sensorTreeList" Grid.ColumnSpan="2" Margin="-3,0,0,-3" HorizontalAlignment="Left" Width="163" >
+
                         <TreeViewItem Header="Temperature" IsSelected="True">
                             <TreeViewItem Header="Sensor 1">
                                 <TreeViewItem Header="Live Graph"/>
@@ -130,6 +134,11 @@
                             </TreeViewItem>
                         </TreeViewItem>
                     </TreeView>
+
+                    <Grid Grid.Column="1" Margin="97,10,0,0">
+                        <Wpf:CartesianChart Margin="10,10,0,0"/>
+                    </Grid>
+
                 </Grid>
             </TabItem>
         </TabControl>
