@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using LiveCharts;
 using LiveCharts.Configurations;
+using LiveCharts.Wpf;
 using NETLDashboard__.NET_Framework_;
 
 
@@ -21,10 +22,24 @@ namespace NETLDashboard
     {
         public MainWindow()
         {
-            //InitializeComponent();
+            InitializeComponent();
+        }
+
+        private void TreeViewItem_Sensor1_LiveGraph_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
+            CartesianChart temperatureChart = new CartesianChart();
+            temperatureChart.Height = graphGrid.Height;
+            temperatureChart.Width = graphGrid.Width;
+            graphGrid.Children.Add(temperatureChart);
+            
         }
 
 
+        private void TreeViewItem_Sensor1_HistoricalGraph_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            graphGrid.Children.Clear();
+        }
     }
 }
 /*

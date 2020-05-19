@@ -91,12 +91,12 @@
                         <ColumnDefinition Width="380*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TreeView x:Name="sensorTreeList" Grid.ColumnSpan="2" Margin="-3,0,0,-3" HorizontalAlignment="Left" Width="163" >
+                    <TreeView x:Name="sensorTreeList" Grid.ColumnSpan="2" Margin="-3,-3,0,-3" HorizontalAlignment="Left" Width="159" >
 
                         <TreeViewItem Header="Temperature" IsSelected="True">
                             <TreeViewItem Header="Sensor 1">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
+                                <TreeViewItem Header="Live Graph" MouseLeftButtonUp="TreeViewItem_Sensor1_LiveGraph_MouseLeftButtonUp"/>
+                                <TreeViewItem Header="Historical Graph" MouseLeftButtonUp="TreeViewItem_Sensor1_HistoricalGraph_MouseLeftButtonUp"/>
                             </TreeViewItem>
                             <TreeViewItem Header="Sensor 2">
                                 <TreeViewItem Header="Live Graph"/>
@@ -115,7 +115,7 @@
                         </TreeViewItem>
                         <TreeViewItem Header="Gas" IsSelected="True">
                             <TreeViewItem Header="Sensor 1">
-                                <TreeViewItem Header="Live Graph"/>
+                                <TreeViewItem Header="Live Graph" />
                                 <TreeViewItem Header="Historical Graph"/>
                             </TreeViewItem>
                             <TreeViewItem Header="Sensor 2">
@@ -135,8 +135,15 @@
                         </TreeViewItem>
                     </TreeView>
 
-                    <Grid Grid.Column="1" Margin="97,10,0,0">
-                        <Wpf:CartesianChart Margin="10,10,0,0"/>
+                    <Grid x:Name="graphGrid" Background="Black" Grid.Column="1" Margin="120,-2,-2,-2" RenderTransformOrigin="0.5,0.5">
+                        <Grid.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.015"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Grid.RenderTransform>
                     </Grid>
 
                 </Grid>
