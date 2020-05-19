@@ -10,9 +10,6 @@ using LiveCharts.Wpf;
 
 namespace Wpf.CartesianChart.ZoomingAndPanning
 {
-    /// <summary>
-    /// Interaction logic for ZoomingAndPanning.xaml
-    /// </summary>
     public partial class ZoomingAndPanning : INotifyPropertyChanged
     {
         private ZoomingOptions _zoomingMode;

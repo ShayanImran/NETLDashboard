@@ -36,7 +36,6 @@ namespace NETLDashboard
                 temperatureChart.Height = graphGrid.Height;
                 temperatureChart.Width = graphGrid.Width;
                 graphGrid.Children.Add(temperatureChart);
-                        
         }
 
 

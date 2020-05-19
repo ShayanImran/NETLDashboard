@@ -18,7 +18,6 @@ using System.Threading;
 using System.ComponentModel;
 using NETLDashboard__.NET_Framework_;
 
-
 namespace Wpf.CartesianChart.ConstantChanges
 {
     public class MeasureModel
@@ -54,18 +53,18 @@ namespace Wpf.CartesianChart.ConstantChanges
 
             //AxisStep forces the distance between each separator in the X axis
             AxisStep = TimeSpan.FromSeconds(1).Ticks;
+
             //AxisUnit forces lets the axis know that we are plotting seconds
             //this is not always necessary, but it can prevent wrong labeling
             AxisUnit = TimeSpan.TicksPerSecond;
 
             SetAxisLimits(DateTime.Now);
 
-            //The next code simulates data changes every 300 ms
-
+       
+            //Starts plotting points in a seperate thread
+            
             IsReading = true;
-
             DataContext = this;
-
             Task.Factory.StartNew(Read);
         }
 
@@ -99,7 +98,7 @@ namespace Wpf.CartesianChart.ConstantChanges
         {
             //Connects to the FIU database to read the data.
             Db fiu = new Db();
-            //This is always true, so the only way to exit out is to close the application as of this moment.
+            //This is always true, so the only way to exit out is to close the application or change the window to a tab that clears the container it resides in.
             while (IsReading)
             {
 

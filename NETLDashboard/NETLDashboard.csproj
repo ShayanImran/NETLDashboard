@@ -122,5 +122,8 @@
   <ItemGroup>
     <Resource Include="button_rotate-512.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Database_Connection_String.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

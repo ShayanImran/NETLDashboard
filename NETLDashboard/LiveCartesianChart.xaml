@@ -13,7 +13,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <!--Here we disable tooltips and hovering to get a better performance-->
+        <!--disable tooltips and hovering to get a better performance-->
         <lvc:CartesianChart Grid.Row="1" AnimationsSpeed="0:0:0.2" Hoverable="False" DataTooltip="{x:Null}">
             <lvc:CartesianChart.Series>
                 <lvc:LineSeries Values="{Binding ChartValues}" 
