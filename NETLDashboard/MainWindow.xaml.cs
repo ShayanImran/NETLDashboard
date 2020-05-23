@@ -21,31 +21,37 @@ namespace NETLDashboard
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool isCreated = false;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void TreeViewItem_Sensor1_LiveGraph_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-                graphGrid.Children.Clear();
-                
+            graphGrid.Children.Clear();
+
+            var button = sender as RadioButton;
+            if (string.Compare("Live Graph", button.Content.ToString()) == 0)
+            {
                 ConstantChangesChart temperatureChart = new ConstantChangesChart();
                 temperatureChart.Height = graphGrid.Height;
                 temperatureChart.Width = graphGrid.Width;
                 graphGrid.Children.Add(temperatureChart);
+            }
+            if(string.Compare("Historical Graph", button.Content.ToString()) == 0)
+            {
+                ZoomingAndPanning histChart = new ZoomingAndPanning();
+                histChart.Height = graphGrid.Height;
+                histChart.Width = graphGrid.Width;
+                graphGrid.Children.Add(histChart);
+            }
         }
 
-
-        private void TreeViewItem_Sensor1_HistoricalGraph_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void TreeViewItem_Boiler_Sensor1_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            graphGrid.Children.Clear();
-            ZoomingAndPanning histChart = new ZoomingAndPanning();
-            histChart.Height = graphGrid.Height;
-            histChart.Width = graphGrid.Width;
-            graphGrid.Children.Add(histChart);
+            LiveGraph.IsChecked = true;
         }
     }
 }
