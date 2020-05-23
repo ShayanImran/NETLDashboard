@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,12 +12,15 @@ namespace NETLDashboard__.NET_Framework_
 {
     class Db
     {
-
         readonly SqlConnection connection; //Variable that will hold the open connection to the database.
+
         //The constructor that initiates the connection to the database.
         public Db()
         {
-            //Server information goes here
+            string connectionString = File.ReadAllText("..\\..\\Database_Connection_String.txt"); //Database information is stored in seperate file for security and is loaded upon start
+            Console.WriteLine(connectionString);
+            connection = new SqlConnection();
+            connection.ConnectionString = connectionString;
         }
 
         //The print function is just used for console debugging, it prints out temperature value in each row of the database
