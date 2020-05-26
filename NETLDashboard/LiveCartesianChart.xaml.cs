@@ -17,6 +17,7 @@ using LiveCharts.Configurations;
 using System.Threading;
 using System.ComponentModel;
 using NETLDashboard__.NET_Framework_;
+using System.Net.NetworkInformation;
 
 namespace Wpf.CartesianChart.ConstantChanges
 {
@@ -104,11 +105,12 @@ namespace Wpf.CartesianChart.ConstantChanges
 
                 Thread.Sleep(100); //The thread needs to pause in order prevent the gui from locking up
                 var now = DateTime.Now; //Gets the current date and time
-
+                
                 ChartValues.Add(new MeasureModel //Sets the date and time, along with the current temperature sensor value.
                 {
                     DateTime = now,
                     Value = fiu.getLastEntry()
+                    
                 });
 
                 SetAxisLimits(now);

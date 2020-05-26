@@ -29,7 +29,7 @@ namespace NETLDashboard
 
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
+        {   //The radio button switch updates the part of the screen that displays the live and historical graphs
             graphGrid.Children.Clear();
 
             var button = sender as RadioButton;
@@ -51,7 +51,23 @@ namespace NETLDashboard
 
         private void TreeViewItem_Boiler_Sensor1_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            //Currently a placeholder until the backend is in the final iteration.
+            LiveGraph.IsChecked = false;
             LiveGraph.IsChecked = true;
+
+        }
+
+        private void TreeViewItem_Boiler_Sensor2_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //Currently a placeholder until the backend is in the final iteration.
+            LiveGraph.IsChecked = false;
+            LiveGraph.IsChecked = true;
+
+        }
+
+        private void TreeViewItem_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
         }
     }
 }

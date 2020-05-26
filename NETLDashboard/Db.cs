@@ -54,7 +54,22 @@ namespace NETLDashboard__.NET_Framework_
         public double getLastEntry()
         {
             double lastValue = 0.0;
-            SqlCommand command = new SqlCommand("SELECT TOP 1 SensorValue From SensorData ORDER BY InsertedOn desc;", connection);
+            SqlCommand command = new SqlCommand("SELECT TOP 1 SensorValue From SensorData WHERE SensorInput = 'Temperature' ORDER BY InsertedOn desc;", connection);
+            connection.Open(); //Opens the connection to the database.
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                reader.Read();
+                lastValue = double.Parse(reader[0].ToString());
+            }
+
+            connection.Close(); //Closes the connection to the database.
+            return lastValue;
+        }
+
+        public double getLastVirtualEntry()
+        {
+            double lastValue = 0.0;
+            SqlCommand command = new SqlCommand("SELECT TOP 1 SensorValue From SensorData WHERE SensorInput = 'Virtual' ORDER BY InsertedOn desc;", connection);
             connection.Open(); //Opens the connection to the database.
             using (SqlDataReader reader = command.ExecuteReader())
             {

@@ -20,11 +20,11 @@
 
                     <TreeView x:Name="sensorTreeList" Grid.ColumnSpan="2" Margin="-3,-3,0,-3" HorizontalAlignment="Left" Width="159" >
 
-                        <TreeViewItem Header="Boiler" IsSelected="True">
-                            <TreeViewItem Header="Sensor 1" MouseLeftButtonUp="TreeViewItem_Boiler_Sensor1_MouseLeftButtonUp"/>
-                            <TreeViewItem Header="Sensor 2"/>
+                        <TreeViewItem Header="Furnace" IsSelected="True" MouseLeftButtonUp="TreeViewItem_MouseLeftButtonUp">
+                            <TreeViewItem Header="Sensor 1" Name="Physical" MouseLeftButtonUp="TreeViewItem_Boiler_Sensor1_MouseLeftButtonUp"/>
+                            <TreeViewItem Header="Sensor 2" Name="Virtual" MouseLeftButtonUp="TreeViewItem_Boiler_Sensor2_MouseLeftButtonUp"/>
                         </TreeViewItem>
-                        <TreeViewItem Header="Pressure" IsSelected="True">
+                        <TreeViewItem Header="Boiler" IsSelected="True">
                             <TreeViewItem Header="Sensor 1">
                                 <TreeViewItem Header="Live Graph"/>
                                 <TreeViewItem Header="Historical Graph"/>
@@ -34,7 +34,7 @@
                                 <TreeViewItem Header="Historical Graph"/>
                             </TreeViewItem>
                         </TreeViewItem>
-                        <TreeViewItem Header="Gas" IsSelected="True">
+                        <TreeViewItem Header="Stack" IsSelected="True">
                             <TreeViewItem Header="Sensor 1">
                                 <TreeViewItem Header="Live Graph" />
                                 <TreeViewItem Header="Historical Graph"/>
@@ -44,7 +44,7 @@
                                 <TreeViewItem Header="Historical Graph"/>
                             </TreeViewItem>
                         </TreeViewItem>
-                        <TreeViewItem Header="Vibration" IsSelected="True">
+                        <TreeViewItem Header="Turbine" IsSelected="True">
                             <TreeViewItem Header="Sensor 1">
                                 <TreeViewItem Header="Live Graph"/>
                                 <TreeViewItem Header="Historical Graph"/>
