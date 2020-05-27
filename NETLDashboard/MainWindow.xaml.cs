@@ -35,10 +35,21 @@ namespace NETLDashboard
             var button = sender as RadioButton;
             if (string.Compare("Live Graph", button.Content.ToString()) == 0)
             {
-                ConstantChangesChart temperatureChart = new ConstantChangesChart();
-                temperatureChart.Height = graphGrid.Height;
-                temperatureChart.Width = graphGrid.Width;
-                graphGrid.Children.Add(temperatureChart);
+                if(Physical.IsSelected)
+                {
+                    ConstantChangesChart temperatureChart = new ConstantChangesChart(0);
+                    temperatureChart.Height = graphGrid.Height;
+                    temperatureChart.Width = graphGrid.Width;
+                    graphGrid.Children.Add(temperatureChart);
+                }
+                else if(Virtual.IsSelected)
+                {
+                    ConstantChangesChart temperatureChart = new ConstantChangesChart(1);
+                    temperatureChart.Height = graphGrid.Height;
+                    temperatureChart.Width = graphGrid.Width;
+                    graphGrid.Children.Add(temperatureChart);
+                }
+                
             }
             if(string.Compare("Historical Graph", button.Content.ToString()) == 0)
             {
@@ -54,7 +65,8 @@ namespace NETLDashboard
             //Currently a placeholder until the backend is in the final iteration.
             LiveGraph.IsChecked = false;
             LiveGraph.IsChecked = true;
-
+            Physical.IsSelected = true;
+            Virtual.IsSelected = false;
         }
 
         private void TreeViewItem_Boiler_Sensor2_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -62,12 +74,15 @@ namespace NETLDashboard
             //Currently a placeholder until the backend is in the final iteration.
             LiveGraph.IsChecked = false;
             LiveGraph.IsChecked = true;
-
+            Physical.IsSelected = false;
+            Virtual.IsSelected = true;
         }
 
         private void TreeViewItem_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+            //LiveGraph.IsChecked = false;
+            //HistoricalGraph.IsChecked = false;
+            //graphGrid.Children.Clear();
         }
     }
 }

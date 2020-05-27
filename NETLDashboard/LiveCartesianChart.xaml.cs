@@ -34,10 +34,12 @@ namespace Wpf.CartesianChart.ConstantChanges
     {
         private double _axisMax;
         private double _axisMin;
+        private int phys;
 
-        public ConstantChangesChart()
+        public ConstantChangesChart(int phys)
         {
             InitializeComponent();
+            this.phys = phys;
 
             var mapper = Mappers.Xy<MeasureModel>()
                 .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
@@ -102,16 +104,26 @@ namespace Wpf.CartesianChart.ConstantChanges
             //This is always true, so the only way to exit out is to close the application or change the window to a tab that clears the container it resides in.
             while (IsReading)
             {
-
                 Thread.Sleep(100); //The thread needs to pause in order prevent the gui from locking up
                 var now = DateTime.Now; //Gets the current date and time
-                
-                ChartValues.Add(new MeasureModel //Sets the date and time, along with the current temperature sensor value.
+                if(this.phys == 0)
                 {
-                    DateTime = now,
-                    Value = fiu.getLastEntry()
-                    
-                });
+                    ChartValues.Add(new MeasureModel //Sets the date and time, along with the current temperature sensor value.
+                    {
+                        DateTime = now,
+                        Value = fiu.getLastEntry()
+
+                    });
+                }
+                else if(this.phys == 1)
+                {
+                    ChartValues.Add(new MeasureModel //Sets the date and time, along with the current temperature sensor value.
+                    {
+                        DateTime = now,
+                        Value = fiu.getLastVirtualEntry()
+
+                    });
+                }
 
                 SetAxisLimits(now);
 
@@ -126,11 +138,6 @@ namespace Wpf.CartesianChart.ConstantChanges
             AxisMin = now.Ticks - TimeSpan.FromSeconds(5).Ticks; // and 8 seconds behind
         }
 
-        private void InjectStopOnClick(object sender, RoutedEventArgs e)
-        {
-            IsReading = !IsReading;
-            if (IsReading) Task.Factory.StartNew(Read);
-        }
 
         #region INotifyPropertyChanged implementation
 
