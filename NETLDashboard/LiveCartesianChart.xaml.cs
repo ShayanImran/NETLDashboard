@@ -34,7 +34,7 @@ namespace Wpf.CartesianChart.ConstantChanges
     {
         private double _axisMax;
         private double _axisMin;
-        private int phys;
+        private readonly int phys;
 
         public ConstantChangesChart(int phys)
         {
@@ -104,7 +104,7 @@ namespace Wpf.CartesianChart.ConstantChanges
             //This is always true, so the only way to exit out is to close the application or change the window to a tab that clears the container it resides in.
             while (IsReading)
             {
-                Thread.Sleep(100); //The thread needs to pause in order prevent the gui from locking up
+                Thread.Sleep(1000); //The thread needs to pause in order prevent the gui from locking up
                 var now = DateTime.Now; //Gets the current date and time
                 if(this.phys == 0)
                 {
@@ -127,15 +127,15 @@ namespace Wpf.CartesianChart.ConstantChanges
 
                 SetAxisLimits(now);
 
-                //lets only use the last 75 values to prevent the graphics from slowing down. 
-                if (ChartValues.Count > 75) ChartValues.RemoveAt(0);
+                //lets only use the last 11 values to prevent the graphics from slowing down. 
+                if (ChartValues.Count > 11) ChartValues.RemoveAt(0);
             }
         }
 
         private void SetAxisLimits(DateTime now)
         {
             AxisMax = now.Ticks + TimeSpan.FromSeconds(1).Ticks; // lets force the axis to be 1 second ahead
-            AxisMin = now.Ticks - TimeSpan.FromSeconds(5).Ticks; // and 8 seconds behind
+            AxisMin = now.Ticks - TimeSpan.FromSeconds(8).Ticks; // and 11 seconds behind
         }
 
 
