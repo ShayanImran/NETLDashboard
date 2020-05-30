@@ -37,9 +37,7 @@
                 </lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis MinRange="5"
-                          MinValue="26"
-                          MaxValue="30"
+                <lvc:Axis 
                           Title="Temperature"
                           FontSize="20"
                           Opacity="100">
