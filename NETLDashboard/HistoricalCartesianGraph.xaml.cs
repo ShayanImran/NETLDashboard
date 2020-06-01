@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using NETLDashboard__.NET_Framework_;
 
 namespace Wpf.CartesianChart.ZoomingAndPanning
 {
@@ -40,7 +44,7 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
             ZoomingMode = ZoomingOptions.X;
 
             XFormatter = val => new DateTime((long)val).ToString("dd MMM");
-            YFormatter = val => val.ToString("C");
+            YFormatter = val => val.ToString("G");
 
             DataContext = this;
         }
@@ -82,15 +86,18 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
 
         private ChartValues<DateTimePoint> GetData()
         {
-            var r = new Random();
-            var trend = 100;
+            Db fiu = new Db();
+            //var r = new Random();
+            //var trend = 100;
             var values = new ChartValues<DateTimePoint>();
-
-            for (var i = 0; i < 100; i++)
+            List<double> data = fiu.getVirtualHistoricalData().ToList();
+            
+            for(int i = 0; i < data.Count(); i++)
             {
-                var seed = r.NextDouble();
-                if (seed > .8) trend += seed > .9 ? 50 : -50;
-                values.Add(new DateTimePoint(DateTime.Now.AddDays(i), trend + r.Next(0, 10)));
+               // var seed = r.NextDouble();
+               // if (seed > .8) trend += seed > .9 ? 50 : -50;
+                values.Add(new DateTimePoint(DateTime.Now.AddDays(i), data[i]));
+                
             }
 
             return values;

@@ -59,7 +59,7 @@ namespace NETLDashboard__.NET_Framework_
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 reader.Read();
-                lastValue = double.Parse(reader[0].ToString());
+                //lastValue = double.Parse(reader[0].ToString());
             }
 
             connection.Close(); //Closes the connection to the database.
@@ -79,6 +79,25 @@ namespace NETLDashboard__.NET_Framework_
 
             connection.Close(); //Closes the connection to the database.
             return lastValue;
+        }
+
+        public List<double> getVirtualHistoricalData()
+        {
+            List<double> data = new List<double>();
+            SqlCommand command = new SqlCommand("SELECT SensorValue From SensorData WHERE SensorInput = 'Virtual';", connection);
+            connection.Open();
+            int i = 0;
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while(reader.Read())
+                {
+                    data.Add(double.Parse(reader[0].ToString()));
+                }
+            }
+
+            connection.Close();
+
+            return data;
         }
     }
 
