@@ -7,7 +7,8 @@
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:zoomingAndPanning="clr-namespace:Wpf.CartesianChart.ZoomingAndPanning"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance local:ZoomingAndPanning}">
+             d:DesignHeight="300" d:DesignWidth="300" >
+    <!--d:DataContext="{d:DesignInstance local:ZoomingAndPanning}"-->
     <UserControl.Resources>
         <zoomingAndPanning:ZoomingModeCoverter x:Key="ZoomingModeCoverter"></zoomingAndPanning:ZoomingModeCoverter>
     </UserControl.Resources>
@@ -17,9 +18,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" TextWrapping="Wrap">
-            Use the Chart.Zoom property to enable zooming and panning, you have some options: None, X, Y and XY, click, hold and drag the chart for panning.
-        </TextBlock>
+
         <StackPanel Grid.Row="1">
             <Button Click="ToogleZoomingMode">
                 <TextBlock>Toggle zoming mode, current is: 
@@ -27,8 +26,9 @@
                 </TextBlock>
             </Button>
             <Button Click="ResetZoomOnClick">Reset Zoom</Button>
+            <Button Content="Select date range" Click="SelectDates"/>
         </StackPanel>
-        <lvc:CartesianChart Grid.Row="2" Series="{Binding SeriesCollection}" Zoom="{Binding ZoomingMode}" >
+        <lvc:CartesianChart Grid.Row="2" Series="{Binding SeriesCollection}" Zoom="{Binding ZoomingMode}" DataTooltip="{x:Null}" >
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Name="X" LabelFormatter="{Binding XFormatter}" 
                           Separator="{x:Static lvc:DefaultAxes.CleanSeparator}"/>

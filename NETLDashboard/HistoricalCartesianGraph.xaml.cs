@@ -1,18 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using NETLDashboard__.NET_Framework_;
+using NETLDashboard;
 
 namespace Wpf.CartesianChart.ZoomingAndPanning
 {
     public partial class ZoomingAndPanning : INotifyPropertyChanged
     {
         private ZoomingOptions _zoomingMode;
+        private String startDate;
+        private String endDate;
 
         public ZoomingAndPanning()
         {
@@ -26,21 +32,33 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
             gradientBrush.GradientStops.Add(new GradientStop(Color.FromRgb(33, 148, 241), 0));
             gradientBrush.GradientStops.Add(new GradientStop(Colors.Transparent, 1));
 
+            /*
+             * 
+             *  The Set date range needs to pop up here otherwise it'll return all the data in the database.
+             * 
+             * 
+             */
+            DateTimeWindow selectDates = new DateTimeWindow();
+            selectDates.ShowDialog();
+            startDate = selectDates.startDate.ToString("yyyyMMdd");
+            endDate = selectDates.endDate.ToString("yyyyMMdd");
+            selectDates.Close();
+
             SeriesCollection = new SeriesCollection
             {
                 new LineSeries
                 {
-                    Values = GetData(),
-                    Fill = gradientBrush,
-                    StrokeThickness = 1,
-                    PointGeometrySize = 0
+                    Values = GetData(startDate,endDate),
+                    //Fill = gradientBrush,
+                    StrokeThickness = 0,
+                    PointGeometrySize = 3
                 }
             };
 
             ZoomingMode = ZoomingOptions.X;
 
             XFormatter = val => new DateTime((long)val).ToString("dd MMM");
-            YFormatter = val => val.ToString("C");
+            YFormatter = val => val.ToString("G");
 
             DataContext = this;
         }
@@ -80,17 +98,15 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
             }
         }
 
-        private ChartValues<DateTimePoint> GetData()
+        private ChartValues<DateTimePoint> GetData(String start, String end)
         {
-            var r = new Random();
-            var trend = 100;
+            Db fiu = new Db();
             var values = new ChartValues<DateTimePoint>();
-
-            for (var i = 0; i < 100; i++)
+            List<double> data = fiu.getVirtualHistoricalData(start, end).ToList(); //Copies the data returned by the database and stores it in a list
+            
+            for(int i = 0; i < data.Count(); i++)
             {
-                var seed = r.NextDouble();
-                if (seed > .8) trend += seed > .9 ? 50 : -50;
-                values.Add(new DateTimePoint(DateTime.Now.AddDays(i), trend + r.Next(0, 10)));
+                values.Add(new DateTimePoint(DateTime.Now.AddHours(i), data[i])); //This adds the values from the data list, then increments the days by 1.
             }
 
             return values;
@@ -112,6 +128,11 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
             X.MaxValue = double.NaN;
             Y.MinValue = double.NaN;
             Y.MaxValue = double.NaN;
+        }
+
+        private void SelectDates(object sender, RoutedEventArgs e)
+        {
+            //Create DatePicker selection window, then redraw the entire graph
         }
     }
 
