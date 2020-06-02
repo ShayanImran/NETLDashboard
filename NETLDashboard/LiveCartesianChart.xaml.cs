@@ -1,23 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Configurations;
 using System.Threading;
 using System.ComponentModel;
 using NETLDashboard__.NET_Framework_;
-using System.Net.NetworkInformation;
 
 namespace Wpf.CartesianChart.ConstantChanges
 {
@@ -35,6 +23,41 @@ namespace Wpf.CartesianChart.ConstantChanges
         private double _axisMax;
         private double _axisMin;
         private readonly int phys;
+
+        public ConstantChangesChart()
+        {
+            InitializeComponent();
+            this.phys = phys;
+
+            var mapper = Mappers.Xy<MeasureModel>()
+                .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
+                .Y(model => model.Value);           //use the value property as Y
+
+            //lets save the mapper globally.
+            Charting.For<MeasureModel>(mapper);
+
+            //the values property will store our values array
+            ChartValues = new ChartValues<MeasureModel>();
+
+            //lets set how to display the X Labels
+            DateTimeFormatter = value => new DateTime((long)value).ToString("hh:mm:ss");
+
+            //AxisStep forces the distance between each separator in the X axis
+            AxisStep = TimeSpan.FromSeconds(1).Ticks;
+
+            //AxisUnit forces lets the axis know that we are plotting seconds
+            //this is not always necessary, but it can prevent wrong labeling
+            AxisUnit = TimeSpan.TicksPerSecond;
+
+            SetAxisLimits(DateTime.Now);
+
+
+            //Starts plotting points in a seperate thread
+
+            IsReading = true;
+            DataContext = this;
+            Task.Factory.StartNew(Read);
+        }
 
         public ConstantChangesChart(int phys)
         {

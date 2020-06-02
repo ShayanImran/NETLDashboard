@@ -84,18 +84,17 @@ namespace NETLDashboard__.NET_Framework_
         public List<double> getVirtualHistoricalData()
         {
             List<double> data = new List<double>();
-            SqlCommand command = new SqlCommand("SELECT SensorValue From SensorData WHERE SensorInput = 'Virtual';", connection);
-            connection.Open();
-            int i = 0;
-            using (SqlDataReader reader = command.ExecuteReader())
+            SqlCommand command = new SqlCommand("SELECT SensorValue From SensorData WHERE SensorInput = 'Virtual';", connection); //Reads all the column data from the SensorData table
+            connection.Open();// Opens the connection
+            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
             {
                 while(reader.Read())
                 {
-                    data.Add(double.Parse(reader[0].ToString()));
+                    data.Add(double.Parse(reader[0].ToString()));//Gets the first data point at the iterator of the reader.
                 }
             }
 
-            connection.Close();
+            connection.Close(); // closes the connection to the database
 
             return data;
         }

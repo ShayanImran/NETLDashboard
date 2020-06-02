@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NETLDashboard"
-        xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:Points="clr-namespace:LiveCharts.Wpf.Points;assembly=LiveCharts.Wpf" x:Class="NETLDashboard.MainWindow"
+        xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:Points="clr-namespace:LiveCharts.Wpf.Points;assembly=LiveCharts.Wpf" xmlns:ZoomingAndPanning="clr-namespace:Wpf.CartesianChart.ZoomingAndPanning" x:Class="NETLDashboard.MainWindow"
         mc:Ignorable="d"
 
         Title="NETL Command Center" Height="705.267" Width="1097.569" ResizeMode="CanResizeWithGrip">
@@ -21,8 +21,8 @@
                     <TreeView x:Name="sensorTreeList" Grid.ColumnSpan="2" Margin="-3,-3,0,-3" HorizontalAlignment="Left" Width="159" >
 
                         <TreeViewItem Header="Furnace" IsSelected="True" MouseLeftButtonUp="TreeViewItem_MouseLeftButtonUp">
-                            <TreeViewItem Header="Sensor 1" Name="Physical" MouseLeftButtonUp="TreeViewItem_Boiler_Sensor1_MouseLeftButtonUp"/>
-                            <TreeViewItem Header="Sensor 2" Name="Virtual" MouseLeftButtonUp="TreeViewItem_Boiler_Sensor2_MouseLeftButtonUp"/>
+                            <TreeViewItem Header="Sensor 1" x:Name="Physical" MouseLeftButtonUp="TreeViewItem_Boiler_Sensor1_MouseLeftButtonUp"/>
+                            <TreeViewItem Header="Sensor 2" x:Name="Virtual" MouseLeftButtonUp="TreeViewItem_Boiler_Sensor2_MouseLeftButtonUp"/>
                         </TreeViewItem>
                         <TreeViewItem Header="Boiler" IsSelected="True">
                             <TreeViewItem Header="Sensor 1">
@@ -65,10 +65,11 @@
                                 <TranslateTransform/>
                             </TransformGroup>
                         </Grid.RenderTransform>
+                        
                     </Grid>
                     <Grid Grid.Column="1" HorizontalAlignment="Left" Height="19" Margin="125,0,0,0" VerticalAlignment="Top" Width="923"/>
-                    <RadioButton Name="LiveGraph" Content="Live Graph" Grid.Column="1" HorizontalAlignment="Left" Margin="425,4,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
-                    <RadioButton Name="HistoricalGraph" Content="Historical Graph" Grid.Column="1" HorizontalAlignment="Left" Margin="588,4,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+                    <RadioButton x:Name="LiveGraph" Content="Live Graph" Grid.Column="1" HorizontalAlignment="Left" Margin="425,4,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+                    <RadioButton x:Name="HistoricalGraph" Content="Historical Graph" Grid.Column="1" HorizontalAlignment="Left" Margin="588,4,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
                 </Grid>
             </TabItem>
         </TabControl>

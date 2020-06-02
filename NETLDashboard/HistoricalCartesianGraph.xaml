@@ -17,9 +17,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" TextWrapping="Wrap">
-            Use the Chart.Zoom property to enable zooming and panning, you have some options: None, X, Y and XY, click, hold and drag the chart for panning.
-        </TextBlock>
+        
         <StackPanel Grid.Row="1">
             <Button Click="ToogleZoomingMode">
                 <TextBlock>Toggle zoming mode, current is: 

@@ -1,16 +1,5 @@
-﻿using System;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using LiveCharts;
-using LiveCharts.Configurations;
-using LiveCharts.Wpf;
-using NETLDashboard__.NET_Framework_;
 using Wpf.CartesianChart.ConstantChanges;
 using Wpf.CartesianChart.ZoomingAndPanning;
 

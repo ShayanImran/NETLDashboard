@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Defaults;
@@ -17,6 +16,8 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
     public partial class ZoomingAndPanning : INotifyPropertyChanged
     {
         private ZoomingOptions _zoomingMode;
+        private DateTime startDate;
+        private DateTime endDate;
 
         public ZoomingAndPanning()
         {
@@ -90,15 +91,14 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
             //var r = new Random();
             //var trend = 100;
             var values = new ChartValues<DateTimePoint>();
-            List<double> data = fiu.getVirtualHistoricalData().ToList();
+            List<double> data = fiu.getVirtualHistoricalData().ToList();// Copies the data returned by the database and stores it in a list
             
             for(int i = 0; i < data.Count(); i++)
             {
-               // var seed = r.NextDouble();
-               // if (seed > .8) trend += seed > .9 ? 50 : -50;
-                values.Add(new DateTimePoint(DateTime.Now.AddDays(i), data[i]));
-                
+                values.Add(new DateTimePoint(DateTime.Now.AddDays(i), data[i])); // This adds the values from the data list, then increments the days by 1.
             }
+
+    
 
             return values;
         }
