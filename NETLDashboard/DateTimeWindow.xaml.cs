@@ -9,10 +9,10 @@ namespace NETLDashboard
     /// <summary>
     /// Interaction logic for DateTimeWindow.xaml
     /// </summary>
-    public partial class DateTimeWindow : UserControl
+    public partial class DateTimeWindow : Window
     {
-        private DateTime startDate;
-        private DateTime endDate;
+        public DateTime startDate;
+        public DateTime endDate;
         public DateTimeWindow()
         {
             InitializeComponent();
@@ -21,8 +21,8 @@ namespace NETLDashboard
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             startDate = DpStart.SelectedDate.Value.Date; //Gets the selected start date
-            endDate = DpStart.SelectedDate.Value.Date; //Gets the selected end date
-            Window.Close();
+            endDate = DpEnd.SelectedDate.Value.Date; //Gets the selected end date
+            Windough.Close();
         }
     }
 }

@@ -54,7 +54,7 @@ namespace NETLDashboard__.NET_Framework_
         public double getLastEntry()
         {
             double lastValue = 0.0;
-            SqlCommand command = new SqlCommand("SELECT TOP 1 SensorValue From SensorData WHERE SensorInput = 'Temperature' ORDER BY InsertedOn desc;", connection);
+            SqlCommand command = new SqlCommand("SELECT TOP 1 SensorValue From SensorData WHERE SensorInput = 'Physical' ORDER BY InsertedOn desc;", connection);
             connection.Open(); //Opens the connection to the database.
             using (SqlDataReader reader = command.ExecuteReader())
             {
@@ -81,10 +81,11 @@ namespace NETLDashboard__.NET_Framework_
             return lastValue;
         }
 
-        public List<double> getVirtualHistoricalData()
+        public List<double> getVirtualHistoricalData(String start, String end)
         {
             List<double> data = new List<double>();
-            SqlCommand command = new SqlCommand("SELECT SensorValue From SensorData WHERE SensorInput = 'Virtual';", connection); //Reads all the column data from the SensorData table
+            SqlCommand command = new SqlCommand("SELECT SensorValue FROM SensorData WHERE SensorType = 'TEST' AND cast(InsertedOn as date) BETWEEN '" + start + "' AND '" + end + "' ORDER BY InsertedOn ASC;", connection); //Reads all the column data from the SensorData table
+           
             connection.Open();// Opens the connection
             using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
             {

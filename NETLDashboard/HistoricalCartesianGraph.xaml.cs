@@ -10,14 +10,15 @@ using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using NETLDashboard__.NET_Framework_;
+using NETLDashboard;
 
 namespace Wpf.CartesianChart.ZoomingAndPanning
 {
     public partial class ZoomingAndPanning : INotifyPropertyChanged
     {
         private ZoomingOptions _zoomingMode;
-        private DateTime startDate;
-        private DateTime endDate;
+        private String startDate;
+        private String endDate;
 
         public ZoomingAndPanning()
         {
@@ -37,15 +38,20 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
              * 
              * 
              */
+            DateTimeWindow selectDates = new DateTimeWindow();
+            selectDates.ShowDialog();
+            startDate = selectDates.startDate.ToString("yyyyMMdd");
+            endDate = selectDates.endDate.ToString("yyyyMMdd");
+            selectDates.Close();
 
             SeriesCollection = new SeriesCollection
             {
                 new LineSeries
                 {
-                    Values = GetData(),
-                    Fill = gradientBrush,
-                    StrokeThickness = 1,
-                    PointGeometrySize = 0
+                    Values = GetData(startDate,endDate),
+                    //Fill = gradientBrush,
+                    StrokeThickness = 0,
+                    PointGeometrySize = 3
                 }
             };
 
@@ -92,20 +98,16 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
             }
         }
 
-        private ChartValues<DateTimePoint> GetData()
+        private ChartValues<DateTimePoint> GetData(String start, String end)
         {
             Db fiu = new Db();
-            //var r = new Random();
-            //var trend = 100;
             var values = new ChartValues<DateTimePoint>();
-            List<double> data = fiu.getVirtualHistoricalData().ToList(); //Copies the data returned by the database and stores it in a list
+            List<double> data = fiu.getVirtualHistoricalData(start, end).ToList(); //Copies the data returned by the database and stores it in a list
             
             for(int i = 0; i < data.Count(); i++)
             {
-                values.Add(new DateTimePoint(DateTime.Now.AddDays(i), data[i])); //This adds the values from the data list, then increments the days by 1.
+                values.Add(new DateTimePoint(DateTime.Now.AddHours(i), data[i])); //This adds the values from the data list, then increments the days by 1.
             }
-
-    
 
             return values;
         }
