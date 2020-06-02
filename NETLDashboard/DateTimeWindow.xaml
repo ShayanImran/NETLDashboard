@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="NETLDashboard.DateTimeWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:NETLDashboard"
+             mc:Ignorable="d" 
+             d:DesignHeight="262" d:DesignWidth="395">
+    <Window Name="Window" Margin="0,0,0,32">
+        <Grid Margin="0,0,375,270">
+            <DatePicker Name="DpStart" HorizontalAlignment="Left" Margin="141,85,0,0" VerticalAlignment="Top" Height="27" Width="178" SelectedDate="{x:Static sys:DateTime.Today}"/>
+            <Label Content="Start Date: " HorizontalAlignment="Left" Margin="68,84,0,0" VerticalAlignment="Top"/>
+            <Label Content="End Date: " HorizontalAlignment="Left" Margin="68,115,0,0" VerticalAlignment="Top"/>
+            <DatePicker Name="DpEnd" HorizontalAlignment="Left" Margin="141,117,0,0" VerticalAlignment="Top" Width="178" SelectedDate="{x:Static sys:DateTime.Today}"/>
+            <Button Content="Ok" HorizontalAlignment="Left" Margin="141,157,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+            <Label Content="Select the start date and end date for the range of values to display." HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+        </Grid>
+    </Window>
+</UserControl>

@@ -31,6 +31,13 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
             gradientBrush.GradientStops.Add(new GradientStop(Color.FromRgb(33, 148, 241), 0));
             gradientBrush.GradientStops.Add(new GradientStop(Colors.Transparent, 1));
 
+            /*
+             * 
+             *  The Set date range needs to pop up here otherwise it'll return all the data in the database.
+             * 
+             * 
+             */
+
             SeriesCollection = new SeriesCollection
             {
                 new LineSeries
@@ -91,11 +98,11 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
             //var r = new Random();
             //var trend = 100;
             var values = new ChartValues<DateTimePoint>();
-            List<double> data = fiu.getVirtualHistoricalData().ToList();// Copies the data returned by the database and stores it in a list
+            List<double> data = fiu.getVirtualHistoricalData().ToList(); //Copies the data returned by the database and stores it in a list
             
             for(int i = 0; i < data.Count(); i++)
             {
-                values.Add(new DateTimePoint(DateTime.Now.AddDays(i), data[i])); // This adds the values from the data list, then increments the days by 1.
+                values.Add(new DateTimePoint(DateTime.Now.AddDays(i), data[i])); //This adds the values from the data list, then increments the days by 1.
             }
 
     
@@ -119,6 +126,11 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
             X.MaxValue = double.NaN;
             Y.MinValue = double.NaN;
             Y.MaxValue = double.NaN;
+        }
+
+        private void SelectDates(object sender, RoutedEventArgs e)
+        {
+            //Create DatePicker selection window, then redraw the entire graph
         }
     }
 
