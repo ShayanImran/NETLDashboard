@@ -59,7 +59,7 @@ namespace NETLDashboard__.NET_Framework_
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 reader.Read();
-                //lastValue = double.Parse(reader[0].ToString());
+                lastValue = double.Parse(reader[0].ToString());
             }
 
             connection.Close(); //Closes the connection to the database.

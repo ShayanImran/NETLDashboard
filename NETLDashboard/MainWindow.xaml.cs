@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using Wpf.CartesianChart.ConstantChanges;
 using Wpf.CartesianChart.ZoomingAndPanning;
+
 
 namespace NETLDashboard
 {
@@ -24,23 +26,25 @@ namespace NETLDashboard
             var button = sender as RadioButton;
             if (string.Compare("Live Graph", button.Content.ToString()) == 0)
             {
-                if(Physical.IsSelected)
+                if (Physical.IsSelected)
                 {
+                    graphGrid.Children.Clear();
                     ConstantChangesChart temperatureChart = new ConstantChangesChart(0);
                     temperatureChart.Height = graphGrid.Height;
                     temperatureChart.Width = graphGrid.Width;
                     graphGrid.Children.Add(temperatureChart);
                 }
-                else if(Virtual.IsSelected)
+                else if (Virtual.IsSelected)
                 {
+                    graphGrid.Children.Clear();
                     ConstantChangesChart temperatureChart = new ConstantChangesChart(1);
                     temperatureChart.Height = graphGrid.Height;
                     temperatureChart.Width = graphGrid.Width;
                     graphGrid.Children.Add(temperatureChart);
                 }
-                
+
             }
-            if(string.Compare("Historical Graph", button.Content.ToString()) == 0)
+            if (string.Compare("Historical Graph", button.Content.ToString()) == 0)
             {
                 ZoomingAndPanning histChart = new ZoomingAndPanning();
                 histChart.Height = graphGrid.Height;
@@ -51,6 +55,7 @@ namespace NETLDashboard
 
         private void TreeViewItem_Boiler_Sensor1_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            graphGrid.Children.Clear();
             //Currently a placeholder until the backend is in the final iteration.
             LiveGraph.IsChecked = false;
             LiveGraph.IsChecked = true;
@@ -60,6 +65,7 @@ namespace NETLDashboard
 
         private void TreeViewItem_Boiler_Sensor2_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            graphGrid.Children.Clear();
             //Currently a placeholder until the backend is in the final iteration.
             LiveGraph.IsChecked = false;
             LiveGraph.IsChecked = true;
@@ -67,11 +73,11 @@ namespace NETLDashboard
             Virtual.IsSelected = true;
         }
 
-        private void TreeViewItem_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Furnace_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //LiveGraph.IsChecked = false;
-            //HistoricalGraph.IsChecked = false;
-            //graphGrid.Children.Clear();
+            graphGrid.Children.Clear();
+            ComponentDashboard furnaceDashboard = new ComponentDashboard(8);
+            graphGrid.Children.Add(furnaceDashboard);
         }
     }
 }
