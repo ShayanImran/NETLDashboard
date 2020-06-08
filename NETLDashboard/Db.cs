@@ -84,7 +84,7 @@ namespace NETLDashboard__.NET_Framework_
         public List<double> getVirtualHistoricalData(String start, String end)
         {
             List<double> data = new List<double>();
-            SqlCommand command = new SqlCommand("SELECT SensorValue FROM SensorData WHERE SensorType = 'TEST' AND cast(InsertedOn as date) BETWEEN '" + start + "' AND '" + end + "' ORDER BY InsertedOn ASC;", connection); //Reads all the column data from the SensorData table
+            SqlCommand command = new SqlCommand("SELECT SensorValue FROM SensorData WHERE cast(InsertedOn as date) BETWEEN '" + start + "' AND '" + end + "' ORDER BY InsertedOn ASC;", connection); //Reads all the column data from the SensorData table
            
             connection.Open();// Opens the connection
             using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
