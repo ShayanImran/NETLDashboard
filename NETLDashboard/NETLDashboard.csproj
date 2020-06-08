@@ -61,23 +61,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ComponentDashboard.xaml">
+    <Page Include="UserControls\ComponentDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DateTimeWindow.xaml">
+    <Page Include="UserControls\DateTimeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HistoricalCartesianGraph.xaml">
+    <Page Include="UserControls\HistoricalCartesianGraph.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LiveCartesianChart.xaml">
+    <Page Include="UserControls\LiveCartesianChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LiveGraph.xaml">
+    <Page Include="UserControls\LiveGraph.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -89,20 +89,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ComponentDashboard.xaml.cs">
+    <Compile Include="UserControls\ComponentDashboard.xaml.cs">
       <DependentUpon>ComponentDashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DateTimeWindow.xaml.cs">
+    <Compile Include="UserControls\DateTimeWindow.xaml.cs">
       <DependentUpon>DateTimeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Db.cs" />
-    <Compile Include="HistoricalCartesianGraph.xaml.cs">
+    <Compile Include="UserControls\HistoricalCartesianGraph.xaml.cs">
       <DependentUpon>HistoricalCartesianGraph.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LiveCartesianChart.xaml.cs">
+    <Compile Include="UserControls\LiveCartesianChart.xaml.cs">
       <DependentUpon>LiveCartesianChart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LiveGraph.xaml.cs">
+    <Compile Include="UserControls\LiveGraph.xaml.cs">
       <DependentUpon>LiveGraph.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
@@ -138,16 +138,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="airflow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="button_rotate-512.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Database_Connection_String.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

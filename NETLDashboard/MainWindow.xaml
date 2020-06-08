@@ -12,7 +12,7 @@
 
         <TabControl IsSynchronizedWithCurrentItem="True">
 
-            
+
             <TabItem Header="Detailed View">
                 <Grid Background="White">
                     <Grid.ColumnDefinitions>
@@ -21,7 +21,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TreeView x:Name="sensorTreeList" Grid.ColumnSpan="2" Margin="-3,-3,0,-3" HorizontalAlignment="Left" Width="159" >
-                        
+
 
                         <TreeViewItem Name="Tree_Item_Furnace" Header="Furnace" IsSelected="True" MouseLeftButtonUp = "Furnace_MouseLeftButtonUp">
                             <TreeViewItem Header="Sensor 1" x:Name="Physical" MouseLeftButtonUp="TreeViewItem_Boiler_Sensor1_MouseLeftButtonUp"/>
@@ -158,7 +158,7 @@
                                 <TranslateTransform/>
                             </TransformGroup>
                         </Grid.RenderTransform>
-                        
+
                     </Grid>
                     <Grid Grid.Column="1" HorizontalAlignment="Left" Height="19" Margin="125,0,0,0" VerticalAlignment="Top" Width="923"/>
                     <RadioButton x:Name="LiveGraph" Content="Live Graph" Grid.Column="1" HorizontalAlignment="Left" Margin="425,4,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
