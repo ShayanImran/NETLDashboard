@@ -21,26 +21,26 @@ namespace NETLDashboard
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {   //The radio button switch updates the part of the screen that displays the live and historical graphs
-            graphGrid.Children.Clear();
+            GraphGrid.Children.Clear();
 
             var button = sender as RadioButton;
             if (string.Compare("Live Graph", button.Content.ToString()) == 0)
             {
                 if (Physical.IsSelected)
                 {
-                    graphGrid.Children.Clear();
+                    GraphGrid.Children.Clear();
                     ConstantChangesChart temperatureChart = new ConstantChangesChart(0);
                     temperatureChart.Height = graphGrid.Height;
                     temperatureChart.Width = graphGrid.Width;
-                    graphGrid.Children.Add(temperatureChart);
+                    GraphGrid.Children.Add(temperatureChart);
                 }
                 else if (Virtual.IsSelected)
                 {
-                    graphGrid.Children.Clear();
+                    GraphGrid.Children.Clear();
                     ConstantChangesChart temperatureChart = new ConstantChangesChart(1);
                     temperatureChart.Height = graphGrid.Height;
                     temperatureChart.Width = graphGrid.Width;
-                    graphGrid.Children.Add(temperatureChart);
+                    GraphGrid.Children.Add(temperatureChart);
                 }
 
             }
@@ -49,14 +49,17 @@ namespace NETLDashboard
                 ZoomingAndPanning histChart = new ZoomingAndPanning();
                 histChart.Height = graphGrid.Height;
                 histChart.Width = graphGrid.Width;
-                graphGrid.Children.Add(histChart);
+                GraphGrid.Children.Add(histChart);
             }
         }
 
         private void TreeViewItem_Boiler_Sensor1_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            graphGrid.Children.Clear();
+            
+            GraphGrid.Children.Clear();
             //Currently a placeholder until the backend is in the final iteration.
+            LiveGraph.Visibility = Visibility.Visible;
+            HistoricalGraph.Visibility = Visibility.Visible;
             LiveGraph.IsChecked = false;
             LiveGraph.IsChecked = true;
             Physical.IsSelected = true;
@@ -65,8 +68,10 @@ namespace NETLDashboard
 
         private void TreeViewItem_Boiler_Sensor2_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            graphGrid.Children.Clear();
+            GraphGrid.Children.Clear();
             //Currently a placeholder until the backend is in the final iteration.
+            LiveGraph.Visibility = Visibility.Visible;
+            HistoricalGraph.Visibility = Visibility.Visible;
             LiveGraph.IsChecked = false;
             LiveGraph.IsChecked = true;
             Physical.IsSelected = false;
@@ -75,9 +80,14 @@ namespace NETLDashboard
 
         private void Furnace_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            graphGrid.Children.Clear();
+            GraphGrid.Children.Clear();
             ComponentDashboard furnaceDashboard = new ComponentDashboard(8);
-            graphGrid.Children.Add(furnaceDashboard);
+            GraphGrid.Children.Add(furnaceDashboard);
+        }
+
+        private void sensorTreeList_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            //We're just going to cheese this whole thing to get it done faster.
         }
     }
 }

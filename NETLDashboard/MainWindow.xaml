@@ -7,167 +7,163 @@
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:Points="clr-namespace:LiveCharts.Wpf.Points;assembly=LiveCharts.Wpf" xmlns:ZoomingAndPanning="clr-namespace:Wpf.CartesianChart.ZoomingAndPanning" x:Class="NETLDashboard.MainWindow"
         mc:Ignorable="d"
 
-        Title="NETL Command Center" Height="866.267" Width="1467.569" ResizeMode="CanResizeWithGrip">
+        Title="NETL Command Center" Height="866.267" Width="1467.569" ResizeMode="CanResizeWithGrip" MinWidth="1500" MinHeight="900">
     <Grid ClipToBounds="True">
+        <Grid Name="treeGrid" Margin="0,0,1318,0">
+            <TreeView x:Name="sensorTreeList" Margin="0,0,0,0" SelectedItemChanged="sensorTreeList_SelectedItemChanged" HorizontalAlignment="Left" Width="145" RenderTransformOrigin="0.5,0.5" >
 
-        <TabControl IsSynchronizedWithCurrentItem="True">
+                <TreeViewItem Name="Tree_Item_Furnace" Header="Furnace" IsSelected="True" MouseLeftButtonUp = "Furnace_MouseLeftButtonUp">
+                    <TreeViewItem Header="Sensor 1" x:Name="Physical" MouseLeftButtonUp="TreeViewItem_Boiler_Sensor1_MouseLeftButtonUp"/>
+                    <TreeViewItem Header="Sensor 2" x:Name="Virtual" MouseLeftButtonUp="TreeViewItem_Boiler_Sensor2_MouseLeftButtonUp"/>
+                </TreeViewItem>
+                <TreeViewItem Header="Boiler" IsSelected="True">
+                    <TreeViewItem Header="Sensor 1">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Sensor 2">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Stack" IsSelected="True">
+                    <TreeViewItem Header="Sensor 1">
+                        <TreeViewItem Header="Live Graph" />
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Sensor 2">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Turbine" IsSelected="True">
+                    <TreeViewItem Header="Sensor 1">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Sensor 2">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Tubes" IsSelected="True">
+                    <TreeViewItem Header="Sensor 1">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Sensor 2">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Container" IsSelected="True">
+                    <TreeViewItem Header="Sensor 1">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Sensor 2">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Condenser" IsSelected="True">
+                    <TreeViewItem Header="Sensor 1">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Sensor 2">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Generator" IsSelected="True">
+                    <TreeViewItem Header="Sensor 1">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Sensor 2">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Transformer" IsSelected="True">
+                    <TreeViewItem Header="Sensor 1">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Sensor 2">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Pulverizer" IsSelected="True">
+                    <TreeViewItem Header="Sensor 1">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Sensor 2">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Coal Supplier" IsSelected="True">
+                    <TreeViewItem Header="Sensor 1">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Sensor 2">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Conveyor" IsSelected="True">
+                    <TreeViewItem Header="Sensor 1">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Sensor 2">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Transmission Lines" IsSelected="True">
+                    <TreeViewItem Header="Sensor 1">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Sensor 2">
+                        <TreeViewItem Header="Live Graph"/>
+                        <TreeViewItem Header="Historical Graph"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+            </TreeView>
+        </Grid>
+        <Grid x:Name="graphGrid" Background="Black" Margin="143,0,0,0" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.015"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition/>
 
-
-            <TabItem Header="Detailed View">
-                <Grid Background="White">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="13*"/>
-                        <ColumnDefinition Width="380*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TreeView x:Name="sensorTreeList" Grid.ColumnSpan="2" Margin="-3,-3,0,-3" HorizontalAlignment="Left" Width="159" >
-
-
-                        <TreeViewItem Name="Tree_Item_Furnace" Header="Furnace" IsSelected="True" MouseLeftButtonUp = "Furnace_MouseLeftButtonUp">
-                            <TreeViewItem Header="Sensor 1" x:Name="Physical" MouseLeftButtonUp="TreeViewItem_Boiler_Sensor1_MouseLeftButtonUp"/>
-                            <TreeViewItem Header="Sensor 2" x:Name="Virtual" MouseLeftButtonUp="TreeViewItem_Boiler_Sensor2_MouseLeftButtonUp"/>
-                        </TreeViewItem>
-                        <TreeViewItem Header="Boiler" IsSelected="True">
-                            <TreeViewItem Header="Sensor 1">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                            <TreeViewItem Header="Sensor 2">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                        </TreeViewItem>
-                        <TreeViewItem Header="Stack" IsSelected="True">
-                            <TreeViewItem Header="Sensor 1">
-                                <TreeViewItem Header="Live Graph" />
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                            <TreeViewItem Header="Sensor 2">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                        </TreeViewItem>
-                        <TreeViewItem Header="Turbine" IsSelected="True">
-                            <TreeViewItem Header="Sensor 1">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                            <TreeViewItem Header="Sensor 2">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                        </TreeViewItem>
-                        <TreeViewItem Header="Tubes" IsSelected="True">
-                            <TreeViewItem Header="Sensor 1">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                            <TreeViewItem Header="Sensor 2">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                        </TreeViewItem>
-                        <TreeViewItem Header="Container" IsSelected="True">
-                            <TreeViewItem Header="Sensor 1">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                            <TreeViewItem Header="Sensor 2">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                        </TreeViewItem>
-                        <TreeViewItem Header="Condenser" IsSelected="True">
-                            <TreeViewItem Header="Sensor 1">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                            <TreeViewItem Header="Sensor 2">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                        </TreeViewItem>
-                        <TreeViewItem Header="Generator" IsSelected="True">
-                            <TreeViewItem Header="Sensor 1">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                            <TreeViewItem Header="Sensor 2">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                        </TreeViewItem>
-                        <TreeViewItem Header="Transformer" IsSelected="True">
-                            <TreeViewItem Header="Sensor 1">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                            <TreeViewItem Header="Sensor 2">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                        </TreeViewItem>
-                        <TreeViewItem Header="Pulverizer" IsSelected="True">
-                            <TreeViewItem Header="Sensor 1">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                            <TreeViewItem Header="Sensor 2">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                        </TreeViewItem>
-                        <TreeViewItem Header="Coal Supplier" IsSelected="True">
-                            <TreeViewItem Header="Sensor 1">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                            <TreeViewItem Header="Sensor 2">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                        </TreeViewItem>
-                        <TreeViewItem Header="Conveyor" IsSelected="True">
-                            <TreeViewItem Header="Sensor 1">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                            <TreeViewItem Header="Sensor 2">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                        </TreeViewItem>
-                        <TreeViewItem Header="Transmission Lines" IsSelected="True">
-                            <TreeViewItem Header="Sensor 1">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                            <TreeViewItem Header="Sensor 2">
-                                <TreeViewItem Header="Live Graph"/>
-                                <TreeViewItem Header="Historical Graph"/>
-                            </TreeViewItem>
-                        </TreeViewItem>
-                    </TreeView>
-
-                    <Grid x:Name="graphGrid" Background="Black" Grid.Column="1" Margin="120,19,-2,-2" RenderTransformOrigin="0.5,0.5">
-                        <Grid.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="0.015"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Grid.RenderTransform>
-
-                    </Grid>
-                    <Grid Grid.Column="1" HorizontalAlignment="Left" Height="19" Margin="125,0,0,0" VerticalAlignment="Top" Width="923"/>
-                    <RadioButton x:Name="LiveGraph" Content="Live Graph" Grid.Column="1" HorizontalAlignment="Left" Margin="425,4,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
-                    <RadioButton x:Name="HistoricalGraph" Content="Historical Graph" Grid.Column="1" HorizontalAlignment="Left" Margin="588,4,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
-                </Grid>
-            </TabItem>
-
-
-        </TabControl>
-
+            </Grid.RowDefinitions>
+            <RadioButton x:Name="LiveGraph" Foreground="White" Content="Live Graph" Grid.Row="0" HorizontalAlignment="Center" Margin="568,2,668,2" VerticalAlignment="Center" Checked="RadioButton_Checked" Visibility="Hidden"/>
+            <RadioButton x:Name="HistoricalGraph" Foreground="White" Content="Historical Graph" Grid.Row="0" HorizontalAlignment="Center" Margin="654,2,553,2" VerticalAlignment="Center" Checked="RadioButton_Checked" Visibility="Hidden"/>
+            <Grid x:Name="GraphGrid" Grid.Row="1" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,15">
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="1" ScaleX="1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
