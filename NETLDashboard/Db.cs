@@ -18,7 +18,6 @@ namespace NETLDashboard__.NET_Framework_
         public Db()
         {
             string connectionString = File.ReadAllText("..\\..\\Database_Connection_String.txt"); //Database information is stored in seperate file for security and is loaded upon start
-            Console.WriteLine(connectionString);
             connection = new SqlConnection();
             connection.ConnectionString = connectionString;
         }
