@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NETLDashboard.UserControls.ComponentOverviews;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using Wpf.CartesianChart.ConstantChanges;
@@ -73,11 +74,97 @@ namespace NETLDashboard
             Virtual.IsSelected = true;
         }
 
-        private void Furnace_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+
+        private void Tree_Item_Boiler_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             graphGrid.Children.Clear();
-            ComponentDashboard furnaceDashboard = new ComponentDashboard(8);
-            graphGrid.Children.Add(furnaceDashboard);
+            BoilerOverview boilerOverview = new BoilerOverview(3);
+            graphGrid.Children.Add(boilerOverview);
+        }
+
+        private void Tree_Item_Furnace_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            graphGrid.Children.Clear();
+            FurnaceOverview furnaceOverview = new FurnaceOverview(3);
+            graphGrid.Children.Add(furnaceOverview);
+        }
+
+        private void Tree_Item_Stack_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            graphGrid.Children.Clear();
+            StackOverview stackOverview = new StackOverview(3);
+            graphGrid.Children.Add(stackOverview);
+        }
+
+        private void Tree_Item_Turbine_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            graphGrid.Children.Clear();
+            TurbineOverview turbineOverview = new TurbineOverview(3);
+            graphGrid.Children.Add(turbineOverview);
+        }
+
+        private void Tree_Item_Tubes_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            graphGrid.Children.Clear();
+            TubesOverview tubesOverview = new TubesOverview(3);
+            graphGrid.Children.Add(tubesOverview);
+
+        }
+
+        private void Tree_Item_Container_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            graphGrid.Children.Clear();
+            ContainerOverview containerOverview = new ContainerOverview(3);
+            graphGrid.Children.Add(containerOverview);
+        }
+
+        private void Tree_Item_Condenser_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            graphGrid.Children.Clear();
+            CondenserOverview condenserOverview = new CondenserOverview(3);
+            graphGrid.Children.Add(condenserOverview);
+        }
+
+        private void Tree_Item_Generator_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            graphGrid.Children.Clear();
+            GeneratorOverview generatorOverview = new GeneratorOverview(3);
+            graphGrid.Children.Add(generatorOverview);
+        }
+
+        private void Tree_Item_Transformer_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            graphGrid.Children.Clear();
+            TransformerOverview transformerOverview = new TransformerOverview(3);
+            graphGrid.Children.Add(transformerOverview);
+        }
+
+        private void Tree_Item_Pulverizer_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            graphGrid.Children.Clear();
+            PulverizerOverview pulverizerOverview = new PulverizerOverview(3);
+            graphGrid.Children.Add(pulverizerOverview);
+        }
+
+        private void Tree_Item_Coal_Supplier_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            graphGrid.Children.Clear();
+            CoalSupplierOverview coalSupplierOverview = new CoalSupplierOverview(3);
+            graphGrid.Children.Add(coalSupplierOverview);
+        }
+
+        private void Tree_Item_Conveyor_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            graphGrid.Children.Clear();
+            ConveyorOverview conveyorOverview = new ConveyorOverview(3);
+            graphGrid.Children.Add(conveyorOverview);
+        }
+
+        private void Tree_Item_Transmission_Lines_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            graphGrid.Children.Clear();
+            TransmissionLinesOverview transmissionLinesOverview = new TransmissionLinesOverview(3);
+            graphGrid.Children.Add(transmissionLinesOverview);
         }
     }
 }
