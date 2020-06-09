@@ -7,20 +7,10 @@
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:Points="clr-namespace:LiveCharts.Wpf.Points;assembly=LiveCharts.Wpf" xmlns:ZoomingAndPanning="clr-namespace:Wpf.CartesianChart.ZoomingAndPanning" x:Class="NETLDashboard.MainWindow"
         mc:Ignorable="d"
 
-        Title="NETL Command Center" Height="866.267" Width="1467.569" ResizeMode="CanResizeWithGrip">
+        Title="NETL Command Center" Height="866.267" Width="1467.569" ResizeMode="CanResizeWithGrip" MinWidth="1500" MinHeight="900">
     <Grid ClipToBounds="True">
-
-        <TabControl IsSynchronizedWithCurrentItem="True">
-
-
-            <TabItem Header="Detailed View">
-                <Grid Background="White">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="13*"/>
-                        <ColumnDefinition Width="380*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TreeView x:Name="sensorTreeList" Grid.ColumnSpan="2" Margin="-3,-3,0,-3" HorizontalAlignment="Left" Width="159" >
+        <Grid Name="treeGrid" Margin="0,0,1318,0">
+            <TreeView x:Name="sensorTreeList" Grid.ColumnSpan="2" Margin="-3,-3,0,-3" HorizontalAlignment="Left" Width="159" >
 
 
                         <TreeViewItem Name="Tree_Item_Furnace" Header="Furnace" IsSelected="True" MouseLeftButtonUp = "Tree_Item_Furnace_MouseLeftButtonUp">
@@ -148,26 +138,32 @@
                             </TreeViewItem>
                         </TreeViewItem>
                     </TreeView>
-
-                    <Grid x:Name="graphGrid" Background="Black" Grid.Column="1" Margin="120,19,-2,-2" RenderTransformOrigin="0.5,0.5">
-                        <Grid.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="0.015"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Grid.RenderTransform>
-
-                    </Grid>
-                    <Grid Grid.Column="1" HorizontalAlignment="Left" Height="19" Margin="125,0,0,0" VerticalAlignment="Top" Width="923"/>
-                    <RadioButton x:Name="LiveGraph" Content="Live Graph" Grid.Column="1" HorizontalAlignment="Left" Margin="425,4,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
-                    <RadioButton x:Name="HistoricalGraph" Content="Historical Graph" Grid.Column="1" HorizontalAlignment="Left" Margin="588,4,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
-                </Grid>
-            </TabItem>
-
-
-        </TabControl>
-
+        </Grid>
+        <Grid x:Name="graphGrid" Background="Black" Margin="143,0,0,0" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.015"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <RadioButton x:Name="LiveGraph" Foreground="White" Content="Live Graph" Grid.Row="0" HorizontalAlignment="Center" Margin="568,2,668,2" VerticalAlignment="Center" Checked="RadioButton_Checked" Visibility="Hidden"/>
+            <RadioButton x:Name="HistoricalGraph" Foreground="White" Content="Historical Graph" Grid.Row="0" HorizontalAlignment="Center" Margin="654,2,553,2" VerticalAlignment="Center" Checked="RadioButton_Checked" Visibility="Hidden"/>
+            <Grid x:Name="GraphGrid" Grid.Row="1" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,15">
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="1" ScaleX="1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
