@@ -61,7 +61,55 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="UserControls\ComponentDashboard.xaml">
+    <Page Include="UserControls\ComponentOverviews\BoilerOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ComponentOverviews\CoalSupplierOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ComponentOverviews\CondenserOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ComponentOverviews\ContainerOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ComponentOverviews\ConveyorOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ComponentOverviews\FurnaceOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ComponentOverviews\GeneratorOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ComponentOverviews\PulverizerOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ComponentOverviews\StackOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ComponentOverviews\TransformerOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ComponentOverviews\TransmissionLinesOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ComponentOverviews\TubesOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ComponentOverviews\TurbineOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -89,8 +137,44 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UserControls\ComponentDashboard.xaml.cs">
-      <DependentUpon>ComponentDashboard.xaml</DependentUpon>
+    <Compile Include="UserControls\ComponentOverviews\BoilerOverview.xaml.cs">
+      <DependentUpon>BoilerOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ComponentOverviews\CoalSupplierOverview.xaml.cs">
+      <DependentUpon>CoalSupplierOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ComponentOverviews\CondenserOverview.xaml.cs">
+      <DependentUpon>CondenserOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ComponentOverviews\ContainerOverview.xaml.cs">
+      <DependentUpon>ContainerOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ComponentOverviews\ConveyorOverview.xaml.cs">
+      <DependentUpon>ConveyorOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ComponentOverviews\FurnaceOverview.xaml.cs">
+      <DependentUpon>FurnaceOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ComponentOverviews\GeneratorOverview.xaml.cs">
+      <DependentUpon>GeneratorOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ComponentOverviews\PulverizerOverview.xaml.cs">
+      <DependentUpon>PulverizerOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ComponentOverviews\StackOverview.xaml.cs">
+      <DependentUpon>StackOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ComponentOverviews\TransformerOverview.xaml.cs">
+      <DependentUpon>TransformerOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ComponentOverviews\TransmissionLinesOverview.xaml.cs">
+      <DependentUpon>TransmissionLinesOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ComponentOverviews\TubesOverview.xaml.cs">
+      <DependentUpon>TubesOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ComponentOverviews\TurbineOverview.xaml.cs">
+      <DependentUpon>TurbineOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\DateTimeWindow.xaml.cs">
       <DependentUpon>DateTimeWindow.xaml</DependentUpon>

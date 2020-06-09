@@ -30,7 +30,7 @@ namespace NETLDashboard
         public LiveGraph(/*int phys*/)
         {
             InitializeComponent();
-            //this.phys = phys;
+            
 
             var mapper = Mappers.Xy<MeasureModel>()
                 .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
@@ -59,7 +59,7 @@ namespace NETLDashboard
 
             IsReading = true;
             DataContext = this;
-            Task.Factory.StartNew(Read);
+            
         }
 
         public ChartValues<MeasureModel> ChartValues { get; set; }
@@ -88,7 +88,7 @@ namespace NETLDashboard
 
         public bool IsReading { get; set; }
 
-        private void Read()
+        public void Read()
         {
             //Connects to the FIU database to read the data.
             Db fiu = new Db();
