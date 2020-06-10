@@ -23,20 +23,52 @@ namespace NETLDashboard
     {
         private double _axisMax;
         private double _axisMin;
-        private readonly int phys;
-
-
-        // NAme space and class names need to be same, constructors need to be figured out
-        public LiveGraph(/*int phys*/)
+        private string procedureName;
+        
+        // Name space and class names need to be same
+        public LiveGraph()
         {
             InitializeComponent();
-            
 
             var mapper = Mappers.Xy<MeasureModel>()
                 .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
                 .Y(model => model.Value);           //use the value property as Y
 
-            //lets save the mapper globally.
+            //saves the mapper globally.
+            Charting.For<MeasureModel>(mapper);
+
+            //the values property will store our values array
+            ChartValues = new ChartValues<MeasureModel>();
+
+            //lets set how to display the X Labels
+            DateTimeFormatter = value => new DateTime((long)value).ToString("hh:mm:ss");
+
+            //AxisStep forces the distance between each separator in the X axis
+            AxisStep = TimeSpan.FromSeconds(1).Ticks;
+
+            //AxisUnit forces lets the axis know that we are plotting seconds
+            //this is not always necessary, but it can prevent wrong labeling
+            AxisUnit = TimeSpan.TicksPerSecond;
+
+            SetAxisLimits(DateTime.Now);
+
+            //Starts plotting points in a seperate thread
+
+            IsReading = true;
+            DataContext = this;
+         
+        }
+        public LiveGraph(String procedureName)
+        {
+            InitializeComponent();
+
+            this.procedureName = procedureName;
+
+            var mapper = Mappers.Xy<MeasureModel>()
+                .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
+                .Y(model => model.Value);           //use the value property as Y
+
+            //saves the mapper globally.
             Charting.For<MeasureModel>(mapper);
 
             //the values property will store our values array
@@ -59,7 +91,7 @@ namespace NETLDashboard
 
             IsReading = true;
             DataContext = this;
-            
+
         }
 
         public ChartValues<MeasureModel> ChartValues { get; set; }
@@ -98,26 +130,14 @@ namespace NETLDashboard
                 Thread.Sleep(1000); //The thread needs to pause in order prevent the gui from locking up
                 var now = DateTime.Now; //Gets the current date and time
                 
-                if (this.phys == 0)
-                {
+               
                     ChartValues.Add(new MeasureModel //Sets the date and time, along with the current temperature sensor value.
                     {
                         DateTime = now,
-                        Value = fiu.getLastVirtualEntry()
+                        Value = fiu.getLastVirtualEntry(procedureName)
 
                     });
-                }
-                
-                else if (this.phys == 1)
-                {
-                    ChartValues.Add(new MeasureModel //Sets the date and time, along with the current temperature sensor value.
-                    {
-                        DateTime = now,
-                        Value = fiu.getLastVirtualEntry()
-
-                    });
-                }
-
+               
                 SetAxisLimits(now);
 
                 //lets only use the last 11 values to prevent the graphics from slowing down. 

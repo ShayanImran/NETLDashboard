@@ -79,6 +79,23 @@ namespace NETLDashboard__.NET_Framework_
             return lastValue;
         }
 
+        // Gets the sstored procedure as an input parameter and pulls the appropriate value
+        public double getLastVirtualEntry(String procedureName) 
+        {
+
+            double lastValue = 0.0;
+            SqlCommand command = new SqlCommand(procedureName, connection);
+            connection.Open(); //Opens the connection to the database.
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                reader.Read();
+                lastValue = double.Parse(reader[0].ToString());
+            }
+
+            connection.Close(); //Closes the connection to the database.
+            return lastValue;
+        }
+
         public List<double> getVirtualHistoricalData(String start, String end)
         {
             List<double> data = new List<double>();
