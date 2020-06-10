@@ -18,9 +18,9 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
     {
         private ZoomingOptions _zoomingMode;
         private String startDate;
-        private String endDate;
+        private String endDate;       
 
-        public ZoomingAndPanning()
+        public ZoomingAndPanning(String Start, String End)
         {
             InitializeComponent();
 
@@ -32,20 +32,11 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
             gradientBrush.GradientStops.Add(new GradientStop(Color.FromRgb(33, 148, 241), 0));
             gradientBrush.GradientStops.Add(new GradientStop(Colors.Transparent, 1));
 
-            /*
-             *  The Set date range needs to pop up here otherwise it'll return all the data in the database.
-             */
-            DateTimeWindow selectDates = new DateTimeWindow();
-            selectDates.ShowDialog();
-            startDate = selectDates.startDate.ToString("yyyyMMdd");
-            endDate = selectDates.endDate.ToString("yyyyMMdd");
-            selectDates.Close();
-
             SeriesCollection = new SeriesCollection
             {
                 new LineSeries
                 {
-                    Values = GetData(startDate,endDate),
+                    Values = GetData(Start,End),
                     //Fill = gradientBrush,
                     StrokeThickness = 0,
                     PointGeometrySize = 3
