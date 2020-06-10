@@ -4,10 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+
 
 namespace NETLDashboard__.NET_Framework_
 {
@@ -38,7 +35,7 @@ namespace NETLDashboard__.NET_Framework_
         public float[] getDBArray()
         {
 
-            SqlDataAdapter sdlDA = new SqlDataAdapter("select * from SensorData", connection);
+            SqlDataAdapter sdlDA = new SqlDataAdapter("spSensorMasterGetAll", connection);
             DataTable dtbl = new DataTable();
             sdlDA.Fill(dtbl);
             float[] DBArray = new float[dtbl.Rows.Count];
@@ -68,8 +65,9 @@ namespace NETLDashboard__.NET_Framework_
 
         public double getLastVirtualEntry()
         {
+           
             double lastValue = 0.0;
-            SqlCommand command = new SqlCommand("SELECT TOP 1 SensorValue From SensorData WHERE SensorInput = 'Virtual' ORDER BY InsertedOn desc;", connection);
+            SqlCommand command = new SqlCommand("spGetLastVirtualValue", connection);
             connection.Open(); //Opens the connection to the database.
             using (SqlDataReader reader = command.ExecuteReader())
             {
@@ -84,8 +82,10 @@ namespace NETLDashboard__.NET_Framework_
         public List<double> getVirtualHistoricalData(String start, String end)
         {
             List<double> data = new List<double>();
-            SqlCommand command = new SqlCommand("SELECT SensorValue FROM SensorData WHERE cast(InsertedOn as date) BETWEEN '" + start + "' AND '" + end + "' ORDER BY InsertedOn ASC;", connection); //Reads all the column data from the SensorData table
-           
+            SqlCommand command = new SqlCommand("spGetValuesByDate", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@startDate", start));
+            command.Parameters.Add(new SqlParameter("@endDate", end));
             connection.Open();// Opens the connection
             using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
             {
@@ -96,7 +96,6 @@ namespace NETLDashboard__.NET_Framework_
             }
 
             connection.Close(); // closes the connection to the database
-
             return data;
         }
     }
