@@ -67,7 +67,7 @@ namespace NETLDashboard__.NET_Framework_
         {
            
             double lastValue = 0.0;
-            SqlCommand command = new SqlCommand("spGetLastVirtualValue", connection);
+            SqlCommand command = new SqlCommand("SensorData_GetLastPhysicalTempValue", connection);
             connection.Open(); //Opens the connection to the database.
             using (SqlDataReader reader = command.ExecuteReader())
             {
@@ -99,7 +99,7 @@ namespace NETLDashboard__.NET_Framework_
         public List<double> getVirtualHistoricalData(String start, String end)
         {
             List<double> data = new List<double>();
-            SqlCommand command = new SqlCommand("spGetValuesByDate", connection); //Reads all the column data from the SensorData table
+            SqlCommand command = new SqlCommand("SensorData_GetValuesByDate", connection); //Reads all the column data from the SensorData table
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("@startDate", start));
             command.Parameters.Add(new SqlParameter("@endDate", end));
