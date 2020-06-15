@@ -52,16 +52,9 @@ namespace NETLDashboard
             }
             if (string.Compare("Historical Graph", button.Content.ToString()) == 0)
             {
-                String startDate, endDate;
-
                 // The Set date range needs to pop up here otherwise it'll return all the data in the database.
 
-                DateTimeWindow selectDates = new DateTimeWindow();
-                selectDates.ShowDialog();
-                startDate = selectDates.startDate.ToString("yyyyMMdd");
-                endDate = selectDates.endDate.ToString("yyyyMMdd");
-                selectDates.Close();
-                ZoomingAndPanning histChart = new ZoomingAndPanning(startDate,endDate);
+                ZoomingAndPanning histChart = new ZoomingAndPanning();
                 histChart.Height = graphGrid.Height;
                 histChart.Width = graphGrid.Width;
                 Grid.SetRow(histChart, 1);
