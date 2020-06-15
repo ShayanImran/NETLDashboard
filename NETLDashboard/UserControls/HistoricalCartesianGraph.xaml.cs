@@ -20,10 +20,11 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
         private String startDate;
         private String endDate;       
 
-        public ZoomingAndPanning(String Start, String End)
+        public ZoomingAndPanning()
         {
             InitializeComponent();
-
+            startDate = Start.SelectedDate.Value.Date.ToString("yyyyMMdd");
+            endDate = End.SelectedDate.Value.Date.ToString("yyyyMMdd");
             var gradientBrush = new LinearGradientBrush
             {
                 StartPoint = new Point(0, 0),
@@ -36,7 +37,7 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
             {
                 new LineSeries
                 {
-                    Values = GetData(Start,End),
+                    Values = GetData(startDate,endDate),
                     //Fill = gradientBrush,
                     StrokeThickness = 0,
                     PointGeometrySize = 3
@@ -133,13 +134,8 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
             {
                 SeriesCollection.Clear();
             }
-
-            DateTimeWindow selectDates = new DateTimeWindow();
-            selectDates.ShowDialog();
-            startDate = selectDates.startDate.ToString("yyyyMMdd");
-            endDate = selectDates.endDate.ToString("yyyyMMdd");
-            selectDates.Close();
-
+            startDate = Start.SelectedDate.Value.Date.ToString("yyyyMMdd");
+            endDate = End.SelectedDate.Value.Date.ToString("yyyyMMdd");
             SeriesCollection = new SeriesCollection
             {
                 new LineSeries
@@ -157,6 +153,7 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
 
             DataContext = this;
         }
+
     }
 
     public class ZoomingModeCoverter : IValueConverter

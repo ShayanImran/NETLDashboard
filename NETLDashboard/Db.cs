@@ -67,6 +67,7 @@ namespace NETLDashboard__.NET_Framework_
         {
            
             double lastValue = 0.0;
+
             SqlCommand command = new SqlCommand("SensorData_GetLastPhysicalTempValue", connection);
             connection.Open(); //Opens the connection to the database.
             using (SqlDataReader reader = command.ExecuteReader())
@@ -85,6 +86,7 @@ namespace NETLDashboard__.NET_Framework_
 
             double lastValue = 0.0;
             SqlCommand command = new SqlCommand(procedureName, connection);
+
             connection.Open(); //Opens the connection to the database.
             using (SqlDataReader reader = command.ExecuteReader())
             {
