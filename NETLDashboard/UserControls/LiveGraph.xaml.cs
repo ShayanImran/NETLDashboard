@@ -23,8 +23,10 @@ namespace NETLDashboard
     {
         private double _axisMax;
         private double _axisMin;
+        private string _yAxisName;
         private string procedureName;
-        
+        string yLabelName;
+
         // Name space and class names need to be same
         public LiveGraph()
         {
@@ -58,12 +60,12 @@ namespace NETLDashboard
             DataContext = this;
          
         }
-        public LiveGraph(String procedureName)
+        public LiveGraph(String procedureName, String yLabel)
         {
             InitializeComponent();
 
             this.procedureName = procedureName;
-
+            yaxis.Title = yLabel;
             var mapper = Mappers.Xy<MeasureModel>()
                 .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
                 .Y(model => model.Value);           //use the value property as Y
@@ -94,6 +96,7 @@ namespace NETLDashboard
 
         }
 
+        
         public ChartValues<MeasureModel> ChartValues { get; set; }
         public Func<double, string> DateTimeFormatter { get; set; }
         public double AxisStep { get; set; }
@@ -118,6 +121,7 @@ namespace NETLDashboard
             }
         }
 
+   
         public bool IsReading { get; set; }
 
         public void Read()

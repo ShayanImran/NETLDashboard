@@ -33,9 +33,9 @@ namespace NETLDashboard
             }
 
             //Creation of our live graph from the user control
-            LiveGraph l1 = new LiveGraph("SensorData_GetLastPhysicalTempValue");
-            LiveGraph l2 = new LiveGraph("SensorData_GetLastPressureValue");                                     
-            LiveGraph l3 = new LiveGraph("SensorData_GetLastGasValue");
+            LiveGraph l1 = new LiveGraph("SensorData_GetLastPhysicalTempValue","Temperature");
+            LiveGraph l2 = new LiveGraph("SensorData_GetLastPressureValue", "Pressure");                                     
+            LiveGraph l3 = new LiveGraph("SensorData_GetLastGasValue", "Gas");
 
             //Starts a thread for each graph that allows it to read the values from the database
             Task.Factory.StartNew(l1.Read);
