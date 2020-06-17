@@ -38,8 +38,8 @@
                 </lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis 
-                          Title="Temperature"
+                <lvc:Axis Name="yaxis" 
+                          Title=""
                           FontSize="20"
                           Opacity="100">
                 </lvc:Axis>
