@@ -29,7 +29,9 @@ namespace NETLDashboard
             for (int i = 0; i < numOfSensors; i++)
             {
                ComponentGrid.RowDefinitions.Add(new RowDefinition());
+               ComponentGrid.ColumnDefinitions.Add(new ColumnDefinition());
                ComponentGrid.RowDefinitions[i].Height = new GridLength(400);
+               ComponentGrid.ColumnDefinitions[i].Width = new GridLength(700);
             }
 
             //Creation of our live graph from the user control
@@ -48,9 +50,12 @@ namespace NETLDashboard
             ComponentGrid.Children.Add(l3);
             
             Grid.SetRow(l1, 0);
-            Grid.SetRow(l2, 1);
-            Grid.SetRow(l3, 2);
-            
+
+            Grid.SetRow(l2, 0);
+            Grid.SetColumn(l2, 0);
+
+            Grid.SetRow(l3, 1);
+            Grid.SetColumn(l2, 1);
         }
 
     }
