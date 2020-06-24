@@ -102,6 +102,7 @@ namespace NETLDashboard
                 BoilerOverview boilerOverview = new BoilerOverview(3);
                 Grid.SetRow(boilerOverview, 1);
                 GraphGrid.Children.Add(boilerOverview);
+                
                 component = false;
             }         
         }
@@ -322,5 +323,42 @@ namespace NETLDashboard
             }
             
         }
+
+        private void TreeViewItem__TempSensorPhys_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            component = false;
+            GraphGrid.Children.Clear();
+            //Currently a placeholder until the backend is in the final iteration.
+            LiveGraph.Visibility = Visibility.Visible;
+            HistoricalGraph.Visibility = Visibility.Visible;
+            LiveGraph.IsChecked = false;
+            LiveGraph.IsChecked = true;
+            Physical.IsSelected = true;
+            Virtual.IsSelected = false;
+        }
+
+        private void TreeViewItem_TempSensorVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            component = false;
+            GraphGrid.Children.Clear();
+            LiveGraph.Visibility = Visibility.Visible;
+            HistoricalGraph.Visibility = Visibility.Visible;
+            LiveGraph.IsChecked = false;
+            LiveGraph.IsChecked = true;
+            Physical.IsSelected = false;
+            Virtual.IsSelected = true;
+        }
+
+        private void TreeViewItem_GasSensorPhys_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void TreeViewItem_PressureSensorPhys_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+        
     }
 }
