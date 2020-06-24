@@ -7,8 +7,9 @@
              xmlns:local="clr-namespace:Wpf.CartesianChart"
              xmlns:constantChanges="clr-namespace:Wpf.CartesianChart.ConstantChanges"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance local:ConstantChangesChart}">
-    <Grid>
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Border BorderBrush="Gray" BorderThickness="1">
+        <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -17,7 +18,7 @@
         <!--disable tooltips and hovering to get a better performance-->
         <lvc:CartesianChart Grid.Row="1" AnimationsSpeed="0:0:0.2" Hoverable="False" DataTooltip="{x:Null}">
             <lvc:CartesianChart.Series>
-                <lvc:LineSeries Values="{Binding ChartValues}" 
+                <lvc:LineSeries  Values="{Binding ChartValues}" 
                                 PointGeometrySize="15" 
                                 LineSmoothness="10"
                                 StrokeThickness="4" 
@@ -26,7 +27,7 @@
                                 />
             </lvc:CartesianChart.Series>
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Time"
+                <lvc:Axis LabelsRotation="89" Title="Time"
                           LabelFormatter="{Binding DateTimeFormatter}" 
                           MaxValue="{Binding AxisMax}" 
                           MinValue="{Binding AxisMin}"
@@ -46,4 +47,5 @@
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
     </Grid>
+    </Border>
 </UserControl>
