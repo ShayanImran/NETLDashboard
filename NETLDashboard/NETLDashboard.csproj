@@ -117,6 +117,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\GraphSelectButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\HistoricalCartesianGraph.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -180,6 +184,9 @@
       <DependentUpon>DateTimeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Db.cs" />
+    <Compile Include="UserControls\GraphSelectButtons.xaml.cs">
+      <DependentUpon>GraphSelectButtons.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\HistoricalCartesianGraph.xaml.cs">
       <DependentUpon>HistoricalCartesianGraph.xaml</DependentUpon>
     </Compile>
