@@ -1,4 +1,5 @@
-﻿using NETLDashboard.UserControls.ComponentOverviews;
+﻿using NETLDashboard.UserControls;
+using NETLDashboard.UserControls.ComponentOverviews;
 using NETLDashboard__.NET_Framework_;
 using System;
 using System.Windows;
@@ -18,8 +19,7 @@ namespace NETLDashboard
         public MainWindow()
         {
             InitializeComponent();
-            
-            
+           
         }
 
         //private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -62,128 +62,178 @@ namespace NETLDashboard
         //    }
         //}
 
+        private void Tree_Item_Furnace_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (!component && Tree_Item_Furnace.IsSelected)
+            {
+                component = true;
+            }
+            if (component && Tree_Item_Furnace.IsSelected)
+            {
+                MainGrid.Children.Clear();
+                FurnaceOverview furnaceOverview = new FurnaceOverview(3);
+                MainGrid.Children.Add(furnaceOverview);
+                component = false;
+            }
+        }
         private void TreeViewItem_Furnace_FurnaceTempPhys_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             component = false;
-            GraphGridsd.Children.Clear();
+            MainGrid.Children.Clear();
+            GraphSelectButtons physicalTemp = new GraphSelectButtons("SensorData_GetLastPhysicalTempValue", "SensorData_GetValuesByDate");
+            MainGrid.Children.Add(physicalTemp);
 
-
-            ////Currently a placeholder until the backend is in the final iteration.
-            //LiveGraph.Visibility = Visibility.Visible;
-            //HistoricalGraph.Visibility = Visibility.Visible;
-            //LiveGraph.IsChecked = false;
-            //LiveGraph.IsChecked = true;
-            //Physical.IsSelected = true;
-            //Virtual.IsSelected = false;
         }
 
         private void TreeViewItem_Furnace_FurnaceGasVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-        //    component = false;
-        //    GraphGrid.Children.Clear();
-        //    LiveGraph.Visibility = Visibility.Visible;
-        //    HistoricalGraph.Visibility = Visibility.Visible;
-        //    LiveGraph.IsChecked = false;
-        //    LiveGraph.IsChecked = true;
-        //    Physical.IsSelected = false;
-        //    Virtual.IsSelected = true;
+            component = false;
+            MainGrid.Children.Clear();
+            GraphSelectButtons virtualGas = new GraphSelectButtons("SensorData_GetLastPhysicalTempValue", "SensorData_GetValuesByDate");
+            MainGrid.Children.Add(virtualGas);
+
         }
 
         private void TreeViewItem_Furnace_FurnaceAirFlowVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //    component = false;
-            //    GraphGrid.Children.Clear();
-            //    LiveGraph.Visibility = Visibility.Visible;
-            //    HistoricalGraph.Visibility = Visibility.Visible;
-            //    LiveGraph.IsChecked = false;
-            //    LiveGraph.IsChecked = true;
-            //    Physical.IsSelected = false;
-            //    Virtual.IsSelected = true;
+            component = false;
+            MainGrid.Children.Clear();
+            GraphSelectButtons virtualAirflow = new GraphSelectButtons("SensorData_GetLastPhysicalTempValue", "SensorData_GetValuesByDate");
+            MainGrid.Children.Add(virtualAirflow);
+
         }
         private void TreeViewItem_Furnace_FurnaceParticulateVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //    component = false;
-            //    GraphGrid.Children.Clear();
-            //    LiveGraph.Visibility = Visibility.Visible;
-            //    HistoricalGraph.Visibility = Visibility.Visible;
-            //    LiveGraph.IsChecked = false;
-            //    LiveGraph.IsChecked = true;
-            //    Physical.IsSelected = false;
-            //    Virtual.IsSelected = true;
+            component = false;
+            MainGrid.Children.Clear();
+            GraphSelectButtons virtualParticulate = new GraphSelectButtons("SensorData_GetLastPhysicalTempValue", "SensorData_GetValuesByDate");
+            MainGrid.Children.Add(virtualParticulate);
+
         }
 
         private void Tree_Item_Boiler_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-        //    if (!component && Tree_Item_Boiler.IsSelected)
-        //    {
-        //        component = true;
-        //    }
-        //    if (component && Tree_Item_Boiler.IsSelected)
-        //    {
-        //        LiveGraph.Visibility = Visibility.Hidden;
-        //        HistoricalGraph.Visibility = Visibility.Hidden;
-        //        GraphGrid.Children.Clear();
-        //        BoilerOverview boilerOverview = new BoilerOverview(3);
-        //        Grid.SetRow(boilerOverview, 1);
-        //        GraphGrid.Children.Add(boilerOverview);
-                
-        //        component = false;
-        //    }         
+            if (!component && Tree_Item_Boiler.IsSelected)
+            {
+                component = true;
+            }
+            if (component && Tree_Item_Boiler.IsSelected)
+            {
+                MainGrid.Children.Clear();
+                BoilerOverview boilerOverview = new BoilerOverview(3);
+                MainGrid.Children.Add(boilerOverview);
+
+                component = false;  
+            }         
         }
 
-        private void Tree_Item_Furnace_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void TreeViewItem_BoilerPressurePhys_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            component = false;
+            MainGrid.Children.Clear();
+            GraphSelectButtons physicalPressure = new GraphSelectButtons("SensorData_GetLastPhysicalTempValue", "SensorData_GetValuesByDate");
+            MainGrid.Children.Add(physicalPressure);
 
-        //    if(!component && Tree_Item_Furnace.IsSelected)
-        //    {
-        //        component = true;
-        //    }
-        //    if(component && Tree_Item_Furnace.IsSelected)
-        //    {
-        //        LiveGraph.Visibility = Visibility.Hidden;
-        //        HistoricalGraph.Visibility = Visibility.Hidden;
-        //        GraphGrid.Children.Clear();
-        //        FurnaceOverview furnaceOverview = new FurnaceOverview(3);
-        //        Grid.SetRow(furnaceOverview, 1);
-        //        GraphGrid.Children.Add(furnaceOverview);
-        //        component = false;
-        //    }
+        }
+
+        private void TreeViewItem_BoilerTempVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            component = false;
+            MainGrid.Children.Clear();
+            GraphSelectButtons virtualTemp = new GraphSelectButtons("SensorData_GetLastPhysicalTempValue", "SensorData_GetValuesByDate");
+            MainGrid.Children.Add(virtualTemp);
+
+        }
+
+        private void TreeViewItem_BoilerPhVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            component = false;
+            MainGrid.Children.Clear();
+            GraphSelectButtons virtualPH = new GraphSelectButtons("SensorData_GetLastPhysicalTempValue", "SensorData_GetValuesByDate");
+            MainGrid.Children.Add(virtualPH);
+
+        }
+
+        private void TreeViewItem_BoilerWaterLevelVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            component = false;
+            MainGrid.Children.Clear();
+            GraphSelectButtons virtualWaterLevel = new GraphSelectButtons("SensorData_GetLastPhysicalTempValue", "SensorData_GetValuesByDate");
+            MainGrid.Children.Add(virtualWaterLevel);
+
         }
 
         private void Tree_Item_Stack_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-        //    if (!component && Tree_Item_Stack.IsSelected)
-        //    {
-        //        component = true;
-        //    }
-        //    if (component && Tree_Item_Stack.IsSelected)
-        //    {
-        //        LiveGraph.Visibility = Visibility.Hidden;
-        //        HistoricalGraph.Visibility = Visibility.Hidden;
-        //        GraphGrid.Children.Clear();
-        //        StackOverview stackOverview = new StackOverview(3);
-        //        GraphGrid.Children.Add(stackOverview);
-        //        component = false;
-        //    }
-            
+            if (!component && Tree_Item_Stack.IsSelected)
+            {
+                component = true;
+            }
+            if (component && Tree_Item_Stack.IsSelected)
+            {
+                MainGrid.Children.Clear();
+                StackOverview stackOverview = new StackOverview(3);
+                MainGrid.Children.Add(stackOverview);
+
+                component = false;
+            }
+        }
+        private void TreeViewItem_StackGasPhys_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            component = false;
+            MainGrid.Children.Clear();
+            GraphSelectButtons physicalGas = new GraphSelectButtons("SensorData_GetLastPhysicalTempValue", "SensorData_GetValuesByDate");
+            MainGrid.Children.Add(physicalGas);
+        }
+
+        private void TreeViewItem_StackTempVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            component = false;
+            MainGrid.Children.Clear();
+            GraphSelectButtons virtualTemp = new GraphSelectButtons("SensorData_GetLastPhysicalTempValue", "SensorData_GetValuesByDate");
+            MainGrid.Children.Add(virtualTemp);
+        }
+
+        private void TreeViewItem_StackParticulateVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            component = false;
+            MainGrid.Children.Clear();
+            GraphSelectButtons virtualParticulate = new GraphSelectButtons("SensorData_GetLastPhysicalTempValue", "SensorData_GetValuesByDate");
+            MainGrid.Children.Add(virtualParticulate);
+        }
+
+        private void TreeViewItem_StackAirFlowVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            component = false;
+            MainGrid.Children.Clear();
+            GraphSelectButtons virtualAirFlow = new GraphSelectButtons("SensorData_GetLastPhysicalTempValue", "SensorData_GetValuesByDate");
+            MainGrid.Children.Add(virtualAirFlow);
         }
 
         private void Tree_Item_Turbine_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-        //    if (!component && Tree_Item_Turbine.IsSelected)
-        //    {
-        //        component = true;
-        //    }
-        //    if (component && Tree_Item_Turbine.IsSelected)
-        //    {
-        //        LiveGraph.Visibility = Visibility.Hidden;
-        //        HistoricalGraph.Visibility = Visibility.Hidden;
-        //        GraphGrid.Children.Clear();
-        //        TurbineOverview turbineOverview = new TurbineOverview(3);
-        //        GraphGrid.Children.Add(turbineOverview);
-        //        component = false;
-        //    }
-            
+            if (!component && Tree_Item_Turbine.IsSelected)
+            {
+                component = true;
+            }
+            if (component && Tree_Item_Turbine.IsSelected)
+            {
+                MainGrid.Children.Clear();
+                TurbineOverview turbineOverview = new TurbineOverview(3);
+                MainGrid.Children.Add(turbineOverview);
+
+                component = false;
+            }
+
+        }
+
+        private void TreeViewItem_TurbineVibrationPhys_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            component = false;
+            MainGrid.Children.Clear();
+            GraphSelectButtons physicalVibration = new GraphSelectButtons("SensorData_GetLastPhysicalTempValue", "SensorData_GetValuesByDate");
+            MainGrid.Children.Add(physicalVibration);
+
         }
 
         private void Tree_Item_Tubes_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -372,26 +422,7 @@ namespace NETLDashboard
         //    Physical.IsSelected = false;
         //    Virtual.IsSelected = true;
         }
-        
 
-        private void TreeViewItem_BoilerPressurePhys_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void TreeViewItem_BoilerTempVirtuall_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void TreeViewItem_BoilerPhVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void TreeViewItem_BoilerWaterLevelVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-
-        }
+      
     }
 }

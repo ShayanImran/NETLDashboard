@@ -22,7 +22,7 @@
                                 PointGeometrySize="15" 
                                 LineSmoothness="10"
                                 StrokeThickness="4" 
-                                Stroke="#00CCFF"
+                                Stroke="{Binding colr}"
                                 Fill="Transparent"
                                 />
             </lvc:CartesianChart.Series>

@@ -25,18 +25,18 @@
             </TreeViewItem>
             <TreeViewItem Name="Tree_Item_Boiler" Header="Boiler" IsSelected="True" MouseLeftButtonUp ="Tree_Item_Boiler_MouseLeftButtonUp">
                 <TreeViewItem Header="Pressure Sensor (P)" Name="BoilerPressurePhys" MouseLeftButtonUp="TreeViewItem_BoilerPressurePhys_MouseLeftButtonUp"/>
-                <TreeViewItem Header="Temp Sensor (V)" Name="BoilerTempVirtual" MouseLeftButtonUp="TreeViewItem_BoilerTempVirtuall_MouseLeftButtonUp"/>
+                <TreeViewItem Header="Temp Sensor (V)" Name="BoilerTempVirtual" MouseLeftButtonUp="TreeViewItem_BoilerTempVirtual_MouseLeftButtonUp"/>
                 <TreeViewItem Header="pH Sensor (V)"  Name="BoilerPhVirtual" MouseLeftButtonUp="TreeViewItem_BoilerPhVirtual_MouseLeftButtonUp"/>
                 <TreeViewItem Header="Water Level Sensor (V)" Name="BoilerWaterLevelVirtual" MouseLeftButtonUp="TreeViewItem_BoilerWaterLevelVirtual_MouseLeftButtonUp"/>
             </TreeViewItem>
             <TreeViewItem Name="Tree_Item_Stack" Header="Stack" IsSelected="True" MouseLeftButtonUp="Tree_Item_Stack_MouseLeftButtonUp">
-                <TreeViewItem Header="Gas Sensor (P)" Name="StackGasPhys"/>
-                <TreeViewItem Header="Temperature Sensor (V)" Name="StackTempVirtual"/>
-                <TreeViewItem Header="Particulate Sensor (V)" Name="StackParticulateVirtual"/>
-                <TreeViewItem Header="Air Flow Sensor (V)" Name="StackAirFlowVirtual"/>
+                <TreeViewItem Header="Gas Sensor (P)" Name="StackGasPhys" MouseLeftButtonUp="TreeViewItem_StackGasPhys_MouseLeftButtonUp"/>
+                <TreeViewItem Header="Temp Sensor (V)" Name="StackTempVirtual" MouseLeftButtonUp="TreeViewItem_StackTempVirtual_MouseLeftButtonUp"/>
+                <TreeViewItem Header="Particulate Sensor (V)" Name="StackParticulateVirtual" MouseLeftButtonUp="TreeViewItem_StackParticulateVirtual_MouseLeftButtonUp"/>
+                <TreeViewItem Header="Air Flow Sensor (V)" Name="StackAirFlowVirtual" MouseLeftButtonUp="TreeViewItem_StackAirFlowVirtual_MouseLeftButtonUp"/>
             </TreeViewItem>
             <TreeViewItem Name="Tree_Item_Turbine" Header="Turbine" IsSelected="True" MouseLeftButtonUp="Tree_Item_Turbine_MouseLeftButtonUp">
-                <TreeViewItem Header="Vibration Sensor (P)" Name="TurbineVibrationPhys"/>
+                <TreeViewItem Header="Vibration Sensor (P)" Name="TurbineVibrationPhys" MouseLeftButtonUp="TreeViewItem_TurbineVibrationPhys_MouseLeftButtonUp"/>
             </TreeViewItem>
             <TreeViewItem Name="Tree_Item_Tubes" Header="Tubes" IsSelected="True" MouseLeftButtonUp="Tree_Item_Tubes_MouseLeftButtonUp">
                 <TreeViewItem Header="Sensor 1">
@@ -129,6 +129,6 @@
                 </TreeViewItem>
             </TreeViewItem>
         </TreeView>
-        <Grid Background="Black" Name="GraphGridsd" Margin="0,0,0,0" Grid.Column="1"/>
+        <Grid Background="Black" Name="MainGrid" Margin="0,0,0,0" Grid.Column="1"/>
     </Grid>
 </Window>

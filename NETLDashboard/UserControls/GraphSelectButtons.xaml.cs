@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.CartesianChart.ZoomingAndPanning;
 
 namespace NETLDashboard.UserControls
 {
@@ -51,6 +52,23 @@ namespace NETLDashboard.UserControls
             //    Grid.SetRow(histChart, 1);
             //    GraphGrid.Children.Add(histChart);
             //}
+        }
+
+        private void LiveGraph_Checked(object sender, RoutedEventArgs e)
+        {
+            
+            LiveGraph liveGraph = new LiveGraph(LiveGraphProcedure, "Temperature");
+            viewableArea.Children.Add(liveGraph);
+            Task.Factory.StartNew(liveGraph.Read);
+            Grid.SetRow(liveGraph, 1);
+        }
+
+        private void HistoricalGraph_Checked(object sender, RoutedEventArgs e)
+        {
+            viewableArea.Children.Clear();
+            ZoomingAndPanning historicalGraph = new ZoomingAndPanning();
+            viewableArea.Children.Add(historicalGraph);
+            Grid.SetRow(historicalGraph, 1);
         }
     }
 }
