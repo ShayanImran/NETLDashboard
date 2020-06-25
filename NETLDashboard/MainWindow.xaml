@@ -8,11 +8,11 @@
         mc:Ignorable="d"
 
         Title="NETL Command Center" Height="924" Width="1600.5" ResizeMode="CanResizeWithGrip" MinWidth="720" MinHeight="480">
-    <Grid x:Name="Test" Background="Gray" ClipToBounds="True">
+    <Grid Background="Gray" ClipToBounds="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="TreeGridColumn" Width="160">
             </ColumnDefinition>
-            <ColumnDefinition x:Name="GraphGrid">
+            <ColumnDefinition>
             </ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TreeView x:Name="sensorTreeList" Grid.Column="0"  Margin="0,0,0,0" HorizontalAlignment="Left" Width="160" >
