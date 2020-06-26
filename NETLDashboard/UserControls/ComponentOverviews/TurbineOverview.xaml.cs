@@ -33,34 +33,19 @@ namespace NETLDashboard.UserControls.ComponentOverviews
             }
 
             //Creation of our live graph from the user control
-            LiveGraph l1 = new LiveGraph("SensorData_GetLastPhysicalTempValue", "Temperature (P)");
-            LiveGraph l2 = new LiveGraph("SensorData_GetLastVirtualTempValue", "Temperature (V)");
-            LiveGraph l3 = new LiveGraph("SensorData_GetLastPressureValue", "Pressure");
-            LiveGraph l4 = new LiveGraph("SensorData_GetLastGasValue", "Gas");
+            LiveGraph l1 = new LiveGraph("SensorData_TurbineGetLastPhysicalVibrationValue", "Vibration (P)");
+            
 
             //Starts a thread for each graph that allows it to read the values from the database
             Task.Factory.StartNew(l1.Read);
-            Task.Factory.StartNew(l2.Read);
-            Task.Factory.StartNew(l3.Read);
-            Task.Factory.StartNew(l4.Read);
+            
 
             //Placing the graph on the screen in the viewable area
             ComponentGrid.Children.Add(l1);
-            ComponentGrid.Children.Add(l2);
-            ComponentGrid.Children.Add(l3);
-            ComponentGrid.Children.Add(l4);
-
+           
             Grid.SetRow(l1, 0);
             Grid.SetColumn(l1, 0);
 
-            Grid.SetRow(l2, 0);
-            Grid.SetColumn(l2, 1);
-
-            Grid.SetRow(l3, 1);
-            Grid.SetColumn(l3, 0);
-
-            Grid.SetRow(l4, 1);
-            Grid.SetColumn(l4, 1);
 
         }
     }

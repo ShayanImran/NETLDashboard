@@ -7,10 +7,8 @@
              mc:Ignorable="d" 
             d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="Black" Grid.Column="1"  RenderTransformOrigin="0.5,0.5">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <Grid x:Name="ComponentGrid">
+        <Grid x:Name="ComponentGrid">
 
-            </Grid>
-        </ScrollViewer>
+        </Grid>
     </Grid>
 </UserControl>

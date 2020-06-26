@@ -18,11 +18,13 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
     {
         private ZoomingOptions _zoomingMode;
         private String startDate;
-        private String endDate;       
+        private String endDate;
+        private String procedureName;
 
-        public ZoomingAndPanning()
+        public ZoomingAndPanning(string procedureName)
         {
             InitializeComponent();
+            this.procedureName = procedureName;
             startDate = Start.SelectedDate.Value.Date.ToString("yyyyMMdd");
             endDate = End.SelectedDate.Value.Date.ToString("yyyyMMdd");
             var gradientBrush = new LinearGradientBrush
@@ -91,7 +93,7 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
         {
             Db fiu = new Db();
             var values = new ChartValues<DateTimePoint>();
-            List<double> data = fiu.getVirtualHistoricalData(start, end).ToList(); //Copies the data returned by the database and stores it in a list
+            List<double> data = fiu.getHistoricalData(procedureName,start, end).ToList(); //Copies the data returned by the database and stores it in a list
             List<double> temp = new List<double>();
             List<DateTimePoint> plottedVals = new List<DateTimePoint>();
             for(int i = 0; i < data.Count(); i+= 5)

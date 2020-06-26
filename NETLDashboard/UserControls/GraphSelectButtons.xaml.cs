@@ -79,7 +79,7 @@ namespace NETLDashboard.UserControls
         private void HistoricalGraph_Checked(object sender, RoutedEventArgs e)
         {
             viewableArea.Children.Clear();
-            ZoomingAndPanning historicalGraph = new ZoomingAndPanning();
+            ZoomingAndPanning historicalGraph = new ZoomingAndPanning(HistoricalGraphProcedure);
             viewableArea.Children.Add(historicalGraph);
             Grid.SetRow(historicalGraph, 1);
         }
