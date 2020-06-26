@@ -89,7 +89,7 @@ namespace NETLDashboard
         {
             component = false;
             MainGrid.Children.Clear();
-            GraphSelectButtons virtualGas = new GraphSelectButtons("SensorData_FurnaceGetLastVirtualGasValue", "SensorData_GetValuesByDate");
+            GraphSelectButtons virtualGas = new GraphSelectButtons("SensorData_FurnaceGetLastVirtualGasValue", "SensorData_FurnaceGetVirtualGasValuesByDate");
             MainGrid.Children.Add(virtualGas);
 
         }
@@ -98,7 +98,7 @@ namespace NETLDashboard
         {
             component = false;
             MainGrid.Children.Clear();
-            GraphSelectButtons virtualAirflow = new GraphSelectButtons("SensorData_FurnaceGetLastVirtualAirFlowValue", "SensorData_GetValuesByDate");
+            GraphSelectButtons virtualAirflow = new GraphSelectButtons("SensorData_FurnaceGetLastVirtualAirFlowValue", "SensorData_FurnaceGetVirtualAirFlowValuesByDate");
             MainGrid.Children.Add(virtualAirflow);
 
         }
@@ -106,7 +106,7 @@ namespace NETLDashboard
         {
             component = false;
             MainGrid.Children.Clear();
-            GraphSelectButtons virtualParticulate = new GraphSelectButtons("SensorData_FurnaceGetLastVirtualParticulateValue", "SensorData_GetValuesByDate");
+            GraphSelectButtons virtualParticulate = new GraphSelectButtons("SensorData_FurnaceGetLastVirtualParticulateValue", "SensorData_FurnaceGetVirtualParticulateValuesByDate");
             MainGrid.Children.Add(virtualParticulate);
 
         }
@@ -131,7 +131,7 @@ namespace NETLDashboard
         {
             component = false;
             MainGrid.Children.Clear();
-            GraphSelectButtons physicalPressure = new GraphSelectButtons("SensorData_BoilerGetLastPhysicalPressureValue", "SensorData_GetValuesByDate");
+            GraphSelectButtons physicalPressure = new GraphSelectButtons("SensorData_BoilerGetLastPhysicalPressureValue", "SensorData_BoilerGetPhysicalPressureValuesByDate");
             MainGrid.Children.Add(physicalPressure);
 
         }
@@ -140,7 +140,7 @@ namespace NETLDashboard
         {
             component = false;
             MainGrid.Children.Clear();
-            GraphSelectButtons virtualTemp = new GraphSelectButtons("SensorData_BoilerGetLastVirtualTempValue", "SensorData_GetValuesByDate");
+            GraphSelectButtons virtualTemp = new GraphSelectButtons("SensorData_BoilerGetLastVirtualTempValue", "SensorData_BoilerGetVirtualTempValuesByDate");
             MainGrid.Children.Add(virtualTemp);
 
         }
@@ -149,7 +149,7 @@ namespace NETLDashboard
         {
             component = false;
             MainGrid.Children.Clear();
-            GraphSelectButtons virtualPH = new GraphSelectButtons("SensorData_BoilerGetLastVirtualPHValue", "SensorData_GetValuesByDate");
+            GraphSelectButtons virtualPH = new GraphSelectButtons("SensorData_BoilerGetLastVirtualPHValue", "SensorData_BoilerGetVirtualPhValuesByDate");
             MainGrid.Children.Add(virtualPH);
 
         }
@@ -158,7 +158,7 @@ namespace NETLDashboard
         {
             component = false;
             MainGrid.Children.Clear();
-            GraphSelectButtons virtualWaterLevel = new GraphSelectButtons("SensorData_BoilerGetLastVirtualWaterLevelValue", "SensorData_GetValuesByDate");
+            GraphSelectButtons virtualWaterLevel = new GraphSelectButtons("SensorData_BoilerGetLastVirtualWaterLevelValue", "SensorData_BoilerGetVirtualWaterLevelValuesByDate");
             MainGrid.Children.Add(virtualWaterLevel);
 
         }
@@ -182,7 +182,7 @@ namespace NETLDashboard
         {
             component = false;
             MainGrid.Children.Clear();
-            GraphSelectButtons physicalGas = new GraphSelectButtons("SensorData_StackGetLastPhysicalGasValue", "SensorData_GetValuesByDate");
+            GraphSelectButtons physicalGas = new GraphSelectButtons("SensorData_StackGetLastPhysicalGasValue", "SensorData_StackGetPhysicalGasValuesByDate");
             MainGrid.Children.Add(physicalGas);
         }
 
@@ -190,7 +190,7 @@ namespace NETLDashboard
         {
             component = false;
             MainGrid.Children.Clear();
-            GraphSelectButtons virtualTemp = new GraphSelectButtons("SensorData_StackGetLastVirtualTempValue", "SensorData_GetValuesByDate");
+            GraphSelectButtons virtualTemp = new GraphSelectButtons("SensorData_StackGetLastVirtualTempValue", "SensorData_StackGetVirtualTempValuesByDate");
             MainGrid.Children.Add(virtualTemp);
         }
 
@@ -198,7 +198,7 @@ namespace NETLDashboard
         {
             component = false;
             MainGrid.Children.Clear();
-            GraphSelectButtons virtualParticulate = new GraphSelectButtons("SensorData_StackGetLastVirtualParticulateValue", "SensorData_GetValuesByDate");
+            GraphSelectButtons virtualParticulate = new GraphSelectButtons("SensorData_StackGetLastVirtualParticulateValue", "SensorData_StackGetVirtualParticulateValuesByDate");
             MainGrid.Children.Add(virtualParticulate);
         }
 
@@ -206,7 +206,7 @@ namespace NETLDashboard
         {
             component = false;
             MainGrid.Children.Clear();
-            GraphSelectButtons virtualAirFlow = new GraphSelectButtons("SensorData_StackGetLastVirtualAirFlowValue", "SensorData_GetValuesByDate");
+            GraphSelectButtons virtualAirFlow = new GraphSelectButtons("SensorData_StackGetLastVirtualAirFlowValue", "SensorData_StackGetVirtualAirFlowValuesByDate");
             MainGrid.Children.Add(virtualAirFlow);
         }
 
@@ -231,7 +231,7 @@ namespace NETLDashboard
         {
             component = false;
             MainGrid.Children.Clear();
-            GraphSelectButtons physicalVibration = new GraphSelectButtons("SensorData_TurbineGetLastPhysicalVibrationValue", "SensorData_GetValuesByDate");
+            GraphSelectButtons physicalVibration = new GraphSelectButtons("SensorData_TurbineGetLastPhysicalVibrationValue", "SensorData_TurbineGetPhysicalVibrationValuesByDate");
             MainGrid.Children.Add(physicalVibration);
 
         }
