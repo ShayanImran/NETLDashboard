@@ -35,7 +35,7 @@ namespace NETLDashboard.UserControls.ComponentOverviews
 
             //Creation of our live graph from the user control
             LiveGraph l1 = new LiveGraph("SensorData_BoilerGetLastPhysicalPressureValue", "Pressure (P)");
-            LiveGraph l2 = new LiveGraph("SensorData_BoilerGetLastVirtualTemperatureValue", "Temperature (V)");
+            LiveGraph l2 = new LiveGraph("SensorData_BoilerGetLastVirtualTempValue", "Temperature (V)");
             LiveGraph l3 = new LiveGraph("SensorData_BoilerGetLastVirtualPHValue", "pH (V)");
             LiveGraph l4 = new LiveGraph("SensorData_BoilerGetLastVirtualWaterLevelValue", "Water Level (V)");
 

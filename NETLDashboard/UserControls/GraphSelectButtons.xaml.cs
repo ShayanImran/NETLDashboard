@@ -23,13 +23,15 @@ namespace NETLDashboard.UserControls
     {
         private String LiveGraphProcedure;
         private String HistoricalGraphProcedure;
+        private String yLabel;
         private bool hasChild = false;
 
-        public GraphSelectButtons(String LiveGraphProcedure, String HistoricalGraphProcedure)
+        public GraphSelectButtons(String LiveGraphProcedure, String HistoricalGraphProcedure, String yLabel)
         {
             
             this.LiveGraphProcedure = LiveGraphProcedure;
             this.HistoricalGraphProcedure = HistoricalGraphProcedure;
+            this.yLabel = yLabel;
 
             InitializeComponent();
             LiveG.IsChecked = true;
@@ -60,7 +62,7 @@ namespace NETLDashboard.UserControls
         {
             if(!hasChild)
             {
-                LiveGraph liveGraph = new LiveGraph(LiveGraphProcedure, "Temperature");
+                LiveGraph liveGraph = new LiveGraph(LiveGraphProcedure, yLabel);
                 viewableArea.Children.Add(liveGraph);
                 Task.Factory.StartNew(liveGraph.Read);
                 Grid.SetRow(liveGraph, 1);
@@ -68,7 +70,7 @@ namespace NETLDashboard.UserControls
             if(hasChild)
             {
                 viewableArea.Children.Clear();
-                LiveGraph liveGraph = new LiveGraph(LiveGraphProcedure, "Temperature");
+                LiveGraph liveGraph = new LiveGraph(LiveGraphProcedure, yLabel);
                 viewableArea.Children.Add(liveGraph);
                 Task.Factory.StartNew(liveGraph.Read);
                 Grid.SetRow(liveGraph, 1);

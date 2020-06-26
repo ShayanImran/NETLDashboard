@@ -11,8 +11,8 @@
             <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <RadioButton x:Name="LiveG" Foreground="White" Content="Live Graph" Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,100,0" VerticalAlignment="Center"  Checked="LiveGraph_Checked" />
-        <RadioButton x:Name="HistoricalG" Foreground="White" Content="Historical Graph" Grid.Row="0" HorizontalAlignment="Center" Margin="100,0,0,0" VerticalAlignment="Center" Checked="HistoricalGraph_Checked" />
+        <RadioButton x:Name="LiveG" Foreground="White" Content="Live Graph" Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,125,0" VerticalAlignment="Center"  Checked="LiveGraph_Checked" FontSize="14" />
+        <RadioButton x:Name="HistoricalG" Foreground="White" Content="Historical Graph" Grid.Row="0" HorizontalAlignment="Center" Margin="125,0,0,0" VerticalAlignment="Center" Checked="HistoricalGraph_Checked" FontSize="14" />
         <Grid x:Name="viewableArea" Background="Black" Grid.Row="1"></Grid>
     </Grid>
 </UserControl>
