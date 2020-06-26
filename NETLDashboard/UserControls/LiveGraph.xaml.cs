@@ -63,7 +63,7 @@ namespace NETLDashboard
         public LiveGraph(String procedureName, String yLabel)
         {
             InitializeComponent();
-
+            colr = "blue";
             this.procedureName = procedureName;
             yaxis.Title = yLabel;
             var mapper = Mappers.Xy<MeasureModel>()
@@ -120,7 +120,7 @@ namespace NETLDashboard
                 OnPropertyChanged("AxisMin");
             }
         }
-
+        public string colr { get; set; }
    
         public bool IsReading { get; set; }
 
@@ -143,7 +143,12 @@ namespace NETLDashboard
                     });
                
                 SetAxisLimits(now);
-
+                if(fiu.getLastVirtualEntry(procedureName)>550)
+                {
+                    colr.Replace(colr,"red");
+                    
+                    
+                }
                 //lets only use the last 11 values to prevent the graphics from slowing down. 
                 if (ChartValues.Count > 11) ChartValues.RemoveAt(0);
             }
