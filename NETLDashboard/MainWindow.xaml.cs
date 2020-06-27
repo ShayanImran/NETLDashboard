@@ -4,7 +4,6 @@ using NETLDashboard__.NET_Framework_;
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using Wpf.CartesianChart.ConstantChanges;
 using Wpf.CartesianChart.ZoomingAndPanning;
 
 
