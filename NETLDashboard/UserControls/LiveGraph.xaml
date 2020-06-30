@@ -17,7 +17,7 @@
         <lvc:CartesianChart Grid.Row="1" AnimationsSpeed="0:0:0.5" Hoverable="False" DataTooltip="{x:Null}">
             <lvc:CartesianChart.Series>
                     <lvc:LineSeries  Values="{Binding ChartValues}" 
-                                PointGeometrySize="20" 
+                                PointGeometrySize="10" 
                                 LineSmoothness="10"
                                 StrokeThickness="3"
                                 PointForeground="Green"
@@ -31,6 +31,7 @@
                           MaxValue="{Binding AxisMax}" 
                           MinValue="{Binding AxisMin}"
                           Unit="{Binding AxisUnit}"
+                          DisableAnimations="True"
                           FontSize="20">
                     <lvc:Axis.Separator>
                         <lvc:Separator Step="{Binding AxisStep}" />

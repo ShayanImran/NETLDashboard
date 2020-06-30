@@ -84,7 +84,7 @@ namespace NETLDashboard
             DateTimeFormatter = value => new DateTime((long)value).ToString("hh:mm:ss");
 
             //AxisStep forces the distance between each separator in the X axis
-            AxisStep = TimeSpan.FromSeconds(1).Ticks;
+            AxisStep = TimeSpan.FromSeconds(5).Ticks;
 
             //AxisUnit forces lets the axis know that we are plotting seconds
             //this is not always necessary, but it can prevent wrong labeling
@@ -148,14 +148,14 @@ namespace NETLDashboard
                
                 SetAxisLimits(now);
                 //lets only use the last 11 values to prevent the graphics from slowing down. 
-                if (ChartValues.Count > 15) ChartValues.RemoveAt(0);
+                if (ChartValues.Count > 62) ChartValues.RemoveAt(0);
             }
         }
 
         private void SetAxisLimits(DateTime now)
         {
             AxisMax = now.Ticks + TimeSpan.FromSeconds(1).Ticks; // lets force the axis to be 1 second ahead
-            AxisMin = now.Ticks - TimeSpan.FromSeconds(9).Ticks; // and 11 seconds behind
+            AxisMin = now.Ticks - TimeSpan.FromSeconds(60).Ticks; // and 11 seconds behind
         }
 
 
