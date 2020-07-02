@@ -125,10 +125,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\LiveCartesianChart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControls\LiveGraph.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -189,9 +185,6 @@
     </Compile>
     <Compile Include="UserControls\HistoricalCartesianGraph.xaml.cs">
       <DependentUpon>HistoricalCartesianGraph.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\LiveCartesianChart.xaml.cs">
-      <DependentUpon>LiveCartesianChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\LiveGraph.xaml.cs">
       <DependentUpon>LiveGraph.xaml</DependentUpon>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Configurations;
 using System.Threading;
@@ -68,7 +69,10 @@ namespace NETLDashboard
             yaxis.Title = yLabel;
             var mapper = Mappers.Xy<MeasureModel>()
                 .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
-                .Y(model => model.Value);           //use the value property as Y
+                .Y(model => model.Value)
+                .Fill(item => item.Value > 570 || item.Value < 540 ? DangerBrush : null);
+
+            DangerBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
 
             //saves the mapper globally.
             Charting.For<MeasureModel>(mapper);
@@ -80,7 +84,7 @@ namespace NETLDashboard
             DateTimeFormatter = value => new DateTime((long)value).ToString("hh:mm:ss");
 
             //AxisStep forces the distance between each separator in the X axis
-            AxisStep = TimeSpan.FromSeconds(1).Ticks;
+            AxisStep = TimeSpan.FromSeconds(5).Ticks;
 
             //AxisUnit forces lets the axis know that we are plotting seconds
             //this is not always necessary, but it can prevent wrong labeling
@@ -96,7 +100,7 @@ namespace NETLDashboard
 
         }
 
-        
+        public Brush DangerBrush { get; set; }
         public ChartValues<MeasureModel> ChartValues { get; set; }
         public Func<double, string> DateTimeFormatter { get; set; }
         public double AxisStep { get; set; }
@@ -143,21 +147,15 @@ namespace NETLDashboard
                     });
                
                 SetAxisLimits(now);
-                if(fiu.getLastVirtualEntry(procedureName)>550)
-                {
-                    colr.Replace(colr,"red");
-                    
-                    
-                }
                 //lets only use the last 11 values to prevent the graphics from slowing down. 
-                if (ChartValues.Count > 11) ChartValues.RemoveAt(0);
+                if (ChartValues.Count > 62) ChartValues.RemoveAt(0);
             }
         }
 
         private void SetAxisLimits(DateTime now)
         {
             AxisMax = now.Ticks + TimeSpan.FromSeconds(1).Ticks; // lets force the axis to be 1 second ahead
-            AxisMin = now.Ticks - TimeSpan.FromSeconds(8).Ticks; // and 11 seconds behind
+            AxisMin = now.Ticks - TimeSpan.FromSeconds(60).Ticks; // and 11 seconds behind
         }
 
 

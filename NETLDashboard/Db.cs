@@ -98,10 +98,10 @@ namespace NETLDashboard__.NET_Framework_
             return lastValue;
         }
 
-        public List<double> getVirtualHistoricalData(String start, String end)
+        public List<double> getHistoricalData(String procedureName, String start, String end)
         {
             List<double> data = new List<double>();
-            SqlCommand command = new SqlCommand("SensorData_GetValuesByDate", connection); //Reads all the column data from the SensorData table
+            SqlCommand command = new SqlCommand(procedureName, connection); //Reads all the column data from the SensorData table
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("@startDate", start));
             command.Parameters.Add(new SqlParameter("@endDate", end));
