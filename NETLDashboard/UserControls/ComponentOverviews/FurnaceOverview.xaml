@@ -8,7 +8,13 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="Black" Grid.Column="1"  RenderTransformOrigin="0.5,0.5">
         <Grid x:Name="ComponentGrid">
-
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <RadioButton x:Name="LiveG" Foreground="White" Content="Live Graph" Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,125,0" VerticalAlignment="Center"  Checked="LiveGraphs_Checked" FontSize="14" />
+            <RadioButton x:Name="HistoricalG" Foreground="White" Content="Historical Graph" Grid.Row="0" HorizontalAlignment="Center" Margin="125,0,0,0" VerticalAlignment="Center" Checked="HistoricalGraphs_Checked" FontSize="14" />
+            <Grid x:Name="viewableArea" Background="Black" Grid.Row="1"></Grid>
         </Grid>
     </Grid>
 </UserControl>

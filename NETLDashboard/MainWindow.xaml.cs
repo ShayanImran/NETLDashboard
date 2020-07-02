@@ -70,7 +70,7 @@ namespace NETLDashboard
             if (component && Tree_Item_Furnace.IsSelected)
             {
                 MainGrid.Children.Clear();
-                FurnaceOverview furnaceOverview = new FurnaceOverview(3);
+                FurnaceOverview furnaceOverview = new FurnaceOverview();
                 MainGrid.Children.Add(furnaceOverview);
                 component = false;
             }
