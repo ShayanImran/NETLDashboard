@@ -131,50 +131,70 @@ namespace NETLDashboard
             viewableArea.ColumnDefinitions.Clear();
             viewableArea.Children.Clear();
 
-            viewableArea.RowDefinitions.Add(new RowDefinition());
-            viewableArea.RowDefinitions[0].Height = new GridLength(100);
+            string[] procedureArray ={
+                "SensorData_FurnaceGetVirtualGasValuesByDate", //FIX THIS STRING
+                "SensorData_FurnaceGetVirtualGasValuesByDate",
+                "SensorData_FurnaceGetVirtualAirFlowValuesByDate",
+                "SensorData_FurnaceGetVirtualParticulateValuesByDate"
+            };
+            string[] labelArray ={
+                "Temperature (P)",
+                "Gas (V)",
+                "Air Flow (V)",
+                "Particulate"
+            };
 
-            for (int i = 1; i <= 2; i++)
-            {
-                viewableArea.RowDefinitions.Add(new RowDefinition());
-                viewableArea.ColumnDefinitions.Add(new ColumnDefinition());
-                viewableArea.RowDefinitions[i].Height = new GridLength(25, GridUnitType.Star);
-                viewableArea.ColumnDefinitions[i-1].Width = new GridLength(25, GridUnitType.Star);
-            }
+            SelectDates graphs = new SelectDates(4,procedureArray, labelArray);
+            viewableArea.Children.Add(graphs);
+            
 
-            SelectDates rec = new SelectDates();
-            viewableArea.Children.Add(rec);
-            Grid.SetRow(rec, 0);
-            Grid.SetColumnSpan(rec, 2);
+            //viewableArea.RowDefinitions.Add(new RowDefinition());
+            //viewableArea.RowDefinitions[0].Height = new GridLength(100);
 
-            LiveGraph l1 = new LiveGraph("SensorData_FurnaceGetLastPhysicalTempValue", "Temperature (P)");
-            LiveGraph l2 = new LiveGraph("SensorData_FurnaceGetLastVirtualGasValue", "Gas (V)");
-            LiveGraph l3 = new LiveGraph("SensorData_FurnaceGetLastVirtualAirFlowValue", "Air Flow (V)"); // same as gas for now 
-            LiveGraph l4 = new LiveGraph("SensorData_FurnaceGetLastVirtualParticulateValue", "Particulate (V)");
+            //for (int i = 1; i <= 2; i++)
+            //{
+            //    viewableArea.RowDefinitions.Add(new RowDefinition());
+            //    viewableArea.ColumnDefinitions.Add(new ColumnDefinition());
+            //    viewableArea.RowDefinitions[i].Height = new GridLength(25, GridUnitType.Star);
+            //    viewableArea.ColumnDefinitions[i-1].Width = new GridLength(25, GridUnitType.Star);
+            //}
 
-            //Starts a thread for each graph that allows it to read the values from the database
-            Task.Factory.StartNew(l1.Read);
-            Task.Factory.StartNew(l2.Read);
-            Task.Factory.StartNew(l3.Read);
-            Task.Factory.StartNew(l4.Read);
+            //SelectDates rec = new SelectDates();
+            //viewableArea.Children.Add(rec);
+            //Grid.SetRow(rec, 0);
+            //Grid.SetColumnSpan(rec, 2);
 
-            //Placing the graph on the screen in the viewable area
-            viewableArea.Children.Add(l1);
-            viewableArea.Children.Add(l2);
-            viewableArea.Children.Add(l3);
-            viewableArea.Children.Add(l4);
+            //HistoricalGraph h1 = new HistoricalGraph("SensorData_FurnaceGetVirtualGasValuesByDate", "Temperature (P)"); //FIX STORED PROCED
+            //HistoricalGraph h2 = new HistoricalGraph("SensorData_FurnaceGetVirtualGasValuesByDate", "Gas (V)");
+            //HistoricalGraph h3 = new HistoricalGraph("SensorData_FurnaceGetVirtualAirFlowValuesByDate", "Air Flow (V)"); 
+            //HistoricalGraph h4 = new HistoricalGraph("SensorData_FurnaceGetVirtualParticulateValuesByDate", "Particulate (V)");
+            
 
-            Grid.SetRow(l1, 1);
-            Grid.SetColumn(l1, 0);
+            ///*
+            ////Starts a thread for each graph that allows it to read the values from the database
+            //Task.Factory.StartNew(h1.Read);
+            //Task.Factory.StartNew(h2.Read);
+            //Task.Factory.StartNew(h3.Read);
+            //Task.Factory.StartNew(h4.Read);
+            //*/
 
-            Grid.SetRow(l2, 1);
-            Grid.SetColumn(l2, 1);
+            ////Placing the graph on the screen in the viewable area
+            //viewableArea.Children.Add(h1);
+            //viewableArea.Children.Add(h2);
+            //viewableArea.Children.Add(h3);
+            //viewableArea.Children.Add(h4);
 
-            Grid.SetRow(l3, 2);
-            Grid.SetColumn(l3, 0);
+            //Grid.SetRow(h1, 1);
+            //Grid.SetColumn(h1, 0);
 
-            Grid.SetRow(l4, 2);
-            Grid.SetColumn(l4, 1);
+            //Grid.SetRow(h2, 1);
+            //Grid.SetColumn(h2, 1);
+
+            //Grid.SetRow(h3, 2);
+            //Grid.SetColumn(h3, 0);
+
+            //Grid.SetRow(h4, 2);
+            //Grid.SetColumn(h4, 1);
 
 
             /*

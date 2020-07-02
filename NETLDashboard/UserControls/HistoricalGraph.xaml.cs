@@ -20,8 +20,10 @@ namespace NETLDashboard
         private String endDate;
         private String procedureName;
 
-        public HistoricalGraph(String procedureName)
+        public HistoricalGraph(String procedureName, String yLabel)
         {
+            startDate = "20200701";
+            endDate = "20200702";
             InitializeComponent();
             this.procedureName = procedureName;
             var gradientBrush = new LinearGradientBrush

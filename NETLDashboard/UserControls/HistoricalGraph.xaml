@@ -7,10 +7,11 @@
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:zoomingAndPanning="clr-namespace:Wpf.CartesianChart.ZoomingAndPanning"
-             mc:Ignorable="d" Height="367.756" Width="571.023" >
+             mc:Ignorable="d" >
     <d:DataContext>
         "{d:DesignInstance local:ZoomingAndPanning}"
     </d:DataContext>
+    <Border BorderBrush="Gray" BorderThickness="1">
     <Grid>
         
         <lvc:CartesianChart Grid.Row="2" Series="{Binding SeriesCollection}" Zoom="{Binding ZoomingMode}" DataTooltip="{x:Null}">
@@ -23,4 +24,5 @@
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
     </Grid>
+    </Border>
 </UserControl>

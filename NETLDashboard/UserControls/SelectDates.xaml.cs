@@ -20,9 +20,50 @@ namespace NETLDashboard
     /// </summary>
     public partial class SelectDates : UserControl
     {
-        public SelectDates()
+        private HistoricalGraph[] graphNameArray;
+       
+        public SelectDates(int numberOfGraphs, String[] procedureArray, String[] labelArray)
         {
+           graphNameArray = new HistoricalGraph[numberOfGraphs];
+            
+
+            //historicalViewArea.ColumnDefinitions.Add(new ColumnDefinition());
+            //historicalViewArea.ColumnDefinitions.Add(new ColumnDefinition());
+            //historicalViewArea.ColumnDefinitions[0].Width = new GridLength(25, GridUnitType.Star);
+            //historicalViewArea.ColumnDefinitions[1].Width = new GridLength(25, GridUnitType.Star);
+
             InitializeComponent();
+
+            for (int i = 0; i < 2; i++)
+            {
+                historicalViewArea.ColumnDefinitions.Add(new ColumnDefinition());
+                historicalViewArea.ColumnDefinitions[i].Width = new GridLength(50,GridUnitType.Star);
+            }
+
+            for (int i = 0; i < numberOfGraphs / 2; i++)
+            {
+                historicalViewArea.RowDefinitions.Add(new RowDefinition());
+                historicalViewArea.RowDefinitions[i].Height = new GridLength(500);
+            }
+
+            int k = 0;
+            for (int i = 0; i < numberOfGraphs / 2 ; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    graphNameArray[k] = new HistoricalGraph(procedureArray[k], labelArray[k]);
+                    historicalViewArea.Children.Add(graphNameArray[k]);
+                    Grid.SetRow(graphNameArray[k], i);
+                    Grid.SetColumn(graphNameArray[k], j);
+                    k++;
+                }
+            }
+
+            
+
+           
+
+
         }
         private void ResetZoomOnClick(object sender, RoutedEventArgs e)
         {

@@ -7,7 +7,7 @@
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:Points="clr-namespace:LiveCharts.Wpf.Points;assembly=LiveCharts.Wpf" xmlns:ZoomingAndPanning="clr-namespace:Wpf.CartesianChart.ZoomingAndPanning" x:Class="NETLDashboard.MainWindow"
         mc:Ignorable="d"
 
-        Title="NETL Command Center" Height="924" Width="1600.5" ResizeMode="CanResizeWithGrip" MinWidth="720" MinHeight="480">
+        Title="NETL Command Center" Height="924" Width="1600.5" ResizeMode="CanResizeWithGrip" MinWidth="720" MinHeight="1280">
     <Grid Background="Gray" ClipToBounds="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="TreeGridColumn" Width="160">
