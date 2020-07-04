@@ -66,7 +66,7 @@ namespace NETLDashboard__.NET_Framework_
 
         public double getLastVirtualEntry()
         {
-           
+
             double lastValue = 0.0;
 
             SqlCommand command = new SqlCommand("SensorData_GetLastPhysicalTempValue", connection);
@@ -82,7 +82,7 @@ namespace NETLDashboard__.NET_Framework_
         }
 
         // Gets the sstored procedure as an input parameter and pulls the appropriate value
-        public double getLastVirtualEntry(String procedureName) 
+        public double getLastVirtualEntry(String procedureName)
         {
 
             double lastValue = 0.0;
@@ -109,7 +109,7 @@ namespace NETLDashboard__.NET_Framework_
             connection.Open();// Opens the connection
             using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
             {
-                while(reader.Read())
+                while (reader.Read())
                 {
                     data.Add(double.Parse(reader[0].ToString()));//Gets the first data point at the iterator of the reader.
                 }
@@ -121,10 +121,10 @@ namespace NETLDashboard__.NET_Framework_
 
         /* The point of this function below is to try and get the datetime value and 
             point TOGETHER in ONE list and then plot it to the historical graph */
-        public List<DateTimePoint> TESTFUNCTION() 
+        public List<DateTimePoint> TESTFUNCTION()
         {
             // list that will contain a value and its date
-            List<DateTimePoint> dateTimePointList= new List<DateTimePoint>();
+            List<DateTimePoint> dateTimePointList = new List<DateTimePoint>();
 
 
             SqlCommand command = new SqlCommand("SELECT SensorValue, InsertedOn FROM SensorData WHERE SensorUniqueID = 'FurnGas1' AND cast(InsertedOn as date) BETWEEN '20200630' AND '20200701'  ORDER BY InsertedOn ASC;", connection);
@@ -137,7 +137,7 @@ namespace NETLDashboard__.NET_Framework_
                     reader.Read();
                     // Creating a new datetime point and adding the 2 columns from the DB to it
                     dateTimePointList.Add(new DateTimePoint(Convert.ToDateTime(reader[1]), double.Parse(reader[0].ToString())));
-                   
+
                 }
             }
 

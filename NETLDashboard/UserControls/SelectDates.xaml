@@ -10,13 +10,13 @@
     
     <Grid  Margin="0,0,0,-284">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="60" />
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Click="ResetZoomOnClick" Width="95" HorizontalAlignment="Right" VerticalAlignment="Top">Reset Zoom</Button>
-        <DatePicker Grid.Row="0"  x:Name="End" SelectedDate="{x:Static sys:DateTime.Today}" Margin="0,75,0,0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <Button Grid.Row="0" Click="ResetZoomOnClick" Width="95" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0">Reset Zoom</Button>
+        <DatePicker Grid.Row="0"  x:Name="End" SelectedDate="{x:Static sys:DateTime.Today}" Margin="336,0,336,5" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
         <DatePicker Grid.Row="0" Name="Start" SelectedDate="{x:Static sys:DateTime.Today}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <Button Grid.Row="0"  Content="View" Margin="5,24,0,0" Click="Selectdates" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="95"/>
+        <Button Grid.Row="0"  Content="View" Margin="5,26,5,5" Click="Selectdates" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="95"/>
         <Label Grid.Row="0" Foreground="White" FontSize="18" Margin="0,0,0,0" Content="Start Date:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label Grid.Row="0" Foreground="White" FontSize="18" Margin="0,-25,0,0" Content="End Date:" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
         <Grid Background="Black" Name="historicalViewArea" Grid.Row="1"></Grid>

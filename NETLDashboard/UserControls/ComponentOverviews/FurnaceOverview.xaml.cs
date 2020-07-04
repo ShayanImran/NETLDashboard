@@ -1,26 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Wpf.CartesianChart.ZoomingAndPanning;
 
 namespace NETLDashboard
 {
     /// <summary>
     /// Interaction logic for ComponentDashboard.xaml
     /// </summary>
-    
+
     public partial class FurnaceOverview : UserControl
     {
         private String LiveGraphProcedure;
@@ -30,7 +18,7 @@ namespace NETLDashboard
 
         public FurnaceOverview()
         {
-           
+
             InitializeComponent();
 
             LiveG.IsChecked = true;
@@ -144,9 +132,9 @@ namespace NETLDashboard
                 "Particulate (V)"
             };
 
-            SelectDates graphs = new SelectDates(4,procedureArray, labelArray);
+            SelectDates graphs = new SelectDates(4, procedureArray, labelArray);
             viewableArea.Children.Add(graphs);
-            
+
 
             //viewableArea.RowDefinitions.Add(new RowDefinition());
             //viewableArea.RowDefinitions[0].Height = new GridLength(100);
@@ -168,7 +156,7 @@ namespace NETLDashboard
             //HistoricalGraph h2 = new HistoricalGraph("SensorData_FurnaceGetVirtualGasValuesByDate", "Gas (V)");
             //HistoricalGraph h3 = new HistoricalGraph("SensorData_FurnaceGetVirtualAirFlowValuesByDate", "Air Flow (V)"); 
             //HistoricalGraph h4 = new HistoricalGraph("SensorData_FurnaceGetVirtualParticulateValuesByDate", "Particulate (V)");
-            
+
 
             ///*
             ////Starts a thread for each graph that allows it to read the values from the database

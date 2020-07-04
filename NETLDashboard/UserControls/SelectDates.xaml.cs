@@ -81,9 +81,7 @@ namespace NETLDashboard
 
         private void Selectdates(object sender, RoutedEventArgs e)
         {
-            ////Create DatePicker selection window, then redraw the entire graph
-            ///
-
+            //Create DatePicker selection window, then redraw the entire graph
             for(int i = 0; i< graphNameArray.Length; i++ )
             {
                 if(graphNameArray[i].SeriesCollection.Count !=0)
@@ -110,30 +108,6 @@ namespace NETLDashboard
                 graphNameArray[i].DataContext = graphNameArray[i];
 
             }
-
-
-            //if (SeriesCollection.Count != 0)
-            //{
-            //    SeriesCollection.Clear();
-            //}
-            //startDate = Start.SelectedDate.Value.Date.ToString("yyyyMMdd");
-            //endDate = End.SelectedDate.Value.Date.ToString("yyyyMMdd");
-            //SeriesCollection = new SeriesCollection
-            //{
-            //    new LineSeries
-            //    {
-            //        Values = GetData(startDate,endDate),
-            //        StrokeThickness = 0,
-            //        PointGeometrySize = 3
-            //    }
-            //};
-
-            //ZoomingMode = ZoomingOptions.X;
-
-            //XFormatter = val => new DateTime((long)val).ToString("dd MMM");
-            //YFormatter = val => val.ToString("G");
-
-            //DataContext = this;
         }
     } 
 }

@@ -22,7 +22,6 @@
                                 StrokeThickness="3"
                                 PointForeground="Green"
                                 Stroke="Beige"
-                                Configuration="{Binding Mapper}"
                                 />
                 </lvc:CartesianChart.Series>
             <lvc:CartesianChart.AxisX>
