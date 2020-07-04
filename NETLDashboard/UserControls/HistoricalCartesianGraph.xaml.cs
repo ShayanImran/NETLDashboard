@@ -26,7 +26,7 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
             InitializeComponent();
             this.procedureName = procedureName;
             startDate = Start.SelectedDate.Value.Date.ToString("yyyyMMdd");
-            endDate = End.SelectedDate.Value.Date.ToString("yyyyMMdd");
+            endDate =   End.SelectedDate.Value.Date.ToString("yyyyMMdd");
             var gradientBrush = new LinearGradientBrush
             {
                 StartPoint = new Point(0, 0),

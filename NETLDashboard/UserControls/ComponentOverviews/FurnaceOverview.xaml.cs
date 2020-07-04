@@ -141,7 +141,7 @@ namespace NETLDashboard
                 "Temperature (P)",
                 "Gas (V)",
                 "Air Flow (V)",
-                "Particulate"
+                "Particulate (V)"
             };
 
             SelectDates graphs = new SelectDates(4,procedureArray, labelArray);

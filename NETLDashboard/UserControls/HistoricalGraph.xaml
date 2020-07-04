@@ -12,17 +12,25 @@
         "{d:DesignInstance local:ZoomingAndPanning}"
     </d:DataContext>
     <Border BorderBrush="Gray" BorderThickness="1">
-    <Grid>
-        
-        <lvc:CartesianChart Grid.Row="2" Series="{Binding SeriesCollection}" Zoom="{Binding ZoomingMode}" DataTooltip="{x:Null}">
-            <lvc:CartesianChart.AxisX>
-                <lvc:Axis Name="X" LabelFormatter="{Binding XFormatter}" 
-                          Separator="{x:Static lvc:DefaultAxes.CleanSeparator}"/>
-            </lvc:CartesianChart.AxisX>
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis Name="Y" LabelFormatter="{Binding YFormatter}"/>
-            </lvc:CartesianChart.AxisY>
-        </lvc:CartesianChart>
-    </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
+            <lvc:CartesianChart Grid.Column="1" Series="{Binding SeriesCollection}" Zoom="{Binding ZoomingMode}" DataTooltip="{x:Null}">
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Name="X" LabelFormatter="{Binding XFormatter}" 
+                          Separator="{x:Static lvc:DefaultAxes.CleanSeparator}"
+                          Title="Time"
+                          FontSize="20"    
+                              />
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Name="Y" LabelFormatter="{Binding YFormatter}"
+                              Title=""
+                              FontSize="20"
+                              Opacity="100"
+                              />
+                </lvc:CartesianChart.AxisY>
+            </lvc:CartesianChart>
+        </Grid>
     </Border>
 </UserControl>

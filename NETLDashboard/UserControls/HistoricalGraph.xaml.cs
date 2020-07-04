@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using LiveCharts;
@@ -22,9 +23,11 @@ namespace NETLDashboard
 
         public HistoricalGraph(String procedureName, String yLabel)
         {
-            startDate = "20200701";
-            endDate = "20200702";
+            startDate = DateTime.Now.ToString("yyyyMMdd");
+            endDate = DateTime.Now.ToString("yyyyMMdd");
+    
             InitializeComponent();
+            Y.Title = yLabel;
             this.procedureName = procedureName;
             var gradientBrush = new LinearGradientBrush
             {
@@ -88,7 +91,7 @@ namespace NETLDashboard
             }
         }
 
-        private ChartValues<DateTimePoint> GetData(String start, String end)
+        public ChartValues<DateTimePoint> GetData(String start, String end)
         {
             Db fiu = new Db();
             var values = new ChartValues<DateTimePoint>();

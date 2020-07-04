@@ -1,5 +1,8 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,19 +23,17 @@ namespace NETLDashboard
     /// </summary>
     public partial class SelectDates : UserControl
     {
+        String startDate;
+        String endDate;
         private HistoricalGraph[] graphNameArray;
        
         public SelectDates(int numberOfGraphs, String[] procedureArray, String[] labelArray)
         {
-           graphNameArray = new HistoricalGraph[numberOfGraphs];
+            graphNameArray = new HistoricalGraph[numberOfGraphs];
             
-
-            //historicalViewArea.ColumnDefinitions.Add(new ColumnDefinition());
-            //historicalViewArea.ColumnDefinitions.Add(new ColumnDefinition());
-            //historicalViewArea.ColumnDefinitions[0].Width = new GridLength(25, GridUnitType.Star);
-            //historicalViewArea.ColumnDefinitions[1].Width = new GridLength(25, GridUnitType.Star);
-
             InitializeComponent();
+
+           
 
             for (int i = 0; i < 2; i++)
             {
@@ -69,16 +70,48 @@ namespace NETLDashboard
         {
             //Use the axis MinValue/MaxValue properties to specify the values to display.
             //use double.Nan to clear it.
-
-            //X.MinValue = double.NaN;
-            //X.MaxValue = double.NaN;
-            //Y.MinValue = double.NaN;
-            //Y.MaxValue = double.NaN;
+            for (int i = 0; i < graphNameArray.Length; i++)
+            {
+                graphNameArray[i].X.MinValue = double.NaN;
+                graphNameArray[i].X.MaxValue = double.NaN;
+                graphNameArray[i].Y.MinValue = double.NaN;
+                graphNameArray[i].Y.MaxValue = double.NaN;
+            }
         }
 
         private void Selectdates(object sender, RoutedEventArgs e)
         {
             ////Create DatePicker selection window, then redraw the entire graph
+            ///
+
+            for(int i = 0; i< graphNameArray.Length; i++ )
+            {
+                if(graphNameArray[i].SeriesCollection.Count !=0)
+                {
+                    graphNameArray[i].SeriesCollection.Clear();
+                }
+
+                startDate = Start.SelectedDate.Value.Date.ToString("yyyyMMdd");
+                endDate = End.SelectedDate.Value.Date.ToString("yyyyMMdd");
+
+                graphNameArray[i].SeriesCollection = new SeriesCollection
+                {
+                    new LineSeries
+                    {
+                        Values = graphNameArray[i].GetData(startDate,endDate),
+                        StrokeThickness = 0,
+                        PointGeometrySize = 3
+                    }
+                };
+
+                graphNameArray[i].ZoomingMode = ZoomingOptions.X;
+                graphNameArray[i].XFormatter = val => new DateTime((long)val).ToString("dd MMM");
+                graphNameArray[i].YFormatter = val => val.ToString("G");
+                graphNameArray[i].DataContext = graphNameArray[i];
+
+            }
+
+
             //if (SeriesCollection.Count != 0)
             //{
             //    SeriesCollection.Clear();
