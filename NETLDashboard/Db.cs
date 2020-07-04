@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveCharts.Defaults;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -116,6 +117,32 @@ namespace NETLDashboard__.NET_Framework_
 
             connection.Close(); // closes the connection to the database
             return data;
+        }
+
+        /* The point of this function below is to try and get the datetime value and 
+            point TOGETHER in ONE list and then plot it to the historical graph */
+        public List<DateTimePoint> TESTFUNCTION() 
+        {
+            // list that will contain a value and its date
+            List<DateTimePoint> dateTimePointList= new List<DateTimePoint>();
+
+
+            SqlCommand command = new SqlCommand("SELECT SensorValue, InsertedOn FROM SensorData WHERE SensorUniqueID = 'FurnGas1' AND cast(InsertedOn as date) BETWEEN '20200630' AND '20200701'  ORDER BY InsertedOn ASC;", connection);
+
+            connection.Open(); //Opens the connection to the database.
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    reader.Read();
+                    // Creating a new datetime point and adding the 2 columns from the DB to it
+                    dateTimePointList.Add(new DateTimePoint(Convert.ToDateTime(reader[1]), double.Parse(reader[0].ToString())));
+                   
+                }
+            }
+
+            connection.Close(); //Closes the connection to the database.
+            return dateTimePointList;
         }
     }
 
