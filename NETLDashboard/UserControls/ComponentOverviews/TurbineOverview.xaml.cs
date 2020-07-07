@@ -20,32 +20,91 @@ namespace NETLDashboard.UserControls.ComponentOverviews
     /// </summary>
     public partial class TurbineOverview : UserControl
     {
+        private bool hasChild = false;
+
         public TurbineOverview(int numOfSensors)
         {
             InitializeComponent();
 
-            for (int i = 0; i < numOfSensors; i++)
+            LiveG.IsChecked = true;
+            hasChild = true;
+        }
+
+        private void LiveGraphs_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!hasChild)
             {
-                ComponentGrid.RowDefinitions.Add(new RowDefinition());
-                ComponentGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                ComponentGrid.RowDefinitions[i].Height = new GridLength(400);
-                ComponentGrid.ColumnDefinitions[i].Width = new GridLength(700);
+                for (int i = 0; i < 2; i++)
+                {
+                    viewableArea.RowDefinitions.Add(new RowDefinition());
+                    viewableArea.ColumnDefinitions.Add(new ColumnDefinition());
+                    viewableArea.RowDefinitions[i].Height = new GridLength(25, GridUnitType.Star);
+                    viewableArea.ColumnDefinitions[i].Width = new GridLength(25, GridUnitType.Star);
+                }
+
+                //Creation of our live graph from the user control
+                LiveGraph l1 = new LiveGraph("SensorData_TurbineGetLastPhysicalVibrationValue", "Vibration (P)");
+
+
+                //Starts a thread for each graph that allows it to read the values from the database
+                Task.Factory.StartNew(l1.Read);
+
+
+                //Placing the graph on the screen in the viewable area
+                viewableArea.Children.Add(l1);
+
+
+                Grid.SetRow(l1, 0);
+                Grid.SetColumn(l1, 0);
+
+            }
+            if (hasChild)
+            {
+
+                viewableArea.RowDefinitions.Clear();
+                viewableArea.ColumnDefinitions.Clear();
+                viewableArea.Children.Clear();
+
+                for (int i = 0; i < 2; i++)
+                {
+                    viewableArea.RowDefinitions.Add(new RowDefinition());
+                    viewableArea.ColumnDefinitions.Add(new ColumnDefinition());
+                    viewableArea.RowDefinitions[i].Height = new GridLength(25, GridUnitType.Star);
+                    viewableArea.ColumnDefinitions[i].Width = new GridLength(25, GridUnitType.Star);
+                }
+                ///Creation of our live graph from the user control
+                LiveGraph l1 = new LiveGraph("SensorData_TurbineGetLastPhysicalVibrationValue", "Gas (P)");
+
+
+                //Starts a thread for each graph that allows it to read the values from the database
+                Task.Factory.StartNew(l1.Read);
+
+
+                //Placing the graph on the screen in the viewable area
+                viewableArea.Children.Add(l1);
+
+
+                Grid.SetRow(l1, 0);
+                Grid.SetColumn(l1, 0);
             }
 
-            //Creation of our live graph from the user control
-            LiveGraph l1 = new LiveGraph("SensorData_TurbineGetLastPhysicalVibrationValue", "Vibration (P)");
-            
+        }
 
-            //Starts a thread for each graph that allows it to read the values from the database
-            Task.Factory.StartNew(l1.Read);
-            
+        private void HistoricalGraphs_Checked(object sender, RoutedEventArgs e)
+        {
+            viewableArea.RowDefinitions.Clear();
+            viewableArea.ColumnDefinitions.Clear();
+            viewableArea.Children.Clear();
 
-            //Placing the graph on the screen in the viewable area
-            ComponentGrid.Children.Add(l1);
-           
-            Grid.SetRow(l1, 0);
-            Grid.SetColumn(l1, 0);
+            string[] procedureArray ={
+                "SensorData_TurbineGetPhysicalVibrationValuesByDate"
+            };
+            string[] labelArray ={
+                "Vibration (P)"
+            };
 
+            SelectDates graphs = new SelectDates(1, procedureArray, labelArray);
+            viewableArea.Children.Add(graphs);
 
         }
     }
