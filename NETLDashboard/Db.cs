@@ -121,28 +121,24 @@ namespace NETLDashboard__.NET_Framework_
 
         /* The point of this function below is to try and get the datetime value and 
             point TOGETHER in ONE list and then plot it to the historical graph */
-        public List<DateTimePoint> TESTFUNCTION()
+        public List<DateTimePoint> getHistoricalDataPoints(String procedureName, String start, String end)
         {
-            // list that will contain a value and its date
-            List<DateTimePoint> dateTimePointList = new List<DateTimePoint>();
-
-
-            SqlCommand command = new SqlCommand("SELECT SensorValue, InsertedOn FROM SensorData WHERE SensorUniqueID = 'FurnGas1' AND cast(InsertedOn as date) BETWEEN '20200630' AND '20200701'  ORDER BY InsertedOn ASC;", connection);
-
-            connection.Open(); //Opens the connection to the database.
-            using (SqlDataReader reader = command.ExecuteReader())
+            List<DateTimePoint> data = new List<DateTimePoint>();
+            SqlCommand command = new SqlCommand(procedureName, connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@startDate", start));
+            command.Parameters.Add(new SqlParameter("@endDate", end));
+            connection.Open();// Opens the connection
+            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
             {
                 while (reader.Read())
                 {
-                    reader.Read();
-                    // Creating a new datetime point and adding the 2 columns from the DB to it
-                    dateTimePointList.Add(new DateTimePoint(Convert.ToDateTime(reader[1]), double.Parse(reader[0].ToString())));
-
+                    data.Add(new DateTimePoint(Convert.ToDateTime(reader[1]), double.Parse(reader[0].ToString())));//Gets the first data point at the iterator of the reader.
                 }
             }
 
-            connection.Close(); //Closes the connection to the database.
-            return dateTimePointList;
+            connection.Close(); // closes the connection to the database
+            return data;
         }
     }
 

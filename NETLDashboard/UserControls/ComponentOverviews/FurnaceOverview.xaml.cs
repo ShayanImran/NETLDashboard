@@ -11,9 +11,6 @@ namespace NETLDashboard
 
     public partial class FurnaceOverview : UserControl
     {
-        private String LiveGraphProcedure;
-        private String HistoricalGraphProcedure;
-        private String yLabel;
         private bool hasChild = false;
 
         public FurnaceOverview()
@@ -135,60 +132,6 @@ namespace NETLDashboard
             SelectDates graphs = new SelectDates(4, procedureArray, labelArray);
             viewableArea.Children.Add(graphs);
 
-
-            //viewableArea.RowDefinitions.Add(new RowDefinition());
-            //viewableArea.RowDefinitions[0].Height = new GridLength(100);
-
-            //for (int i = 1; i <= 2; i++)
-            //{
-            //    viewableArea.RowDefinitions.Add(new RowDefinition());
-            //    viewableArea.ColumnDefinitions.Add(new ColumnDefinition());
-            //    viewableArea.RowDefinitions[i].Height = new GridLength(25, GridUnitType.Star);
-            //    viewableArea.ColumnDefinitions[i-1].Width = new GridLength(25, GridUnitType.Star);
-            //}
-
-            //SelectDates rec = new SelectDates();
-            //viewableArea.Children.Add(rec);
-            //Grid.SetRow(rec, 0);
-            //Grid.SetColumnSpan(rec, 2);
-
-            //HistoricalGraph h1 = new HistoricalGraph("SensorData_FurnaceGetVirtualGasValuesByDate", "Temperature (P)"); //FIX STORED PROCED
-            //HistoricalGraph h2 = new HistoricalGraph("SensorData_FurnaceGetVirtualGasValuesByDate", "Gas (V)");
-            //HistoricalGraph h3 = new HistoricalGraph("SensorData_FurnaceGetVirtualAirFlowValuesByDate", "Air Flow (V)"); 
-            //HistoricalGraph h4 = new HistoricalGraph("SensorData_FurnaceGetVirtualParticulateValuesByDate", "Particulate (V)");
-
-
-            ///*
-            ////Starts a thread for each graph that allows it to read the values from the database
-            //Task.Factory.StartNew(h1.Read);
-            //Task.Factory.StartNew(h2.Read);
-            //Task.Factory.StartNew(h3.Read);
-            //Task.Factory.StartNew(h4.Read);
-            //*/
-
-            ////Placing the graph on the screen in the viewable area
-            //viewableArea.Children.Add(h1);
-            //viewableArea.Children.Add(h2);
-            //viewableArea.Children.Add(h3);
-            //viewableArea.Children.Add(h4);
-
-            //Grid.SetRow(h1, 1);
-            //Grid.SetColumn(h1, 0);
-
-            //Grid.SetRow(h2, 1);
-            //Grid.SetColumn(h2, 1);
-
-            //Grid.SetRow(h3, 2);
-            //Grid.SetColumn(h3, 0);
-
-            //Grid.SetRow(h4, 2);
-            //Grid.SetColumn(h4, 1);
-
-
-            /*
-            HistoricalGraph historicalGraph = new HistoricalGraph(HistoricalGraphProcedure);
-            viewableArea.Children.Add(historicalGraph);
-            Grid.SetRow(historicalGraph, 1); */
         }
     }
 }

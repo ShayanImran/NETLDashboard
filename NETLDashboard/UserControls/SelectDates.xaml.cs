@@ -44,7 +44,7 @@ namespace NETLDashboard
             for (int i = 0; i < numberOfGraphs / 2; i++)
             {
                 historicalViewArea.RowDefinitions.Add(new RowDefinition());
-                historicalViewArea.RowDefinitions[i].Height = new GridLength(500);
+                historicalViewArea.RowDefinitions[i].Height = new GridLength(400);
             }
 
             int k = 0;
@@ -103,7 +103,7 @@ namespace NETLDashboard
                 };
 
                 graphNameArray[i].ZoomingMode = ZoomingOptions.X;
-                graphNameArray[i].XFormatter = val => new DateTime((long)val).ToString("dd MMM");
+                graphNameArray[i].XFormatter = val => new DateTime((long)val).ToString("MM/dd/yy hh:mm");
                 graphNameArray[i].YFormatter = val => val.ToString("G");
                 graphNameArray[i].DataContext = graphNameArray[i];
 

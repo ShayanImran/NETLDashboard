@@ -20,7 +20,8 @@
                     <lvc:Axis Name="X" LabelFormatter="{Binding XFormatter}" 
                           Separator="{x:Static lvc:DefaultAxes.CleanSeparator}"
                           Title="Time"
-                          FontSize="20"    
+                          FontSize="20" 
+                          LabelsRotation="20"
                               />
                 </lvc:CartesianChart.AxisX>
                 <lvc:CartesianChart.AxisY>

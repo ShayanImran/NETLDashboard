@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using LiveCharts;
@@ -50,7 +49,7 @@ namespace NETLDashboard
 
             ZoomingMode = ZoomingOptions.X;
 
-            XFormatter = val => new DateTime((long)val).ToString("MM dd yy");
+            XFormatter = val => new DateTime((long)val).ToString("MM/dd/yy hh:mm");
             YFormatter = val => val.ToString("G");
 
             DataContext = this;
@@ -94,20 +93,13 @@ namespace NETLDashboard
         public ChartValues<DateTimePoint> GetData(String start, String end)
         {
             Db fiu = new Db();
+            List<DateTimePoint> dateTimePointList = fiu.getHistoricalDataPoints(procedureName, start, end).ToList();
             var values = new ChartValues<DateTimePoint>();
-            List<double> data = fiu.getHistoricalData(procedureName, start, end).ToList(); //Copies the data returned by the database and stores it in a list
-            List<double> temp = new List<double>();
             List<DateTimePoint> plottedVals = new List<DateTimePoint>();
-            for (int i = 0; i < data.Count(); i += 5)
+       
+            for (int i = 0; i < dateTimePointList.Count(); i += 50)
             {
-                if (temp.Count == 0 || temp.Last() != data[i] && temp.Last() != data[i] - 5 && temp.Last() != data[i] + 5)
-                {
-                    temp.Add(data[i]); //This adds the values from the data list, then increments the days by 1.
-                }
-            }
-            for (int i = 0; i < temp.Count(); i += 5)
-            {
-                plottedVals.Add(new DateTimePoint(DateTime.Now.AddSeconds(i), temp[i]));
+                plottedVals.Add(dateTimePointList[i]); //This adds the values from the data list, then increments the days by 1.
             }
             values.AddRange(plottedVals);
             return values;
