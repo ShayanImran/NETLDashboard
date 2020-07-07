@@ -16,7 +16,9 @@
             </ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TreeView x:Name="sensorTreeList" Grid.Column="0"  Margin="0,0,0,0" HorizontalAlignment="Left" Width="160" >
-
+            <TreeViewItem Name="Tree_Item_Machine" Header="Machine Learning" IsSelected="True" MouseLeftButtonUp = "Tree_Item_Machine_MouseLeftButtonUp">
+          
+            </TreeViewItem>
             <TreeViewItem Name="Tree_Item_Furnace" Header="Furnace" IsSelected="True" MouseLeftButtonUp = "Tree_Item_Furnace_MouseLeftButtonUp">
                 <TreeViewItem Header="Temp Sensor (P)" x:Name="FurnaceTempPhys" MouseLeftButtonUp="TreeViewItem_Furnace_FurnaceTempPhys_MouseLeftButtonUp"/>
                 <TreeViewItem Header="Gas Sensor (V)" x:Name="FurnaceGasVirtual" MouseLeftButtonUp="TreeViewItem_Furnace_FurnaceGasVirtual_MouseLeftButtonUp"/>

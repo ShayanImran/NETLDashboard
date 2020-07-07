@@ -378,6 +378,10 @@ namespace NETLDashboard
             //    Virtual.IsSelected = true;
         }
 
-
+        private void Tree_Item_Machine_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MachineLearningDashboard test = new MachineLearningDashboard();
+            MainGrid.Children.Add(test);
+        }
     }
 }
