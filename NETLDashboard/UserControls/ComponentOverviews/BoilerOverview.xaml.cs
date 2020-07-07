@@ -20,48 +20,126 @@ namespace NETLDashboard.UserControls.ComponentOverviews
     /// </summary>
     public partial class BoilerOverview : UserControl
     {
+        private bool hasChild = false;
         public BoilerOverview(int numOfSensors)
         {
-
             InitializeComponent();
 
-            for (int i = 0; i < numOfSensors; i++)
+            LiveG.IsChecked = true;
+            hasChild = true;
+
+        }
+
+        private void LiveGraphs_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!hasChild)
             {
-                ComponentGrid.RowDefinitions.Add(new RowDefinition());
-                ComponentGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                ComponentGrid.RowDefinitions[i].Height = new GridLength(400);
-                ComponentGrid.ColumnDefinitions[i].Width = new GridLength(700);
+                for (int i = 0; i < 2; i++)
+                {
+                    viewableArea.RowDefinitions.Add(new RowDefinition());
+                    viewableArea.ColumnDefinitions.Add(new ColumnDefinition());
+                    viewableArea.RowDefinitions[i].Height = new GridLength(25, GridUnitType.Star);
+                    viewableArea.ColumnDefinitions[i].Width = new GridLength(25, GridUnitType.Star);
+                }
+
+                //Creation of our live graph from the user control
+                LiveGraph l1 = new LiveGraph("SensorData_BoilerGetLastPhysicalPressureValue", "Pressure (P)");
+                LiveGraph l2 = new LiveGraph("SensorData_BoilerGetLastVirtualTempValue", "Temperature (V)");
+                LiveGraph l3 = new LiveGraph("SensorData_BoilerGetLastVirtualPHValue", "pH (V)");
+                LiveGraph l4 = new LiveGraph("SensorData_BoilerGetLastVirtualWaterLevelValue", "Water Level (V)");
+
+                //Starts a thread for each graph that allows it to read the values from the database
+                Task.Factory.StartNew(l1.Read);
+                Task.Factory.StartNew(l2.Read);
+                Task.Factory.StartNew(l3.Read);
+                Task.Factory.StartNew(l4.Read);
+
+                //Placing the graph on the screen in the viewable area
+                viewableArea.Children.Add(l1);
+                viewableArea.Children.Add(l2);
+                viewableArea.Children.Add(l3);
+                viewableArea.Children.Add(l4);
+
+                Grid.SetRow(l1, 0);
+                Grid.SetColumn(l1, 0);
+
+                Grid.SetRow(l2, 0);
+                Grid.SetColumn(l2, 1);
+
+                Grid.SetRow(l3, 1);
+                Grid.SetColumn(l3, 0);
+
+                Grid.SetRow(l4, 1);
+                Grid.SetColumn(l4, 1);
+            }
+            if (hasChild)
+            {
+
+                viewableArea.RowDefinitions.Clear();
+                viewableArea.ColumnDefinitions.Clear();
+                viewableArea.Children.Clear();
+
+                for (int i = 0; i < 2; i++)
+                {
+                    viewableArea.RowDefinitions.Add(new RowDefinition());
+                    viewableArea.ColumnDefinitions.Add(new ColumnDefinition());
+                    viewableArea.RowDefinitions[i].Height = new GridLength(25, GridUnitType.Star);
+                    viewableArea.ColumnDefinitions[i].Width = new GridLength(25, GridUnitType.Star);
+                }
+                //Creation of our live graph from the user control
+                LiveGraph l1 = new LiveGraph("SensorData_BoilerGetLastPhysicalPressureValue", "Pressure (P)");
+                LiveGraph l2 = new LiveGraph("SensorData_BoilerGetLastVirtualTempValue", "Temperature (V)");
+                LiveGraph l3 = new LiveGraph("SensorData_BoilerGetLastVirtualPHValue", "pH (V)");
+                LiveGraph l4 = new LiveGraph("SensorData_BoilerGetLastVirtualWaterLevelValue", "Water Level (V)");
+
+                //Starts a thread for each graph that allows it to read the values from the database
+                Task.Factory.StartNew(l1.Read);
+                Task.Factory.StartNew(l2.Read);
+                Task.Factory.StartNew(l3.Read);
+                Task.Factory.StartNew(l4.Read);
+
+                //Placing the graph on the screen in the viewable area
+                viewableArea.Children.Add(l1);
+                viewableArea.Children.Add(l2);
+                viewableArea.Children.Add(l3);
+                viewableArea.Children.Add(l4);
+
+                Grid.SetRow(l1, 0);
+                Grid.SetColumn(l1, 0);
+
+                Grid.SetRow(l2, 0);
+                Grid.SetColumn(l2, 1);
+
+                Grid.SetRow(l3, 1);
+                Grid.SetColumn(l3, 0);
+
+                Grid.SetRow(l4, 1);
+                Grid.SetColumn(l4, 1);
             }
 
-            //Creation of our live graph from the user control
-            LiveGraph l1 = new LiveGraph("SensorData_BoilerGetLastPhysicalPressureValue", "Pressure (P)");
-            LiveGraph l2 = new LiveGraph("SensorData_BoilerGetLastVirtualTempValue", "Temperature (V)");
-            LiveGraph l3 = new LiveGraph("SensorData_BoilerGetLastVirtualPHValue", "pH (V)");
-            LiveGraph l4 = new LiveGraph("SensorData_BoilerGetLastVirtualWaterLevelValue", "Water Level (V)");
+        }
 
-            //Starts a thread for each graph that allows it to read the values from the database
-            Task.Factory.StartNew(l1.Read);
-            Task.Factory.StartNew(l2.Read);
-            Task.Factory.StartNew(l3.Read);
-            Task.Factory.StartNew(l4.Read);
+        private void HistoricalGraphs_Checked(object sender, RoutedEventArgs e)
+        {
+            viewableArea.RowDefinitions.Clear();
+            viewableArea.ColumnDefinitions.Clear();
+            viewableArea.Children.Clear();
 
-            //Placing the graph on the screen in the viewable area
-            ComponentGrid.Children.Add(l1);
-            ComponentGrid.Children.Add(l2);
-            ComponentGrid.Children.Add(l3);
-            ComponentGrid.Children.Add(l4);
+            string[] procedureArray ={
+                "SensorData_BoilerGetPhysicalPressureValuesByDate",
+                "SensorData_BoilerGetVirtualTempValuesByDate",
+                "SensorData_BoilerGetVirtualPhValuesByDate",
+                "SensorData_BoilerGetVirtualWaterLevelValuesByDate"
+            };
+            string[] labelArray ={
+                "Pressure (P)",
+                "Temperature (V)",
+                "Ph (V)",
+                "Water Level (V)"
+            };
 
-            Grid.SetRow(l1, 0);
-            Grid.SetColumn(l1, 0);
-
-            Grid.SetRow(l2, 0);
-            Grid.SetColumn(l2, 1);
-
-            Grid.SetRow(l3, 1);
-            Grid.SetColumn(l3, 0);
-
-            Grid.SetRow(l4, 1);
-            Grid.SetColumn(l4, 1);
+            SelectDates graphs = new SelectDates(4, procedureArray, labelArray);
+            viewableArea.Children.Add(graphs);
 
         }
     }

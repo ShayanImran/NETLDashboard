@@ -41,22 +41,28 @@ namespace NETLDashboard
                 historicalViewArea.ColumnDefinitions[i].Width = new GridLength(50,GridUnitType.Star);
             }
 
-            for (int i = 0; i < numberOfGraphs / 2; i++)
+            for (int i = 0; i < Math.Ceiling(numberOfGraphs / 2.0); i++)
             {
                 historicalViewArea.RowDefinitions.Add(new RowDefinition());
                 historicalViewArea.RowDefinitions[i].Height = new GridLength(400);
             }
 
             int k = 0;
-            for (int i = 0; i < numberOfGraphs / 2 ; i++)
+            for (int i = 0; i < Math.Ceiling(numberOfGraphs / 2.0 ); i++)
             {
                 for (int j = 0; j < 2; j++)
                 {
-                    graphNameArray[k] = new HistoricalGraph(procedureArray[k], labelArray[k]);
-                    historicalViewArea.Children.Add(graphNameArray[k]);
-                    Grid.SetRow(graphNameArray[k], i);
-                    Grid.SetColumn(graphNameArray[k], j);
-                    k++;
+
+                    if (k < numberOfGraphs)
+                    {
+                        graphNameArray[k] = new HistoricalGraph(procedureArray[k], labelArray[k]);
+                        historicalViewArea.Children.Add(graphNameArray[k]);
+                        Grid.SetRow(graphNameArray[k], i);
+                        Grid.SetColumn(graphNameArray[k], j);
+                        k++;
+                    }
+                    
+                    
                 }
             }
 
