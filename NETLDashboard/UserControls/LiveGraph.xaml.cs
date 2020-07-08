@@ -155,7 +155,7 @@ namespace NETLDashboard
         private void SetAxisLimits(DateTime now)
         {
             AxisMax = now.Ticks + TimeSpan.FromSeconds(1).Ticks; // lets force the axis to be 1 second ahead
-            AxisMin = now.Ticks - TimeSpan.FromSeconds(60).Ticks; // and 11 seconds behind
+            AxisMin = now.Ticks - TimeSpan.FromSeconds(60).Ticks; // and 60 seconds behind
         }
 
 

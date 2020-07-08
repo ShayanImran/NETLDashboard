@@ -105,6 +105,7 @@ namespace NETLDashboard
                         Values = graphNameArray[i].GetData(startDate,endDate),
                         StrokeThickness = 0,
                         PointGeometrySize = 3
+                        
                     }
                 };
 

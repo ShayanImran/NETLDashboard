@@ -48,7 +48,7 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
 
             ZoomingMode = ZoomingOptions.X;
 
-            XFormatter = val => new DateTime((long)val).ToString("MM dd yy");
+            XFormatter = val => new DateTime((long)val).ToString("MM/dd/yy hh:mm");
             YFormatter = val => val.ToString("G");
 
             DataContext = this;
