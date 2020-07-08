@@ -41,9 +41,8 @@ namespace NETLDashboard
                 new LineSeries
                 {
                     Values = GetData(startDate,endDate),
-                    //Fill = gradientBrush,
                     StrokeThickness = 0,
-                    PointGeometrySize = 3
+                    PointGeometrySize = 6
                 }
             };
 

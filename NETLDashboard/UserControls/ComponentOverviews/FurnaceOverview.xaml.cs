@@ -117,7 +117,7 @@ namespace NETLDashboard
             viewableArea.Children.Clear();
 
             string[] procedureArray ={
-                "SensorData_FurnaceGetVirtualGasValuesByDate", //FIX THIS STRING
+                "SensorData_FurnaceGetPhysicalTempValuesByDate", 
                 "SensorData_FurnaceGetVirtualGasValuesByDate",
                 "SensorData_FurnaceGetVirtualAirFlowValuesByDate",
                 "SensorData_FurnaceGetVirtualParticulateValuesByDate"

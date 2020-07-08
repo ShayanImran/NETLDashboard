@@ -32,11 +32,29 @@
         </StackPanel>
         <lvc:CartesianChart Grid.Row="2" Series="{Binding SeriesCollection}" Zoom="{Binding ZoomingMode}" DataTooltip="{x:Null}" MinWidth="500" MinHeight="500" >
             <lvc:CartesianChart.AxisX>
+
+
                 <lvc:Axis Name="X" LabelFormatter="{Binding XFormatter}" 
-                          Separator="{x:Static lvc:DefaultAxes.CleanSeparator}"/>
+                          Title="Time"
+                          FontSize="20" 
+                          LabelsRotation="20"
+                          >
+                    <lvc:Axis.Separator>
+                        <lvc:Separator StrokeThickness="0" />
+                    </lvc:Axis.Separator>
+                    </lvc:Axis>
+
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Name="Y" LabelFormatter="{Binding YFormatter}"/>
+                <lvc:Axis Name="Y" LabelFormatter="{Binding YFormatter}"
+                              Title=""
+                              FontSize="20"
+                              Opacity="100"
+                              >
+                    <lvc:Axis.Separator>
+                        <lvc:Separator StrokeThickness="0" />
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
     </Grid>
