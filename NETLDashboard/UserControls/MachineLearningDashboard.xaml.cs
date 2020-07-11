@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NETLDashboard__.NET_Framework_;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,13 +23,14 @@ namespace NETLDashboard.UserControls
     {
         List<DDLComponent> componentList;
         List<DDLAlgorithm> algorithmList;
+        Db fiu = new Db();
         public MachineLearningDashboard()
         {
             InitializeComponent();
             componentList = new List<DDLComponent>();
             algorithmList = new List<DDLAlgorithm>();
             //AddComponentsToList();
-            AddAlgorithmsToList();
+            populateAlgorithmBox();
             //BindDropDown();
             BindDropDownAlgo();
         }
@@ -47,7 +49,7 @@ namespace NETLDashboard.UserControls
         {
             SelectionList.Items.Clear();
             SelectionList.Items.Add(ModelName.Text);
-            //SelectionList.Items.Add(ComponentBox.SelectedValue.ToString());
+            SelectionList.Items.Add(ComponentBox.SelectedValue.ToString());
             foreach (var algorithm in algorithmList)
             {
                 if (algorithm.CheckedStatus == true)
@@ -92,25 +94,10 @@ namespace NETLDashboard.UserControls
             AlgorithmsBox.ItemsSource = algorithmList;
         }
 
-        private void AddAlgorithmsToList()
+        // Makes a call to the database to retrieve all the machine learning algorithm names and adds to dropdown list
+        private void populateAlgorithmBox()
         {
-            DDLAlgorithm thing = new DDLAlgorithm();
-            thing.AlgorithmName = "Test Algorithm 1";
-            thing.AlgorithmId = 1;
-            algorithmList.Add(thing);
-            thing = new DDLAlgorithm();
-            thing.AlgorithmName = "Test Algorithm 1";
-            thing.AlgorithmId = 2;
-            algorithmList.Add(thing);
-            thing = new DDLAlgorithm();
-            thing.AlgorithmName = "Test Algorithm 1";
-            thing.AlgorithmId = 3;
-            algorithmList.Add(thing);
-            thing = new DDLAlgorithm();
-            thing.AlgorithmName = "Test Algorithm 1";
-            thing.AlgorithmId = 4;
-            algorithmList.Add(thing);
-
+            fiu.getAlgorithmNames(algorithmList);
         }
 
         private void AlgorithmBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -123,8 +110,21 @@ namespace NETLDashboard.UserControls
 
         }
 
+        private void Run_Button_Click(object sender, RoutedEventArgs e)
+        {
+            fiu.InsertModelRun(ModelName.Text, Description.Text, "test"); //remove modelType
+            SelectionList.Items.Add("Your entry has been created");
+            // run stored procedure for selected component, also take into account multiple procedures
+        }
+
+        private void Reset_Button_Click(object sender, RoutedEventArgs e)
+        {
+            ModelName.Clear();
+            Description.Clear();
+            
+        }
     }
-    
+
     public class DDLComponent
     {
         public int ComponentId

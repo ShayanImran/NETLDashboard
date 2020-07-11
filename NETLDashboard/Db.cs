@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
+using NETLDashboard.UserControls;
 
 
 namespace NETLDashboard__.NET_Framework_
@@ -139,6 +140,41 @@ namespace NETLDashboard__.NET_Framework_
 
             connection.Close(); // closes the connection to the database
             return data;
+        }
+
+        
+        public void getAlgorithmNames( List<DDLAlgorithm> algoList)
+        {
+            SqlCommand command = new SqlCommand("Algorithm_GetAlgorithmNames", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+
+            connection.Open();// Opens the connection
+
+            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
+            {
+                while (reader.Read())
+                {
+                    DDLAlgorithm thing = new DDLAlgorithm();
+                    thing.AlgorithmName = reader[1].ToString();
+                    thing.AlgorithmId = int.Parse(reader[0].ToString());
+                    algoList.Add(thing);//Gets the first data point at the iterator of the reader.
+                }
+            }
+            connection.Close(); // closes the connection to the database
+        }
+
+        public void InsertModelRun(String modelName, String description, String modelType)
+        {
+            SqlCommand command = new SqlCommand("ModelMaster_InsertModel", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@modelName", modelName));
+            command.Parameters.Add(new SqlParameter("@description", description));
+            command.Parameters.Add(new SqlParameter("@modelType", modelType));
+            connection.Open();// Opens the connection
+            command.ExecuteNonQuery();
+            Console.WriteLine("Entry Created");
+            
+            connection.Close(); // closes the connection to the database
         }
     }
 
