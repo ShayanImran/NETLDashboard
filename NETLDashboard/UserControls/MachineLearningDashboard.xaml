@@ -44,9 +44,49 @@
                     <ListBox Grid.Column="2" Name="SelectionList" HorizontalAlignment="Center" Height="300" Margin="0,0,0,0" VerticalAlignment="Center" Width="200"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Prediction" FontSize="16" Visibility="Collapsed" >
+            <TabItem Header="Prediction" FontSize="16" Visibility="Visible" >
                 <Grid Background="Black">
-                    <TextBlock Foreground="White" Text="PREDICTION" FontSize="100"></TextBlock>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="33*">
+                        </ColumnDefinition>
+                        <ColumnDefinition Width="66*">
+                        </ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="0,0,0,0" Orientation="Vertical">
+                        
+                        <Label Content="Model Name:" FontSize="20" Foreground="White" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                        <TextBox Name="PredictionsModelName" Grid.Column="1" HorizontalAlignment="Center" FontSize="20"  Height="30"  TextWrapping="Wrap" Text="Model Name" VerticalAlignment="Center" Width="287"/>
+                        <Label Content="Select Algorithm(s):" Grid.Column="1" Foreground="White" FontSize="22" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                        <ComboBox Name="PredictionsAlgorithmsBox" IsEditable="False" IsTextSearchEnabled="False" TextBoxBase.TextChanged="AlgorithmBox_TextChanged" SelectionChanged="AlgorithmBox_SelectionChanged" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="287" Height="30">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox Name="checkAlgorithms" Width="220" Checked="AllComponents_CheckedAndUnchecked" Unchecked="AllComponents_CheckedAndUnchecked" 
+                                          Content="{Binding AlgorithmName}" IsChecked="{Binding CheckedStatus}" CommandParameter="{Binding AlgorithmId}">
+
+                                    </CheckBox>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Run" Grid.Column="1" VerticalAlignment="Center" Width="75" Click="Run_Button_Click" Margin="50,10,0,10" HorizontalAlignment="Center" />
+                            <Button Content="Reset"  VerticalAlignment="Center" Width="74" Click="Reset_Button_Click" Margin="10,0,0,0" HorizontalAlignment="Center" />
+                        </StackPanel>
+                       
+                    </StackPanel>
+                    <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                        <Grid Background="White">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height ="500"/>
+                                <RowDefinition Height ="500"/>
+                                <RowDefinition Height ="500"/>
+                                <RowDefinition Height ="500"/>
+                            </Grid.RowDefinitions>
+                            <local:MLResults Grid.Row="0" Margin="0,0,0,0" Height="500"/>
+                            <local:MLResults Grid.Row="1" Margin="0,0,0,0" Height="500"/>
+                            <local:MLResults Grid.Row="2" Margin="0,0,0,0" Height="500"/>
+                            <local:MLResults Grid.Row="3" Margin="0,0,0,0" Height="500"/>
+                        </Grid>
+                    </ScrollViewer>
                 </Grid>
             </TabItem>
             <TabItem Header="Help" FontSize="16" Visibility="Collapsed">
