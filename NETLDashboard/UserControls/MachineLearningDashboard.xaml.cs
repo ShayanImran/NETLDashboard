@@ -23,12 +23,16 @@ namespace NETLDashboard.UserControls
     {
         List<DDLComponent> componentList;
         List<DDLAlgorithm> algorithmList;
+        List<String> selectedAlgorithms;
         Db fiu = new Db();
+        String algorithmsString = "";
+
         public MachineLearningDashboard()
         {
             InitializeComponent();
             componentList = new List<DDLComponent>();
             algorithmList = new List<DDLAlgorithm>();
+            selectedAlgorithms = new List<String>();
             //AddComponentsToList();
             populateAlgorithmBox();
             //BindDropDown();
@@ -48,13 +52,25 @@ namespace NETLDashboard.UserControls
         private void BindListBox()
         {
             SelectionList.Items.Clear();
+            selectedAlgorithms.Clear();
             SelectionList.Items.Add(ModelName.Text);
             SelectionList.Items.Add(ComponentBox.SelectedValue.ToString());
+            algorithmsString = "";
+            int i = 0;
             foreach (var algorithm in algorithmList)
             {
                 if (algorithm.CheckedStatus == true)
                 {
                     SelectionList.Items.Add(algorithm.AlgorithmName);
+                    selectedAlgorithms.Add(algorithm.AlgorithmName);
+                    if(i == algorithmList.Count)
+                    {
+                        algorithmsString = algorithmsString + algorithm.AlgorithmName ;
+                    }
+                    else
+                    {
+                        algorithmsString = algorithmsString + algorithm.AlgorithmName + ",";
+                    }
                 }
             }
         }
@@ -112,9 +128,16 @@ namespace NETLDashboard.UserControls
 
         private void Run_Button_Click(object sender, RoutedEventArgs e)
         {
-            fiu.InsertModelRun(ModelName.Text, Description.Text, "test"); //remove modelType
+            fiu.InsertModelRun(ModelName.Text, Description.Text, "test", ComponentBox.SelectedValue.ToString(), algorithmsString); //remove modelType
             SelectionList.Items.Add("Your entry has been created");
             // run stored procedure for selected component, also take into account multiple procedures
+
+            for(int x = 0; x < selectedAlgorithms.Count; x++)
+            {
+                String Procedure = "SensorModel_" + ComponentBox.SelectedValue.ToString() + "_" + selectedAlgorithms[x];
+                MessageBox.Show(Procedure);
+                //fiu.runModels(Procedure); //Starts the model building
+            }
         }
 
         private void Reset_Button_Click(object sender, RoutedEventArgs e)
@@ -122,6 +145,11 @@ namespace NETLDashboard.UserControls
             ModelName.Clear();
             Description.Clear();
             
+        }
+
+        private void PredictionRunClicked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 

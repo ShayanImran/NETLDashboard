@@ -163,17 +163,31 @@ namespace NETLDashboard__.NET_Framework_
             connection.Close(); // closes the connection to the database
         }
 
-        public void InsertModelRun(String modelName, String description, String modelType)
+        public void InsertModelRun(String modelName, String description, String modelType, String component, String algorithms)
         {
             SqlCommand command = new SqlCommand("ModelMaster_InsertModel", connection); //Reads all the column data from the SensorData table
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("@modelName", modelName));
             command.Parameters.Add(new SqlParameter("@description", description));
             command.Parameters.Add(new SqlParameter("@modelType", modelType));
+            command.Parameters.Add(new SqlParameter("@component", component));
+            command.Parameters.Add(new SqlParameter("@algorithms", algorithms));
             connection.Open();// Opens the connection
             command.ExecuteNonQuery();
             Console.WriteLine("Entry Created");
             
+            connection.Close(); // closes the connection to the database
+        }
+
+        public void runModels(String Procedure)
+        {
+            SqlCommand command = new SqlCommand(Procedure, connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+
+            connection.Open();// Opens the connection
+
+            command.ExecuteNonQuery();//Starts the machine learning procedure with the sql command, then closes it once the scope ends.
+          
             connection.Close(); // closes the connection to the database
         }
     }

@@ -21,7 +21,7 @@
                 <Label Name="F1" Grid.Column="0" Foreground="Black" Background="White" Content="{Binding F1Score}" FontSize="24" MinWidth="100" MinHeight="30" Margin="10,10,0,0" Height="45" Width="200"/>
             </StackPanel>
 
-            <local:MLPredictionCharts Grid.Column="1" Margin="0,0,0,0"/>
+            <local:MLPredictionCharts Grid.Column="1" Margin="60,10,293,253"/>
 
         </Grid>
     </Border>
