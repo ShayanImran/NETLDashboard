@@ -2,17 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace NETLDashboard.UserControls
 {
@@ -21,10 +12,10 @@ namespace NETLDashboard.UserControls
     /// </summary>
     public partial class MachineLearningDashboard : UserControl
     {
+        Db fiu = new Db();
         List<DDLComponent> componentList;
         List<DDLAlgorithm> algorithmList;
         List<String> selectedAlgorithms;
-        Db fiu = new Db();
         String algorithmsString = "";
 
         public MachineLearningDashboard()
@@ -33,8 +24,10 @@ namespace NETLDashboard.UserControls
             componentList = new List<DDLComponent>();
             algorithmList = new List<DDLAlgorithm>();
             selectedAlgorithms = new List<String>();
+
             //AddComponentsToList();
             populateAlgorithmBox();
+
             //BindDropDown();
             BindDropDownAlgo();
         }
@@ -53,7 +46,7 @@ namespace NETLDashboard.UserControls
         {
             SelectionList.Items.Clear();
             selectedAlgorithms.Clear();
-            SelectionList.Items.Add(ModelName.Text);
+            SelectionList.Items.Add(ModelName.Text); //FIXME crash when selecting algorithm without selecting component
             SelectionList.Items.Add(ComponentBox.SelectedValue.ToString());
             algorithmsString = "";
             int i = 0;
@@ -68,7 +61,7 @@ namespace NETLDashboard.UserControls
                         algorithmsString = algorithmsString + algorithm.AlgorithmName ;
                     }
                     else
-                    {
+                    {   
                         algorithmsString = algorithmsString + algorithm.AlgorithmName + ",";
                     }
                 }
@@ -128,13 +121,17 @@ namespace NETLDashboard.UserControls
 
         private void Run_Button_Click(object sender, RoutedEventArgs e)
         {
+            // Removing the comma at the end of the string
+            algorithmsString = algorithmsString.Remove(algorithmsString.Length - 1);
+
             fiu.InsertModelRun(ModelName.Text, Description.Text, "test", ComponentBox.SelectedValue.ToString(), algorithmsString); //remove modelType
             SelectionList.Items.Add("Your entry has been created");
             // run stored procedure for selected component, also take into account multiple procedures
 
-            for(int x = 0; x < selectedAlgorithms.Count; x++)
+            for(int i = 0; i < selectedAlgorithms.Count; i++)
             {
-                String Procedure = "SensorModel_" + ComponentBox.SelectedValue.ToString() + "_" + selectedAlgorithms[x];
+                
+                String Procedure = "SensorModel_" + ComponentBox.SelectedValue.ToString() + "_" + selectedAlgorithms[i];
                 MessageBox.Show(Procedure);
                 //fiu.runModels(Procedure); //Starts the model building
             }
