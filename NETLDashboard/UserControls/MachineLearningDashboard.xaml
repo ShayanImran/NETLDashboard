@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     
-    <Grid x:Name="MLDashboard" Background="Black">
+    <Grid x:Name="MLDashboard" Background="White">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Grid.Column="0" Margin="0,0,0,0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Label Content="Model Name:" FontSize="20" Foreground="White" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
@@ -59,25 +59,18 @@
                     <Button Content="Run" Grid.Column="1" VerticalAlignment="Center" Width="75" Click="PredictionRunClicked" Margin="0,10,0,10" HorizontalAlignment="Center" />
                     <Button Content="Reset"  VerticalAlignment="Center" Width="74" Click="Reset_Button_Click" Margin="30,0,0,0" HorizontalAlignment="Center" />
                 </StackPanel>
-                <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Visible">
-                    <Grid Background="White">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height ="220"/>
-                            <RowDefinition Height ="220"/>
-                            <RowDefinition Height ="220"/>
-                            <RowDefinition Height ="220"/>
-                        </Grid.RowDefinitions>
-                        <local:MLResults Grid.Row="0" Margin="0,0,0,0" Height="215"/>
-                        <local:MLResults Grid.Row="1" Margin="0,0,0,0" Height="215"/>
-                        <local:MLResults Grid.Row="2" Margin="0,0,0,0" Height="215"/>
-                        <local:MLResults Grid.Row="3" Margin="0,0,0,0" Height="215"/>
+                <Border  BorderThickness="5" BorderBrush="Gray">
+                <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Visible" Height="700" Width="1000">
+                    
+                    <Grid Name="resultsGrid"  Background="White" >
+                       
+                        
                     </Grid>
                 </ScrollViewer>
-
-                <Grid Background="Black">
-                    <TextBlock Foreground="White" Text="HELP" FontSize="100"></TextBlock>
-                </Grid>
+                </Border>
+                
             </StackPanel>
         </ScrollViewer>
+            
     </Grid>
 </UserControl>

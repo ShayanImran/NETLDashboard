@@ -28,6 +28,42 @@ namespace NETLDashboard.UserControls
             //BindDropDown();
             BindDropDownAlgo();
             BindDropDownModels();
+
+            for(int i = 0; i<7; i++)
+            {
+                resultsGrid.RowDefinitions.Add(new RowDefinition());
+                resultsGrid.RowDefinitions[i].Height = new GridLength(150);
+            }
+
+            MLResults ml1 = new MLResults("OneClassSVM","Furnace", "Accuracy 50%", "4.564",20.54);
+            MLResults ml2 = new MLResults("OneClassSVM","Furnace", "Accuracy 50%", "4.564", 99.9);
+            MLResults ml3 = new MLResults("OneClassSVM","Furnace", "Accuracy 50%", "4.564", 45.2);
+            MLResults ml4 = new MLResults("OneClassSVM","Furnace", "Accuracy 50%", "4.564", 57.2);
+            MLResults ml5 = new MLResults("OneClassSVM","Furnace", "Accuracy 50%", "4.564", 69.69);
+            MLResults ml6 = new MLResults("OneClassSVM","Furnace", "Accuracy 50%", "4.564", 13.37);
+            MLResults ml7 = new MLResults("OneClassSVM","Furnace", "Accuracy 50%", "4.564", 2.54);
+
+            resultsGrid.Children.Add(ml1);
+            resultsGrid.Children.Add(ml2);
+            resultsGrid.Children.Add(ml3);
+            resultsGrid.Children.Add(ml4);
+            resultsGrid.Children.Add(ml5);
+            resultsGrid.Children.Add(ml6);
+            resultsGrid.Children.Add(ml7);
+
+            Grid.SetRow(ml1, 0);
+            Grid.SetRow(ml2, 1);
+            Grid.SetRow(ml3, 2);
+            Grid.SetRow(ml4, 3);
+            Grid.SetRow(ml5, 4);
+            Grid.SetRow(ml6, 5);
+            Grid.SetRow(ml7, 6);
+            
+
+
+
+
+
         }
 
         private void AllComponents_CheckedAndUnchecked(object sender, RoutedEventArgs e)

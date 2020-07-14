@@ -10,8 +10,8 @@
     <Grid>
         <lvc:PieChart FontSize="24" Foreground="Black" Hoverable="False" DataTooltip="{x:Null}">
             <lvc:PieChart.Series>
-                <lvc:PieSeries  Values="{Binding CorrectValue}" Fill="#078d1d" FontSize="16"/>
-                <lvc:PieSeries  Values="{Binding MaliciousValue}"  Fill="Red" FontSize="16"/>
+                <lvc:PieSeries Name="correctVal" Values="{Binding CorrectValue}" Fill="#078d1d" FontSize="16"/>
+                <lvc:PieSeries  Name ="maliciousVal" Values="{Binding MaliciousValue}"  Fill="Red" FontSize="16"/>
             </lvc:PieChart.Series>
        </lvc:PieChart>
     </Grid>

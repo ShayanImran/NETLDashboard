@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveCharts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,26 @@ namespace NETLDashboard.UserControls
     /// </summary>
     public partial class MLResults : UserControl
     {
-        public MLResults()
+       
+        public MLResults(String algorithmName, String componentName, String metricsUsed, String f1ScoreNum, double pieChartMalVals)
         {
+            
+            
             InitializeComponent();
 
-            Model.Content = "Model Name";
-            Algorithm.Content = "Algorithm";
-            Accuracy.Content = "Accuracy Score";
-            F1.Content = "F1 Score";
+            algorithm.Content = algorithmName;
+            component.Content = componentName;
+            metrics.Content = metricsUsed;
+            f1Score.Content = f1ScoreNum;
+            ChartValues<double> ch1 = new ChartValues<double>();
+
+            ch1.Add(pieChartMalVals); // Seems to be the only way to change the values, will leave like this until we discover a better way to solve
+
+            pieChart.MaliciousValue = ch1;
+            //Model.Content = "Model Name";
+            //Algorithm.Content = "Algorithm";
+            //Accuracy.Content = "Accuracy Score";
+            //F1.Content = "F1 Score";
         }
 
         //public String ModelName { get; set; }
