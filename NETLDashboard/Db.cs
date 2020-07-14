@@ -253,6 +253,48 @@ namespace NETLDashboard__.NET_Framework_
             }
             connection.Close(); // closes the connection to the database
         }
+
+
+        public int getAlgorithmId(String algoName)
+        {
+            int id = 0;
+            SqlCommand command = new SqlCommand("Algorithm_GetAlgorithmId", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@AlgorithmName", algoName));
+            connection.Open();// Opens the connection
+            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
+            {
+                while (reader.Read())
+                {
+                    id = int.Parse(reader[0].ToString());
+                }
+            }
+            connection.Close(); // closes the connection to the database
+            return id;
+        }
+
+        public void getValidationResults(List<MLValidationResults> data, String modelID, int algoID)
+        {
+            
+            SqlCommand command = new SqlCommand("ModelValidation_GetMachineLearningResults", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@ModelID", int.Parse(modelID)));
+            command.Parameters.Add(new SqlParameter("@AlgorithmID", algoID));
+            connection.Open();// Opens the connection
+            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
+            {
+                while (reader.Read())
+                {
+                    MLValidationResults temp = new MLValidationResults();
+                    temp.SimilarityScore = double.Parse(reader[0].ToString());
+                    data.Add(temp);
+                }
+            }
+            connection.Close(); // closes the connection to the database
+        }
+
+
+
     }
 
 }

@@ -31,13 +31,6 @@ namespace NETLDashboard.UserControls
             //BindDropDown();
             BindDropDownAlgo();
             BindDropDownModels();
-
-            for(int i = 0; i<7; i++)
-            {
-                resultsGrid.RowDefinitions.Add(new RowDefinition());
-                resultsGrid.RowDefinitions[i].Height = new GridLength(150);
-            }
-
            
         }
 
@@ -168,56 +161,54 @@ namespace NETLDashboard.UserControls
 
         private void PredictionRunClicked(object sender, RoutedEventArgs e)
         {
-           String ModelName = PredictionsModelName.SelectedValue.ToString();
-           MLIdAndAlgo dataVal = new MLIdAndAlgo();
-           dataVal = fiu.getModelAlgoandID(ModelName);
+            List<int> algoIdList = new List<int>();
+            List<MLValidationResults> algoResults = new List<MLValidationResults>();
+            List<MLResults> results = new List<MLResults>();
+            MLIdAndAlgo dataVal = new MLIdAndAlgo();
+            resultsGrid.Children.Clear();
             
-        for (int i =0; i<SelectedPredAlgorithms.Count; i++)
+            String ModelName = PredictionsModelName.SelectedValue.ToString();
+            dataVal = fiu.getModelAlgoandID(ModelName);
+            
+            for (int i =0; i<SelectedPredAlgorithms.Count; i++)
             {
-                Console.WriteLine(SelectedPredAlgorithms[i]);
+                algoIdList.Add(fiu.getAlgorithmId(SelectedPredAlgorithms[i]));
+                fiu.getValidationResults(algoResults, dataVal.ModelId, algoIdList[i]);
             }
 
+            for (int i = 0; i < SelectedPredAlgorithms.Count; i++)
+            {
+                resultsGrid.RowDefinitions.Add(new RowDefinition());
+                resultsGrid.RowDefinitions[i].Height = new GridLength(150);
+                results.Add(new MLResults(SelectedPredAlgorithms[i], "Furnace", "Accuracy 50%", "4.564", algoResults[i].SimilarityScore));
 
+                resultsGrid.Children.Add(results[i]);
+                Grid.SetRow(results[i], i);
+            }
 
+            //MLResults ml1 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 20.54);
+            //MLResults ml2 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 99.9);
+            //MLResults ml3 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 45.2);
+            //MLResults ml4 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 57.2);
+            //MLResults ml5 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 69.69);
+            //MLResults ml6 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 13.37);
+            //MLResults ml7 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 2.54);
 
+            //resultsGrid.Children.Add(ml1);
+            //resultsGrid.Children.Add(ml2);
+            //resultsGrid.Children.Add(ml3);
+            //resultsGrid.Children.Add(ml4);
+            //resultsGrid.Children.Add(ml5);
+            //resultsGrid.Children.Add(ml6);
+            //resultsGrid.Children.Add(ml7);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            MLResults ml1 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 20.54);
-            MLResults ml2 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 99.9);
-            MLResults ml3 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 45.2);
-            MLResults ml4 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 57.2);
-            MLResults ml5 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 69.69);
-            MLResults ml6 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 13.37);
-            MLResults ml7 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 2.54);
-
-            resultsGrid.Children.Add(ml1);
-            resultsGrid.Children.Add(ml2);
-            resultsGrid.Children.Add(ml3);
-            resultsGrid.Children.Add(ml4);
-            resultsGrid.Children.Add(ml5);
-            resultsGrid.Children.Add(ml6);
-            resultsGrid.Children.Add(ml7);
-
-            Grid.SetRow(ml1, 0);
-            Grid.SetRow(ml2, 1);
-            Grid.SetRow(ml3, 2);
-            Grid.SetRow(ml4, 3);
-            Grid.SetRow(ml5, 4);
-            Grid.SetRow(ml6, 5);
-            Grid.SetRow(ml7, 6);
+            //Grid.SetRow(ml1, 0);
+            //Grid.SetRow(ml2, 1);
+            //Grid.SetRow(ml3, 2);
+            //Grid.SetRow(ml4, 3);
+            //Grid.SetRow(ml5, 4);
+            //Grid.SetRow(ml6, 5);
+            //Grid.SetRow(ml7, 6);
 
 
         }
@@ -284,6 +275,12 @@ namespace NETLDashboard.UserControls
         public String ModelId { get; set; }
 
         public String ModelAlgos { get; set; }
+
+    }
+
+    public class MLValidationResults
+    {
+        public double SimilarityScore { get; set; }
 
     }
 

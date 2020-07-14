@@ -22,21 +22,20 @@ namespace NETLDashboard.UserControls
     public partial class MLResults : UserControl
     {
        
-        public MLResults(String algorithmName, String componentName, String metricsUsed, String f1ScoreNum, double pieChartMalVals)
+        public MLResults(String algorithmName, String componentName, String metricsUsed, String f1ScoreNum, double pieChartCorrVals)
         {
-            
-            
             InitializeComponent();
 
             algorithm.Content = algorithmName;
             component.Content = componentName;
             metrics.Content = metricsUsed;
             f1Score.Content = f1ScoreNum;
-            ChartValues<double> ch1 = new ChartValues<double>();
+            MLPredictionCharts chart = new MLPredictionCharts(pieChartCorrVals);
+            chart.Width = 100;
+            chart.Height = 100;
+            resultsGrid.Children.Add(chart);
+            Grid.SetColumn(chart, 4);
 
-            ch1.Add(pieChartMalVals); // Seems to be the only way to change the values, will leave like this until we discover a better way to solve
-
-            pieChart.MaliciousValue = ch1;
             //Model.Content = "Model Name";
             //Algorithm.Content = "Algorithm";
             //Accuracy.Content = "Accuracy Score";

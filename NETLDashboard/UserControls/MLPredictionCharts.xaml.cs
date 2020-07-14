@@ -10,12 +10,12 @@ namespace NETLDashboard.UserControls
     /// </summary>
     public partial class MLPredictionCharts : UserControl
     {
-        public MLPredictionCharts()
+        public MLPredictionCharts(double correct)
         {
             InitializeComponent();
-
-            CorrectValue = new ChartValues<Double> { 60 };
-            MaliciousValue = new ChartValues<Double> { 40 };
+            correct = correct * 100;
+            CorrectValue = new ChartValues<Double> { correct};
+            MaliciousValue = new ChartValues<Double> { 100 - correct };
 
             DataContext = this;
         }
