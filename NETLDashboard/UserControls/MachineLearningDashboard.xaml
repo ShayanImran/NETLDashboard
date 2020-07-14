@@ -49,8 +49,8 @@
                 <ComboBox Name="PredictionsAlgorithmsBox" IsEditable="False" IsTextSearchEnabled="False" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="287" Height="30">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox Name="PredictCheckAlgos" Width="220" 
-                                          Content="{Binding ModelAlgos}">
+                            <CheckBox Name="PredictCheckAlgos" Width="220" Checked="PredictCheckAlgos_Checked" Unchecked="PredictCheckAlgos_Checked"
+                                          Content="{Binding ModelAlgos}" IsChecked="{Binding CheckedStatus}">
                             </CheckBox>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>

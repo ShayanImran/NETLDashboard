@@ -179,18 +179,58 @@ namespace NETLDashboard__.NET_Framework_
             connection.Close(); // closes the connection to the database
         }
 
-        public void runModels(String Procedure)
+        public void runModels(String Procedure, int ModelId)
         {
             SqlCommand command = new SqlCommand(Procedure, connection); //Reads all the column data from the SensorData table
             command.CommandType = CommandType.StoredProcedure;
-
+            command.Parameters.Add(new SqlParameter("@ModelID", ModelId));
             connection.Open();// Opens the connection
-
+            command.CommandTimeout = 200;
             command.ExecuteNonQuery();//Starts the machine learning procedure with the sql command, then closes it once the scope ends.
           
             connection.Close(); // closes the connection to the database
         }
 
+        public int getModelId(String ModelName)
+        {
+            int temp = 0;
+            SqlCommand command = new SqlCommand("ModelMaster_GetID", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@ModelName", ModelName));
+            connection.Open();// Opens the connection
+
+            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
+            {
+                while (reader.Read())
+                {
+                    temp = int.Parse(reader[0].ToString());
+                }
+            }
+
+            connection.Close(); // closes the connection to the database
+            return temp;
+        }
+        // Function that retrieves the modelID and the Alogrithms used for the model
+        public MLIdAndAlgo getModelAlgoandID(String ModelName)
+        {
+            MLIdAndAlgo Mlobj = new MLIdAndAlgo();
+            SqlCommand command = new SqlCommand("ModelMaster_GetID", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@ModelName", ModelName));
+            connection.Open();// Opens the connection
+
+            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
+            {
+                while (reader.Read())
+                {
+                    Mlobj.ModelId = reader[0].ToString();
+                    Mlobj.ModelAlgos = reader[1].ToString();
+                }
+            }
+
+            connection.Close(); // closes the connection to the database
+            return Mlobj;
+        }
         public void getBuiltModels(List<MLPredictionInfo> modelList)
         {
             SqlCommand command = new SqlCommand("ModelMaster_GetModels", connection); //Reads all the column data from the SensorData table
