@@ -15,6 +15,7 @@ namespace NETLDashboard.UserControls
         Db fiu = new Db();
         List<DDLComponent> componentList;
         List<DDLAlgorithm> algorithmList;
+        List<MLPredictionInfo> builtModels;
         List<String> selectedAlgorithms;
         String algorithmsString = "";
 
@@ -23,13 +24,12 @@ namespace NETLDashboard.UserControls
             InitializeComponent();
             componentList = new List<DDLComponent>();
             algorithmList = new List<DDLAlgorithm>();
+            builtModels = new List<MLPredictionInfo>();
             selectedAlgorithms = new List<String>();
-
-            //AddComponentsToList();
-            populateAlgorithmBox();
 
             //BindDropDown();
             BindDropDownAlgo();
+            BindDropDownModels();
         }
 
         private void BindDropDown()
@@ -100,14 +100,48 @@ namespace NETLDashboard.UserControls
 
         private void BindDropDownAlgo()
         {
+            fiu.getAlgorithmNames(algorithmList);
             AlgorithmsBox.ItemsSource = algorithmList;
         }
 
-        // Makes a call to the database to retrieve all the machine learning algorithm names and adds to dropdown list
-        private void populateAlgorithmBox()
+        private void BindDropDownModels()
         {
-            fiu.getAlgorithmNames(algorithmList);
+            fiu.getBuiltModels(builtModels);
+
+            List<String> modelNames = new List<String>();
+            for(int i = 0; i < builtModels.Count; i++)
+            {
+                modelNames.Add(builtModels[i].ModelName);
+            }
+            PredictionsModelName.ItemsSource = modelNames; 
         }
+
+        private void BindPredictionAlgos(String currentModel)
+        {
+            String[] temp = new String[3];
+            for(int i = 0; i < builtModels.Count; i++)
+            {
+                if(currentModel.Equals(builtModels[i].ModelName))
+                {
+                    //MessageBox.Show(builtModels[i].ModelName.ToString());
+                    String[] algos = builtModels[i].ModelAlgos.Split(',');
+                    
+                    for(int j = 0; j < algos.Length; j++)
+                    {
+                        MLPredictionInfo val = builtModels[i];
+                        val.ModelAlgos = algos[j];
+                        temp[j] = val.ModelAlgos;
+                       // MessageBox.Show(temp[j].ToString());
+                        //PredictionsAlgorithmsBox.Items.Insert(j, tempObject[j].ModelAlgos.ToString());
+                    }
+                }
+
+            }
+            PredictionsAlgorithmsBox.ItemsSource = temp;
+
+        }
+
+        // Makes a call to the database to retrieve all the machine learning algorithm names and adds to dropdown list
 
         private void AlgorithmBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -118,6 +152,7 @@ namespace NETLDashboard.UserControls
         {
 
         }
+
 
         private void Run_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -135,6 +170,8 @@ namespace NETLDashboard.UserControls
                 MessageBox.Show(Procedure);
                 //fiu.runModels(Procedure); //Starts the model building
             }
+
+            BindDropDownModels();
         }
 
         private void Reset_Button_Click(object sender, RoutedEventArgs e)
@@ -147,6 +184,26 @@ namespace NETLDashboard.UserControls
         private void PredictionRunClicked(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void checkModels_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PredictionsModelName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BindPredictionAlgos(PredictionsModelName.SelectedValue.ToString());
+        }
+
+        private void PredictionsAlgorithmsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void PredictionsAlgorithmsBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
         }
     }
 
@@ -162,11 +219,7 @@ namespace NETLDashboard.UserControls
             get;
             set;
         }
-        public Boolean CheckedStatus
-        {
-            get;
-            set;
-        }
+
     }
 
     public class DDLAlgorithm
@@ -187,4 +240,20 @@ namespace NETLDashboard.UserControls
             set;
         }
     }
+
+    public class MLPredictionInfo
+    {
+        public String ModelName { get; set; }
+
+        public String Description { get; set; }
+
+        public String ModelComponent { get; set; }
+
+        public String ModelAlgos { get; set; }
+
+        public Boolean CheckedStatus { get; set; }
+
+
+    }
+
 }

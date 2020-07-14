@@ -190,6 +190,29 @@ namespace NETLDashboard__.NET_Framework_
           
             connection.Close(); // closes the connection to the database
         }
+
+        public void getBuiltModels(List<MLPredictionInfo> modelList)
+        {
+            SqlCommand command = new SqlCommand("ModelMaster_GetModels", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+
+            connection.Open();// Opens the connection
+
+            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
+            {
+                while (reader.Read())
+                {
+                    MLPredictionInfo thing = new MLPredictionInfo();
+                    thing.ModelName = reader[0].ToString();
+                    thing.Description = reader[1].ToString();
+                    thing.ModelComponent = reader[2].ToString();
+                    thing.ModelAlgos = reader[3].ToString();
+                    
+                    modelList.Add(thing);//Gets the first data point at the iterator of the reader.
+                }
+            }
+            connection.Close(); // closes the connection to the database
+        }
     }
 
 }

@@ -60,14 +60,14 @@
                     <StackPanel Grid.Column="0" Margin="0,0,0,0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
 
                         <Label Content="Model Name:" FontSize="20" Foreground="White" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-                        <TextBox Name="PredictionsModelName" Grid.Column="1" HorizontalAlignment="Center" FontSize="20"  Height="30"  TextWrapping="Wrap" Text="Model Name" VerticalAlignment="Center" Width="287"/>
+                        <ComboBox Name="PredictionsModelName" Grid.Column="1" ItemsSource="{Binding ModelName}" SelectionChanged="PredictionsModelName_SelectionChanged"  HorizontalAlignment="Center" FontSize="20"  Height="30"  VerticalAlignment="Center" Width="287">
+                        </ComboBox>
                         <Label Content="Select Algorithm(s):" Grid.Column="1" Foreground="White" FontSize="22" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-                        <ComboBox Name="PredictionsAlgorithmsBox" IsEditable="False" IsTextSearchEnabled="False" TextBoxBase.TextChanged="AlgorithmBox_TextChanged" SelectionChanged="AlgorithmBox_SelectionChanged" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="287" Height="30">
+                        <ComboBox Name="PredictionsAlgorithmsBox" IsEditable="False" TextBoxBase.TextChanged="PredictionsAlgorithmsBox_TextChanged" IsTextSearchEnabled="False" SelectionChanged="PredictionsAlgorithmsBox_SelectionChanged" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="287" Height="30">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
-                                    <CheckBox Name="checkAlgorithms" Width="220" Checked="AllComponents_CheckedAndUnchecked" Unchecked="AllComponents_CheckedAndUnchecked" 
-                                          Content="{Binding AlgorithmName}" IsChecked="{Binding CheckedStatus}" CommandParameter="{Binding AlgorithmId}">
-
+                                    <CheckBox Name="PredictCheckAlgos" Width="220" 
+                                          Content="{Binding ModelAlgos}" CommandParameter="{Binding ModelAlgos}">
                                     </CheckBox>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
