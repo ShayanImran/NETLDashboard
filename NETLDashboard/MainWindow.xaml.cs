@@ -390,7 +390,7 @@ namespace NETLDashboard
             if (component && Tree_Item_Machine_Learning.IsSelected)
             {
                 MainGrid.Children.Clear();
-                MLDash.MLTabControl.SelectedIndex = 0;
+                //MLDash.MLTabControl.SelectedIndex = 0;
                 MainGrid.Children.Add(MLDash);
                 component = false;
             }
@@ -400,21 +400,21 @@ namespace NETLDashboard
         private void TreeViewItem_ModelBuilding_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             MainGrid.Children.Clear();
-            MLDash.MLTabControl.SelectedIndex = 0;
+            //MLDash.MLTabControl.SelectedIndex = 0;
             MainGrid.Children.Add(MLDash);
         }
 
         private void TreeViewItem_Prediction_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             MainGrid.Children.Clear();
-            MLDash.MLTabControl.SelectedIndex = 1;
+            //MLDash.MLTabControl.SelectedIndex = 1;
             MainGrid.Children.Add(MLDash);
         }
 
         private void TreeViewItem_Help_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             MainGrid.Children.Clear();
-            MLDash.MLTabControl.SelectedIndex = 2;
+            //MLDash.MLTabControl.SelectedIndex = 2;
             MainGrid.Children.Add(MLDash);
         }
     }

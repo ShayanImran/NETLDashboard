@@ -4,14 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NETLDashboard.UserControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" Height="215" Width="503.409">
     <Border BorderBrush="Gray" BorderThickness="1">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="LeftSide" Width="25*">
+                <ColumnDefinition x:Name="LeftSide" Width="50*">
                 </ColumnDefinition>
-                <ColumnDefinition x:Name="Center" Width="75*">
+                <ColumnDefinition x:Name="Center" Width="50*">
                 </ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" Orientation="Vertical">
@@ -21,7 +20,7 @@
                 <Label Name="F1" Grid.Column="0" Foreground="Black" Background="White" Content="{Binding F1Score}" FontSize="24" MinWidth="100" MinHeight="30" Margin="10,10,0,0" Height="45" Width="200"/>
             </StackPanel>
 
-            <local:MLPredictionCharts Grid.Column="1" Margin="60,10,293,253"/>
+            <local:MLPredictionCharts Grid.Column="1" Margin="5,10,0,0"/>
 
         </Grid>
     </Border>
