@@ -141,14 +141,14 @@ namespace NETLDashboard.UserControls
            int modelID = (fiu.getModelId(ModelName.Text));
 
             // run stored procedure for selected component, also take into account multiple procedures
-
+            SelectionList.Items.Add("Please wait while model is running...");
             for(int i = 0; i < selectedAlgorithms.Count; i++)
             {
                 String Procedure = "SensorModel_" + ComponentBox.SelectedValue.ToString() + "_" + selectedAlgorithms[i];
-                MessageBox.Show(Procedure);
+               
                 fiu.runModels(Procedure, modelID); //Starts the model building
             }
-
+            SelectionList.Items.Add("Model Completed!");
             BindDropDownModels();
         }
 
@@ -180,7 +180,7 @@ namespace NETLDashboard.UserControls
             {
                 resultsGrid.RowDefinitions.Add(new RowDefinition());
                 resultsGrid.RowDefinitions[i].Height = new GridLength(200);
-                results.Add(new MLResults(SelectedPredAlgorithms[i], "Furnace", "Accuracy 50%", "4.564", algoResults[i].SimilarityScore));
+                results.Add(new MLResults(SelectedPredAlgorithms[i], algoResults[i].ComponentName, "Accuracy: "+ (100 * algoResults[i].SimilarityScore).ToString("#.00") + "%", algoResults[i].SimilarityScore));
 
                 resultsGrid.Children.Add(results[i]);
                 Grid.SetRow(results[i], i);
@@ -282,6 +282,7 @@ namespace NETLDashboard.UserControls
     {
         public double SimilarityScore { get; set; }
 
+        public String ComponentName { get; set; }
     }
 
 }

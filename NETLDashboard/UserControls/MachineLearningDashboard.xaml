@@ -10,18 +10,18 @@
     <Grid x:Name="MLDashboard" Background="White">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Grid.Column="0" Margin="0,0,0,0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Label Content="Model Name:" FontSize="20" Foreground="White" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-                <TextBox Name="ModelName" HorizontalAlignment="Center" FontSize="20"  Height="30"  TextWrapping="Wrap" Text="Model Name" VerticalAlignment="Center" Width="287"/>
-                <Label Content="Description:" Foreground="White" FontSize="22" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-                <TextBox Name="Description" HorizontalAlignment="Center" FontSize="20"  Height="100" Margin="0,0,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Center" Width="287"/>
-                <Label Content="Select Component:" Foreground="White" FontSize="22" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <Label Content="Model Name:" FontSize="20" Foreground="Black" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                <TextBox Name="ModelName" HorizontalAlignment="Center" FontSize="20"  Height="30"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="287"/>
+                <Label Content="Description:" Foreground="Black" FontSize="22" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                <TextBox Name="Description" HorizontalAlignment="Center" FontSize="20"  Height="100" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="287"/>
+                <Label Content="Select Component:" Foreground="Black" FontSize="22" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
                 <ComboBox Name="ComponentBox" SelectedValuePath="Content" IsEditable="False" IsReadOnly="True" SelectionChanged="ComponentBox_SelectionChanged" HorizontalAlignment="Center" Height="30" Margin="0,0,0,0" VerticalAlignment="Center" Width="287">
                     <ComboBoxItem>Furnace</ComboBoxItem>
                     <ComboBoxItem>Boiler</ComboBoxItem>
                     <ComboBoxItem>Stack</ComboBoxItem>
                     <ComboBoxItem>Turbine</ComboBoxItem>
                 </ComboBox>
-                <Label Content="Select Algorithm(s):" Grid.Column="1" Foreground="White" FontSize="22" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                <Label Content="Select Algorithm(s):" Grid.Column="1" Foreground="Black" FontSize="22" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
                 <ComboBox Name="AlgorithmsBox" IsEditable="False" IsTextSearchEnabled="False"  Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="287" Height="30">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -38,14 +38,14 @@
                 </StackPanel>
 
 
-                <Label Content="Summary:" Grid.Column="1" Foreground="White" FontSize="22" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,0,0,0"/>
+                <Label Content="Summary:" Grid.Column="1" Foreground="Black" FontSize="22" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0,0,0,0"/>
                 <ListBox Grid.Column="1" Name="SelectionList" FontSize="24" HorizontalAlignment="Center" Height="300" Margin="0,0,0,0" VerticalAlignment="Center" Width="313"/>
 
 
-                <Label Content="Model Name:" FontSize="20" Foreground="White" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                <Label Content="Model Name:" FontSize="20" Foreground="Black" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
                 <ComboBox Name="PredictionsModelName" Grid.Column="1" ItemsSource="{Binding ModelName}" SelectionChanged="PredictionsModelName_SelectionChanged"  HorizontalAlignment="Center" FontSize="20"  Height="30"  VerticalAlignment="Center" Width="287">
                 </ComboBox>
-                <Label Content="Select Algorithm(s):" Grid.Column="1" Foreground="White" FontSize="22" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                <Label Content="Select Algorithm(s):" Grid.Column="1" Foreground="Black" FontSize="22" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
                 <ComboBox Name="PredictionsAlgorithmsBox" IsEditable="False" IsTextSearchEnabled="False" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="287" Height="30">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>

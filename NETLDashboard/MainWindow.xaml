@@ -16,11 +16,8 @@
             </ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TreeView x:Name="sensorTreeList" Grid.Column="0"  Margin="0,0,0,0" HorizontalAlignment="Left" Width="180" >
-            
+
             <TreeViewItem Name="Tree_Item_Machine_Learning" Header="Machine Learning" IsSelected="True" MouseLeftButtonUp = "Tree_Item_Machine_MouseLeftButtonUp">
-                <TreeViewItem Header="Model Building" MouseLeftButtonUp="TreeViewItem_ModelBuilding_MouseLeftButtonUp" />
-                <TreeViewItem Header="Prediction" MouseLeftButtonUp="TreeViewItem_Prediction_MouseLeftButtonUp" />
-                <TreeViewItem Header="Help" MouseLeftButtonUp="TreeViewItem_Help_MouseLeftButtonUp" />
             </TreeViewItem>
             
             <TreeViewItem Name="Tree_Item_Component_List" Header="Power Plant Components">
