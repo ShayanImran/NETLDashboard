@@ -179,7 +179,7 @@ namespace NETLDashboard.UserControls
             for (int i = 0; i < SelectedPredAlgorithms.Count; i++)
             {
                 resultsGrid.RowDefinitions.Add(new RowDefinition());
-                resultsGrid.RowDefinitions[i].Height = new GridLength(150);
+                resultsGrid.RowDefinitions[i].Height = new GridLength(200);
                 results.Add(new MLResults(SelectedPredAlgorithms[i], "Furnace", "Accuracy 50%", "4.564", algoResults[i].SimilarityScore));
 
                 resultsGrid.Children.Add(results[i]);

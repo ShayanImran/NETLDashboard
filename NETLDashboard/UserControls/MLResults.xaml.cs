@@ -31,8 +31,8 @@ namespace NETLDashboard.UserControls
             metrics.Content = metricsUsed;
             f1Score.Content = f1ScoreNum;
             MLPredictionCharts chart = new MLPredictionCharts(pieChartCorrVals);
-            chart.Width = 100;
-            chart.Height = 100;
+            chart.Width = 175;
+            chart.Height = 175;
             resultsGrid.Children.Add(chart);
             Grid.SetColumn(chart, 4);
 

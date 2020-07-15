@@ -8,10 +8,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <lvc:PieChart FontSize="24" Foreground="Black" Hoverable="False" DataTooltip="{x:Null}">
+        <lvc:PieChart LegendLocation="Bottom" FontSize="12" Foreground="Black" Hoverable="False" DataTooltip="{x:Null}">
             <lvc:PieChart.Series>
-                <lvc:PieSeries Name="correctVal" Values="{Binding CorrectValue}" Fill="#078d1d" FontSize="16"/>
-                <lvc:PieSeries  Name ="maliciousVal" Values="{Binding MaliciousValue}"  Fill="Red" FontSize="16"/>
+                <lvc:PieSeries Title="Correct" Name="correctVal" Values="{Binding CorrectValue}" DataLabels="True" Fill="#078d1d" FontSize="12"/>
+                <lvc:PieSeries Title="Malicious" Name ="maliciousVal" Values="{Binding MaliciousValue}" DataLabels="True" Fill="Red" FontSize="12"/>
             </lvc:PieChart.Series>
        </lvc:PieChart>
     </Grid>

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NETLDashboard.UserControls"
-             mc:Ignorable="d" Height="150" Width="600.218">
+             mc:Ignorable="d" Height="200" Width="600.218">
     <Border BorderBrush="Gray" BorderThickness="1">
         <Grid Name="resultsGrid" Width="600" >
             <Grid.ColumnDefinitions>
