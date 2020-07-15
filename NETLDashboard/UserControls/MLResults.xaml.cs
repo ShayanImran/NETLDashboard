@@ -22,13 +22,14 @@ namespace NETLDashboard.UserControls
     public partial class MLResults : UserControl
     {
        
-        public MLResults(String algorithmName, String componentName, String metricsUsed, double pieChartCorrVals)
+        public MLResults(String algorithmName, String componentName, String accuracyScore, String results, double pieChartCorrVals)
         {
             InitializeComponent();
 
             algorithm.Content = algorithmName;
             component.Content = componentName;
-            metrics.Content = metricsUsed;
+            metrics.Content =accuracyScore;
+            ResultsLabel.Content = results;
            
             MLPredictionCharts chart = new MLPredictionCharts(pieChartCorrVals);
             chart.Width = 175;

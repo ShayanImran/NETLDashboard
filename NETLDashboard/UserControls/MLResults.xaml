@@ -11,6 +11,7 @@
                 <ColumnDefinition x:Name="AlgorithmNameCol" Width="50*" />
                 <ColumnDefinition x:Name="ComponentCol" Width="50*"/>
                 <ColumnDefinition x:Name="MetricsCol" Width="50*"/>
+                <ColumnDefinition x:Name="Results" Width="50*"/>
                 <ColumnDefinition x:Name="PieChartCol" Width="100*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" Orientation="Vertical"/>
@@ -33,12 +34,17 @@
                Grid.Row="0"  
                Stroke="Black"
                Fill="Transparent" />
+            
+            <Rectangle Grid.Column="4"
+               Grid.Row="0"  
+               Stroke="Black"
+               Fill="Transparent" />
 
-        
             <Label Name="algorithm" Grid.Column ="0" Content="Alorithm Name"/>
             <Label Name="component" Grid.Column ="1" Content="Component Name"/>
             <Label Name="metrics" Grid.Column ="2" Content="Metrics"/>
-            <Label Name="pieValues" Grid.Column ="3" Content="Accuracy Plot" Width="200"/>
+            <Label Name="ResultsLabel" Grid.Column ="3" Content="Results"/>
+            <Label Name="pieValues" Grid.Column ="4" Content="Accuracy Plot" Width="200"/>
         </Grid>
     </Border>
 </UserControl>

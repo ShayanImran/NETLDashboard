@@ -288,6 +288,7 @@ namespace NETLDashboard__.NET_Framework_
                     MLValidationResults temp = new MLValidationResults();
                     temp.SimilarityScore = double.Parse(reader[0].ToString());
                     temp.ComponentName = reader[1].ToString();
+                    temp.Result = reader[2].ToString();
                     data.Add(temp);
                 }
             }

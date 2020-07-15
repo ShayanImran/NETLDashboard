@@ -180,7 +180,7 @@ namespace NETLDashboard.UserControls
             {
                 resultsGrid.RowDefinitions.Add(new RowDefinition());
                 resultsGrid.RowDefinitions[i].Height = new GridLength(200);
-                results.Add(new MLResults(SelectedPredAlgorithms[i], algoResults[i].ComponentName, "Accuracy: "+ (100 * algoResults[i].SimilarityScore).ToString("#.00") + "%", algoResults[i].SimilarityScore));
+                results.Add(new MLResults(SelectedPredAlgorithms[i], algoResults[i].ComponentName, "Accuracy: "+ (100 * algoResults[i].SimilarityScore).ToString("#.00") + "%", algoResults[i].Result, algoResults[i].SimilarityScore));
 
                 resultsGrid.Children.Add(results[i]);
                 Grid.SetRow(results[i], i);
@@ -283,6 +283,8 @@ namespace NETLDashboard.UserControls
         public double SimilarityScore { get; set; }
 
         public String ComponentName { get; set; }
+
+        public String Result { get; set; }
     }
 
 }
