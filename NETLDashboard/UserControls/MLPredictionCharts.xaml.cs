@@ -13,7 +13,7 @@ namespace NETLDashboard.UserControls
         public MLPredictionCharts(double correct)
         {
             InitializeComponent();
-            correct = correct * 100;
+            correct = Math.Round(correct * 100, 2);
             CorrectValue = new ChartValues<Double> { correct};
             MaliciousValue = new ChartValues<Double> { 100 - correct };
 
