@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
+using NETLDashboard.UserControls;
 
 
 namespace NETLDashboard__.NET_Framework_
@@ -140,6 +141,162 @@ namespace NETLDashboard__.NET_Framework_
             connection.Close(); // closes the connection to the database
             return data;
         }
+
+        
+        public void getAlgorithmNames( List<DDLAlgorithm> algoList)
+        {
+            SqlCommand command = new SqlCommand("Algorithm_GetAlgorithmNames", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+
+            connection.Open();// Opens the connection
+
+            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
+            {
+                while (reader.Read())
+                {
+                    DDLAlgorithm thing = new DDLAlgorithm();
+                    thing.AlgorithmName = reader[1].ToString();
+                    thing.AlgorithmId = int.Parse(reader[0].ToString());
+                    algoList.Add(thing);//Gets the first data point at the iterator of the reader.
+                }
+            }
+            connection.Close(); // closes the connection to the database
+        }
+
+        public void InsertModelRun(String modelName, String description, String modelType, String component, String algorithms)
+        {
+            SqlCommand command = new SqlCommand("ModelMaster_InsertModel", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@modelName", modelName));
+            command.Parameters.Add(new SqlParameter("@description", description));
+            command.Parameters.Add(new SqlParameter("@modelType", modelType));
+            command.Parameters.Add(new SqlParameter("@component", component));
+            command.Parameters.Add(new SqlParameter("@algorithms", algorithms));
+            connection.Open();// Opens the connection
+            command.ExecuteNonQuery();
+            Console.WriteLine("Entry Created");
+            
+            connection.Close(); // closes the connection to the database
+        }
+
+        public void runModels(String Procedure, int ModelId)
+        {
+            SqlCommand command = new SqlCommand(Procedure, connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@ModelID", ModelId));
+            connection.Open();// Opens the connection
+            command.CommandTimeout = 200;
+            command.ExecuteNonQuery();//Starts the machine learning procedure with the sql command, then closes it once the scope ends.
+          
+            connection.Close(); // closes the connection to the database
+        }
+
+        public int getModelId(String ModelName)
+        {
+            int temp = 0;
+            SqlCommand command = new SqlCommand("ModelMaster_GetID", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@ModelName", ModelName));
+            connection.Open();// Opens the connection
+
+            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
+            {
+                while (reader.Read())
+                {
+                    temp = int.Parse(reader[0].ToString());
+                }
+            }
+
+            connection.Close(); // closes the connection to the database
+            return temp;
+        }
+        // Function that retrieves the modelID and the Alogrithms used for the model
+        public MLIdAndAlgo getModelAlgoandID(String ModelName)
+        {
+            MLIdAndAlgo Mlobj = new MLIdAndAlgo();
+            SqlCommand command = new SqlCommand("ModelMaster_GetID", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@ModelName", ModelName));
+            connection.Open();// Opens the connection
+
+            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
+            {
+                while (reader.Read())
+                {
+                    Mlobj.ModelId = reader[0].ToString();
+                    Mlobj.ModelAlgos = reader[1].ToString();
+                }
+            }
+
+            connection.Close(); // closes the connection to the database
+            return Mlobj;
+        }
+        public void getBuiltModels(List<MLPredictionInfo> modelList)
+        {
+            SqlCommand command = new SqlCommand("ModelMaster_GetModels", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+
+            connection.Open();// Opens the connection
+
+            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
+            {
+                while (reader.Read())
+                {
+                    MLPredictionInfo thing = new MLPredictionInfo();
+                    thing.ModelName = reader[0].ToString();
+                    thing.Description = reader[1].ToString();
+                    thing.ModelComponent = reader[2].ToString();
+                    thing.ModelAlgos = reader[3].ToString();
+                    
+                    modelList.Add(thing);//Gets the first data point at the iterator of the reader.
+                }
+            }
+            connection.Close(); // closes the connection to the database
+        }
+
+
+        public int getAlgorithmId(String algoName)
+        {
+            int id = 0;
+            SqlCommand command = new SqlCommand("Algorithm_GetAlgorithmId", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@AlgorithmName", algoName));
+            connection.Open();// Opens the connection
+            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
+            {
+                while (reader.Read())
+                {
+                    id = int.Parse(reader[0].ToString());
+                }
+            }
+            connection.Close(); // closes the connection to the database
+            return id;
+        }
+
+        public void getValidationResults(List<MLValidationResults> data, String modelID, int algoID)
+        {
+            
+            SqlCommand command = new SqlCommand("ModelValidation_GetMachineLearningResults", connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@ModelID", int.Parse(modelID)));
+            command.Parameters.Add(new SqlParameter("@AlgorithmID", algoID));
+            connection.Open();// Opens the connection
+            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
+            {
+                while (reader.Read())
+                {
+                    MLValidationResults temp = new MLValidationResults();
+                    temp.SimilarityScore = double.Parse(reader[0].ToString());
+                    temp.ComponentName = reader[1].ToString();
+                    temp.Result = reader[2].ToString();
+                    data.Add(temp);
+                }
+            }
+            connection.Close(); // closes the connection to the database
+        }
+
+
+
     }
 
 }

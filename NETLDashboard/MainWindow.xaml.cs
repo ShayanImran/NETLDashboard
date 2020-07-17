@@ -1,5 +1,6 @@
 ﻿using NETLDashboard.UserControls;
 using NETLDashboard.UserControls.ComponentOverviews;
+using NETLDashboard__.NET_Framework_;
 using System.Windows;
 
 
@@ -10,9 +11,11 @@ namespace NETLDashboard
     /// </summary>
     public partial class MainWindow : Window
     {
+        MachineLearningDashboard MLDash = new MachineLearningDashboard();
         bool component = false;
         public MainWindow()
         {
+           
             InitializeComponent();
 
         }
@@ -380,8 +383,39 @@ namespace NETLDashboard
 
         private void Tree_Item_Machine_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            MachineLearningDashboard test = new MachineLearningDashboard();
-            MainGrid.Children.Add(test);
+            if (!component && Tree_Item_Machine_Learning.IsSelected)
+            {
+                component = true;
+            }
+            if (component && Tree_Item_Machine_Learning.IsSelected)
+            {
+                MainGrid.Children.Clear();
+                //MLDash.MLTabControl.SelectedIndex = 0;
+                MainGrid.Children.Add(MLDash);
+                component = false;
+            }
+
+        }
+
+        private void TreeViewItem_ModelBuilding_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            //MLDash.MLTabControl.SelectedIndex = 0;
+            MainGrid.Children.Add(MLDash);
+        }
+
+        private void TreeViewItem_Prediction_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            //MLDash.MLTabControl.SelectedIndex = 1;
+            MainGrid.Children.Add(MLDash);
+        }
+
+        private void TreeViewItem_Help_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            //MLDash.MLTabControl.SelectedIndex = 2;
+            MainGrid.Children.Add(MLDash);
         }
     }
 }

@@ -65,6 +65,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\MLPredictionCharts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MLResults.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\SelectDates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +159,12 @@
     </Compile>
     <Compile Include="UserControls\MachineLearningDashboard.xaml.cs">
       <DependentUpon>MachineLearningDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MLPredictionCharts.xaml.cs">
+      <DependentUpon>MLPredictionCharts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MLResults.xaml.cs">
+      <DependentUpon>MLResults.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SelectDates.xaml.cs">
       <DependentUpon>SelectDates.xaml</DependentUpon>
