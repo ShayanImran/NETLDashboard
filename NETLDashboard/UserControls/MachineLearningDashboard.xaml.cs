@@ -27,7 +27,7 @@ namespace NETLDashboard.UserControls
         // Using this array to build the string for each components stored procedure
         string[] componentNamesList = { "Furnace", "Boiler", "Stack", "Turbine" };
 
-        string[] sensorNamesList = { "F", "B", "S", "T" };
+        string[] sensorNamesList = { "Temperature", "Pressure", "pH", "Vibration" };
 
         public MachineLearningDashboard()
         {
@@ -40,7 +40,6 @@ namespace NETLDashboard.UserControls
             //BindDropDown();
             BindDropDownAlgo();
             BindDropDownModels();
-           
         }
 
         private void AllComponents_CheckedAndUnchecked(object sender, RoutedEventArgs e)
@@ -59,7 +58,6 @@ namespace NETLDashboard.UserControls
 
         private void BindListBox()
         {
-           
             selectedAlgorithms.Clear();
            
             algorithmsString = "";
@@ -144,7 +142,6 @@ namespace NETLDashboard.UserControls
             if(isSystemLevelChecked == true)
             {
                
-
                 // Removing the comma at the end of the string
                 algorithmsString = algorithmsString.Remove(algorithmsString.Length - 1);
                 fiu.InsertModelRun(ModelName.Text, Description.Text, "test", "System Level", algorithmsString); //remove modelType
@@ -182,6 +179,29 @@ namespace NETLDashboard.UserControls
                     String Procedure = "SensorModel_" + ComponentBox.SelectedValue.ToString() + "_" + selectedAlgorithms[i];
 
                     fiu.runModels(Procedure, modelID); //Starts the model building
+                }
+
+                BindDropDownModels();
+            }
+            if (isSensorLevelChecked == true)
+            {
+
+                // Removing the comma at the end of the string
+                algorithmsString = algorithmsString.Remove(algorithmsString.Length - 1);
+
+                //Inserting created model into DB
+                fiu.InsertModelRun(ModelName.Text, Description.Text, "test", ComponentBox.SelectedValue.ToString() + " sensor", algorithmsString); //remove modelType
+
+                //Getting Model ID from the just created row in the table
+                int modelID = (fiu.getModelId(ModelName.Text));
+
+                // run stored procedure for selected component, also take into account multiple procedures
+
+                for (int i = 0; i < selectedAlgorithms.Count; i++)
+                {
+                    String Procedure = "SensorModel_" + ComponentBox.SelectedValue.ToString() + "_" + selectedAlgorithms[i];
+
+                    fiu.runModels(Procedure); //Starts the model building
                 }
 
                 BindDropDownModels();
@@ -275,8 +295,8 @@ namespace NETLDashboard.UserControls
             isSystemLevelChecked = false;
             isComponentLevelChecked = false;
 
-            ComponentBox.ItemsSource = sensorNamesList;
             ComponentBox.Visibility = Visibility.Visible;
+            ComponentBox.ItemsSource = sensorNamesList;
             selectCompLabel.Content = "Select Sensor:";
         }
     }

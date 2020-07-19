@@ -191,6 +191,17 @@ namespace NETLDashboard__.NET_Framework_
             connection.Close(); // closes the connection to the database
         }
 
+        public void runModels(String Procedure)
+        {
+            SqlCommand command = new SqlCommand(Procedure, connection); //Reads all the column data from the SensorData table
+            command.CommandType = CommandType.StoredProcedure;
+            connection.Open();// Opens the connection
+            command.CommandTimeout = 200;
+            command.ExecuteNonQuery();//Starts the machine learning procedure with the sql command, then closes it once the scope ends.
+
+            connection.Close(); // closes the connection to the database
+        }
+
         public int getModelId(String ModelName)
         {
             int temp = 0;
