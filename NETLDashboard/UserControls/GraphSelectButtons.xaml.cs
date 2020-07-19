@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Wpf.CartesianChart.ZoomingAndPanning;
 
 namespace NETLDashboard.UserControls
@@ -35,36 +25,19 @@ namespace NETLDashboard.UserControls
 
             InitializeComponent();
             LiveG.IsChecked = true;
-            hasChild = true;
-            //var button = sender as RadioButton;
-            //if (string.Compare("Live Graph", button.Content.ToString()) == 0)
-            //{
-            //        GraphGrid.Children.Clear();
-            //        ConstantChangesChart temperatureChart = new ConstantChangesChart(0);
-            //        temperatureChart.Height = graphGrid.Height;
-            //        temperatureChart.Width = graphGrid.Width;
-            //        Grid.SetRow(temperatureChart, 1);
-            //        GraphGrid.Children.Add(temperatureChart);
-            //}
-            //if (string.Compare("Historical Graph", button.Content.ToString()) == 0)
-            //{
-            //    // The Set date range needs to pop up here otherwise it'll return all the data in the database.
-
-            //    ZoomingAndPanning histChart = new ZoomingAndPanning();
-            //    histChart.Height = graphGrid.Height;
-            //    histChart.Width = graphGrid.Width;
-            //    Grid.SetRow(histChart, 1);
-            //    GraphGrid.Children.Add(histChart);
-            //}
+            hasChild = true; //Just used once in the LiveGraph_Checked function.
+            
         }
 
+        /* This function has a switch statement inside becuase it is the default value. If it was not implemented, the application
+         would crash on the first time a user selects one of the components to view the sensor overview.*/
         private void LiveGraph_Checked(object sender, RoutedEventArgs e)
         {
             if(!hasChild)
             {
-                LiveGraph liveGraph = new LiveGraph(LiveGraphProcedure, yLabel);
+                LiveGraph liveGraph = new LiveGraph(LiveGraphProcedure, yLabel); //Creates the instance and passes in the procedure and axis label
                 viewableArea.Children.Add(liveGraph);
-                Task.Factory.StartNew(liveGraph.Read);
+                Task.Factory.StartNew(liveGraph.Read); //This starts the multi-threading 
                 Grid.SetRow(liveGraph, 1);
             }
             if(hasChild)
@@ -81,9 +54,9 @@ namespace NETLDashboard.UserControls
         private void HistoricalGraph_Checked(object sender, RoutedEventArgs e)
         {
             viewableArea.Children.Clear();
-            ZoomingAndPanning historicalGraph = new ZoomingAndPanning(HistoricalGraphProcedure);
-            viewableArea.Children.Add(historicalGraph);
-            Grid.SetRow(historicalGraph, 1);
+            ZoomingAndPanning historicalGraph = new ZoomingAndPanning(HistoricalGraphProcedure);//Passes in the stored procedure
+            viewableArea.Children.Add(historicalGraph);//adds it to the grid
+            Grid.SetRow(historicalGraph, 1); //Sets it in the correct spot on the grid.
         }
     }
 }

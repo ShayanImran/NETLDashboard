@@ -39,27 +39,6 @@ namespace NETLDashboard__.NET_Framework_
             return lastValue;
         }
 
-        //getHistoricalData is for the historical graphs which require separate stored procedures to pull the correct data, but can utilize the same date range.
-        public List<double> getHistoricalData(String procedureName, String start, String end)
-        {
-            List<double> data = new List<double>();
-            SqlCommand command = new SqlCommand(procedureName, connection); //Reads all the column data from the SensorData table.
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.Add(new SqlParameter("@startDate", start));//The beginning value of the date range, linked to the variable in the stored procedure.
-            command.Parameters.Add(new SqlParameter("@endDate", end));//The end date of the date range, linked to the variable in the stored procedure.
-            connection.Open();// Opens the connection
-            using (SqlDataReader reader = command.ExecuteReader())//Starts the reading process with the sql command, then closes it once the scope ends.
-            {
-                while (reader.Read()) //Reads all the data that was stored within the specified date range.
-                {
-                    data.Add(double.Parse(reader[0].ToString()));//Gets the first data point at the iterator of the reader.
-                }
-            }
-
-            connection.Close(); // closes the connection to the database
-            return data;
-        }
-
         /* The point of this function below is to try and get the datetime value and 
             point TOGETHER in ONE list and then plot it to the historical graph, which is different from the getHistoricalData function which just
             gets all the stored values of one sensor and stores it as a double value. DateTimePoint is a data type defined in LiveCharts. */
