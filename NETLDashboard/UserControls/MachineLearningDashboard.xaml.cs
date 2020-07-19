@@ -1,6 +1,7 @@
 ﻿using NETLDashboard__.NET_Framework_;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +20,14 @@ namespace NETLDashboard.UserControls
         List<MLPredictionInfo> predictionAlgorithmCheckList;
         List<String> SelectedPredAlgorithms;
         String algorithmsString = "";
+        bool isSystemLevelChecked;
+        bool isComponentLevelChecked;
+        bool isSensorLevelChecked;
+
+        // Using this array to build the string for each components stored procedure
+        string[] componentNamesList = { "Furnace", "Boiler", "Stack", "Turbine" };
+
+        string[] sensorNamesList = { "F", "B", "S", "T" };
 
         public MachineLearningDashboard()
         {
@@ -39,38 +48,40 @@ namespace NETLDashboard.UserControls
             BindListBox();
         }
 
-        private void BindListBox()
-        {
-            SelectionList.Items.Clear();
-            selectedAlgorithms.Clear();
-            SelectionList.Items.Add(ModelName.Text); //FIXME crash when selecting algorithm without selecting component
-            SelectionList.Items.Add(ComponentBox.SelectedValue.ToString());
-            algorithmsString = "";
-            int i = 0;
-            foreach (var algorithm in algorithmList)
-            {
-                if (algorithm.CheckedStatus == true)
-                {
-                    SelectionList.Items.Add(algorithm.AlgorithmName);
-                    selectedAlgorithms.Add(algorithm.AlgorithmName);
-                    if(i == algorithmList.Count)
-                    {
-                        algorithmsString = algorithmsString + algorithm.AlgorithmName ;
-                    }
-                    else
-                    {   
-                        algorithmsString = algorithmsString + algorithm.AlgorithmName + ",";
-                    }
-                }
-            }
-        }
+        
 
         private void ComponentBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BindListBox();
         }
 
+        
 
+        private void BindListBox()
+        {
+           
+            selectedAlgorithms.Clear();
+           
+            algorithmsString = "";
+            int i = 0;
+            foreach (var algorithm in algorithmList)
+            {
+                if (algorithm.CheckedStatus == true)
+                {
+                    selectedAlgorithms.Add(algorithm.AlgorithmName);
+                    if (i == algorithmList.Count)
+                    {
+                        algorithmsString = algorithmsString + algorithm.AlgorithmName;
+                    }
+                    else
+                    {
+                        algorithmsString = algorithmsString + algorithm.AlgorithmName + ",";
+                    }
+                }
+            }
+        }
+
+        
         private void BindDropDownAlgo()
         {
             fiu.getAlgorithmNames(algorithmList);
@@ -130,26 +141,51 @@ namespace NETLDashboard.UserControls
         // Makes a call to the database to retrieve all the machine learning algorithm names and adds to dropdown list
         private void Run_Button_Click(object sender, RoutedEventArgs e)
         {
-            // Removing the comma at the end of the string
-            algorithmsString = algorithmsString.Remove(algorithmsString.Length - 1);
-
-            //Inserting created model into DB
-            fiu.InsertModelRun(ModelName.Text, Description.Text, "test", ComponentBox.SelectedValue.ToString(), algorithmsString); //remove modelType
-            SelectionList.Items.Add("Your entry has been created");
-
-            //Getting Model ID from the just created row in the table
-           int modelID = (fiu.getModelId(ModelName.Text));
-
-            // run stored procedure for selected component, also take into account multiple procedures
-            SelectionList.Items.Add("Please wait while model is running...");
-            for(int i = 0; i < selectedAlgorithms.Count; i++)
+            if(isSystemLevelChecked == true)
             {
-                String Procedure = "SensorModel_" + ComponentBox.SelectedValue.ToString() + "_" + selectedAlgorithms[i];
                
-                fiu.runModels(Procedure, modelID); //Starts the model building
+
+                // Removing the comma at the end of the string
+                algorithmsString = algorithmsString.Remove(algorithmsString.Length - 1);
+                fiu.InsertModelRun(ModelName.Text, Description.Text, "test", "System Level", algorithmsString); //remove modelType
+                
+                //Getting Model ID from the just created row in the table                                                                                               //Getting Model ID from the just created row in the table
+                int modelID = (fiu.getModelId(ModelName.Text));
+                for (int i = 0; i < componentNamesList.Length; i++)
+                {
+                    for (int j = 0; j < selectedAlgorithms.Count; j++)
+                    {
+                        String Procedure = "SensorModel_" + componentNamesList[i] + "_" + selectedAlgorithms[j];
+                        fiu.runModels(Procedure, modelID); //Starts the model building
+                    }
+                }
+
+                BindDropDownModels();
+
             }
-            SelectionList.Items.Add("Model Completed!");
-            BindDropDownModels();
+            if (isComponentLevelChecked == true)
+            {
+
+                // Removing the comma at the end of the string
+                algorithmsString = algorithmsString.Remove(algorithmsString.Length - 1);
+
+                //Inserting created model into DB
+                fiu.InsertModelRun(ModelName.Text, Description.Text, "test", ComponentBox.SelectedValue.ToString(), algorithmsString); //remove modelType
+
+                //Getting Model ID from the just created row in the table
+                int modelID = (fiu.getModelId(ModelName.Text));
+
+                // run stored procedure for selected component, also take into account multiple procedures
+
+                for (int i = 0; i < selectedAlgorithms.Count; i++)
+                {
+                    String Procedure = "SensorModel_" + ComponentBox.SelectedValue.ToString() + "_" + selectedAlgorithms[i];
+
+                    fiu.runModels(Procedure, modelID); //Starts the model building
+                }
+
+                BindDropDownModels();
+            }
         }
 
         private void Reset_Button_Click(object sender, RoutedEventArgs e)
@@ -174,42 +210,20 @@ namespace NETLDashboard.UserControls
             {
                 algoIdList.Add(fiu.getAlgorithmId(SelectedPredAlgorithms[i]));
                 fiu.getValidationResults(algoResults, dataVal.ModelId, algoIdList[i]);
+                
             }
 
-            for (int i = 0; i < SelectedPredAlgorithms.Count; i++)
+                for (int i = 0; i < algoResults.Count; i++)
             {
-                resultsGrid.RowDefinitions.Add(new RowDefinition());
-                resultsGrid.RowDefinitions[i].Height = new GridLength(200);
-                results.Add(new MLResults(SelectedPredAlgorithms[i], algoResults[i].ComponentName, "Accuracy: "+ (100 * algoResults[i].SimilarityScore).ToString("#.00") + "%", algoResults[i].Result, algoResults[i].SimilarityScore));
-
+                for (int j = 0; j < SelectedPredAlgorithms.Count; j++)
+                {
+                    resultsGrid.RowDefinitions.Add(new RowDefinition());
+                    resultsGrid.RowDefinitions[i].Height = new GridLength(200);
+                    results.Add(new MLResults(SelectedPredAlgorithms[j], algoResults[i].ComponentName, "Accuracy: " + (100 * algoResults[i].SimilarityScore).ToString("#.00") + "%", algoResults[i].Result, algoResults[i].SimilarityScore));
+                }
                 resultsGrid.Children.Add(results[i]);
                 Grid.SetRow(results[i], i);
             }
-
-            //MLResults ml1 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 20.54);
-            //MLResults ml2 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 99.9);
-            //MLResults ml3 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 45.2);
-            //MLResults ml4 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 57.2);
-            //MLResults ml5 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 69.69);
-            //MLResults ml6 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 13.37);
-            //MLResults ml7 = new MLResults("OneClassSVM", "Furnace", "Accuracy 50%", "4.564", 2.54);
-
-            //resultsGrid.Children.Add(ml1);
-            //resultsGrid.Children.Add(ml2);
-            //resultsGrid.Children.Add(ml3);
-            //resultsGrid.Children.Add(ml4);
-            //resultsGrid.Children.Add(ml5);
-            //resultsGrid.Children.Add(ml6);
-            //resultsGrid.Children.Add(ml7);
-
-            //Grid.SetRow(ml1, 0);
-            //Grid.SetRow(ml2, 1);
-            //Grid.SetRow(ml3, 2);
-            //Grid.SetRow(ml4, 3);
-            //Grid.SetRow(ml5, 4);
-            //Grid.SetRow(ml6, 5);
-            //Grid.SetRow(ml7, 6);
-
 
         }
 
@@ -234,7 +248,37 @@ namespace NETLDashboard.UserControls
 
         }
 
+        private void SystemLevel_RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            isSystemLevelChecked = true;
+            isComponentLevelChecked = false;
+            isSensorLevelChecked = false;
+            ComponentBox.Visibility = Visibility.Hidden;
+            selectCompLabel.Visibility = Visibility.Hidden;
+        }
 
+        private void ComponentLevel_RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            isComponentLevelChecked = true;
+            isSensorLevelChecked = false;
+            isSystemLevelChecked = false;
+            ComponentBox.ItemsSource = componentNamesList;
+            ComponentBox.Visibility = Visibility.Visible;
+            selectCompLabel.Visibility = Visibility.Visible;
+            selectCompLabel.Content = "Select Component:";
+        }
+
+        private void SensorLevel_RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            
+            isSensorLevelChecked = true;
+            isSystemLevelChecked = false;
+            isComponentLevelChecked = false;
+
+            ComponentBox.ItemsSource = sensorNamesList;
+            ComponentBox.Visibility = Visibility.Visible;
+            selectCompLabel.Content = "Select Sensor:";
+        }
     }
 
     public class DDLAlgorithm
