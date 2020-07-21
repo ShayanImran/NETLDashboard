@@ -31,16 +31,25 @@ namespace NETLDashboard.UserControls
 
         public MachineLearningDashboard()
         {
-            InitializeComponent();
-            systemLevelRadioButton.IsChecked = true;
-            algorithmList = new List<DDLAlgorithm>();
-            builtModels = new List<MLPredictionInfo>();
-            selectedAlgorithms = new List<String>();
-            SelectedPredAlgorithms = new List<String>();
-            predictionAlgorithmCheckList = new List<MLPredictionInfo>();
-            //BindDropDown();
-            BindDropDownAlgo();
-            BindDropDownModels();
+            try
+            {
+                InitializeComponent();
+                systemLevelRadioButton.IsChecked = true;
+                algorithmList = new List<DDLAlgorithm>();
+                builtModels = new List<MLPredictionInfo>();
+                selectedAlgorithms = new List<String>();
+                SelectedPredAlgorithms = new List<String>();
+                predictionAlgorithmCheckList = new List<MLPredictionInfo>();
+                //BindDropDown();
+                BindDropDownAlgo();
+                BindDropDownModels();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("You must be connected to the FIU network to use this applicaion.","FIU Connection Not Found");
+                Application.Current.Shutdown();
+            }
+            
         }
 
         private void AllComponents_CheckedAndUnchecked(object sender, RoutedEventArgs e)
