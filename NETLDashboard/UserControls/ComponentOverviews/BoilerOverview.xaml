@@ -1,12 +1,14 @@
 ﻿<UserControl x:Class="NETLDashboard.UserControls.ComponentOverviews.BoilerOverview"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NETLDashboard.UserControls.ComponentOverviews"
              mc:Ignorable="d" 
             d:DesignHeight="450" d:DesignWidth="800">
-    
+    <materialDesign:Transitioner SelectedIndex="0" >
+        <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn,Duration=0:0:1}">
     <Border BorderBrush="Gray" BorderThickness="1">
     <Grid Background="White" Grid.Column="1"  RenderTransformOrigin="0.5,0.5">
 
@@ -21,4 +23,6 @@
             </Grid>
         </Grid>
     </Border>
+        </materialDesign:TransitionerSlide>
+    </materialDesign:Transitioner>
 </UserControl>

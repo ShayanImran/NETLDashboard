@@ -20,8 +20,8 @@ namespace NETLDashboard.UserControls.ComponentOverviews
     /// </summary>
     public partial class BoilerOverview : UserControl
     {
-        private bool hasChild = false;
-        public BoilerOverview(int numOfSensors)
+        private readonly bool hasChild = false;
+        public BoilerOverview()
         {
             InitializeComponent();
 

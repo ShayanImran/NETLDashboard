@@ -46,7 +46,7 @@ namespace NETLDashboard.UserControls
             }
             catch(Exception e)
             {
-                MessageBox.Show("You must be connected to the FIU network to use this applicaion.","FIU Connection Not Found");
+                MessageBox.Show("You must be connected to the FIU network to use this application.","FIU Connection Not Found");
                 Application.Current.Shutdown();
             }
             
