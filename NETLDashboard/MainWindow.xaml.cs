@@ -2,7 +2,8 @@
 using NETLDashboard.UserControls.ComponentOverviews;
 using NETLDashboard__.NET_Framework_;
 using System.Windows;
-
+using MaterialDesignThemes;
+using MaterialDesignThemes.Wpf.Transitions;
 
 namespace NETLDashboard
 {
@@ -11,7 +12,7 @@ namespace NETLDashboard
     /// </summary>
     public partial class MainWindow : Window
     {
-        MachineLearningDashboard MLDash = new MachineLearningDashboard();
+        readonly MachineLearningDashboard MLDash = new MachineLearningDashboard();
         bool component = false;
         public MainWindow()
         {
@@ -88,7 +89,7 @@ namespace NETLDashboard
             if (component && Tree_Item_Boiler.IsSelected)
             {
                 MainGrid.Children.Clear();
-                BoilerOverview boilerOverview = new BoilerOverview(3);
+                BoilerOverview boilerOverview = new BoilerOverview();
                 MainGrid.Children.Add(boilerOverview);
 
                 component = false;
@@ -98,6 +99,7 @@ namespace NETLDashboard
         /* This function takes the selected child, passes in the stored procedures, and a y-axis label to the user control that creates the graphs.*/
         private void TreeViewItem_BoilerPressurePhys_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+         
             component = false;
             MainGrid.Children.Clear();
             GraphSelectButtons physicalPressure = new GraphSelectButtons("SensorData_BoilerGetLastPhysicalPressureValue", "SensorData_BoilerGetPhysicalPressureValuesByDate", "Pressure (P)");

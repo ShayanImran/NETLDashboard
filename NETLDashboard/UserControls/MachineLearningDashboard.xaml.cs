@@ -48,7 +48,7 @@ namespace NETLDashboard.UserControls
             }
             catch(Exception e) //We couldn't figure out what exception type to make it since its used for checking if the user is on the correct network, so a generic one.
             {
-                MessageBox.Show("You must be connected to the FIU network to use this applicaion.","FIU Connection Not Found");
+                MessageBox.Show("You must be connected to the FIU network to use this application.","FIU Connection Not Found");
                 Application.Current.Shutdown();
             }
             
