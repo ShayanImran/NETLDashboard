@@ -18,18 +18,18 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="1" Orientation="Vertical">
+        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">
             
-            <StackPanel Orientation="Horizontal" >
-                <Label Foreground="White" FontSize="18"  Content="Start Date:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <DatePicker Name="Start" Background="White" SelectedDate="{x:Static sys:DateTime.Today}"  HorizontalAlignment="Center" VerticalAlignment="Top" DisplayDateEnd="{x:Static sys:DateTime.Today}"/>
-                <Button Click="ResetZoomOnClick" Width="95" HorizontalAlignment="Right" VerticalAlignment="Top">Reset Zoom</Button>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Label Foreground="White" FontSize="18"  Content="Start Date:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <DatePicker Name="Start" Background="White" SelectedDate="{x:Static sys:DateTime.Today}"  HorizontalAlignment="Center" VerticalAlignment="Center" DisplayDateEnd="{x:Static sys:DateTime.Today}" Margin="5,0,0,0"/>
+                <Button Click="ResetZoomOnClick" Width="110" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,0,0">Reset Zoom</Button>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <Label Foreground="White" FontSize="18"  Content="End Date:" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                <DatePicker x:Name="End" Background="White" SelectedDate="{x:Static sys:DateTime.Today}"  VerticalAlignment="Top" HorizontalAlignment="Center" DisplayDateEnd="{x:Static sys:DateTime.Today}" />
-                <Button Content="View" Click="SelectDates" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="95" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label Foreground="White" FontSize="18"  Content="End Date:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <DatePicker x:Name="End" Background="White" SelectedDate="{x:Static sys:DateTime.Today}"  VerticalAlignment="Center" HorizontalAlignment="Center" DisplayDateEnd="{x:Static sys:DateTime.Today}" Margin="13,0,0,0" />
+                <Button Content="View" Click="SelectDates" VerticalAlignment="Center" HorizontalAlignment="Center" Width="110" Margin="14,0,0,0" />
             </StackPanel>
            
         </StackPanel>

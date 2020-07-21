@@ -34,17 +34,19 @@ namespace NETLDashboard.UserControls
             try
             {
                 InitializeComponent();
+                //Initailize the lists that will be used throughout the code, and set the default level to be sensor level.
                 systemLevelRadioButton.IsChecked = true;
                 algorithmList = new List<DDLAlgorithm>();
                 builtModels = new List<MLPredictionInfo>();
                 selectedAlgorithms = new List<String>();
                 SelectedPredAlgorithms = new List<String>();
                 predictionAlgorithmCheckList = new List<MLPredictionInfo>();
-                //BindDropDown();
-                BindDropDownAlgo();
+
+                //The following are used to initialize the drop down menus with their values dynamically.
+                BindDropDownAlgo(); 
                 BindDropDownModels();
             }
-            catch(Exception e)
+            catch(Exception e) //We couldn't figure out what exception type to make it since its used for checking if the user is on the correct network, so a generic one.
             {
                 MessageBox.Show("You must be connected to the FIU network to use this applicaion.","FIU Connection Not Found");
                 Application.Current.Shutdown();
@@ -65,10 +67,12 @@ namespace NETLDashboard.UserControls
         }
 
         
-
+        /*
+         This function is used to gather the input from the model building page, and store them in lists to be used in later functions.
+         */
         private void BindListBox()
         {
-            selectedAlgorithms.Clear();
+            selectedAlgorithms.Clear(); //Clear the selected list
            
             algorithmsString = "";
             int i = 0;
@@ -77,7 +81,7 @@ namespace NETLDashboard.UserControls
                 if (algorithm.CheckedStatus == true)
                 {
                     selectedAlgorithms.Add(algorithm.AlgorithmName);
-                    if (i == algorithmList.Count)
+                    if (i == algorithmList.Count)//This loop is used to make sure only the current selection is in the string.
                     {
                         algorithmsString = algorithmsString + algorithm.AlgorithmName;
                     }
@@ -89,16 +93,17 @@ namespace NETLDashboard.UserControls
             }
         }
 
-        
+        //Dynamically populates the drop down box with the correct values
         private void BindDropDownAlgo()
         {
             fiu.getAlgorithmNames(algorithmList);
             AlgorithmsBox.ItemsSource = algorithmList;
         }
 
+        //Dynamically populates the drop down box with the correct values
         private void BindDropDownModels()
         {
-            if (builtModels.Count == 0)
+            if (builtModels.Count == 0)// Basic switch to make sure the list gets populated correctly.
             {
                 fiu.getBuiltModels(builtModels);
 
@@ -109,7 +114,7 @@ namespace NETLDashboard.UserControls
                 }
                 PredictionsModelName.ItemsSource = modelNames;
             }
-            else
+            else //Clears the list since it was populated once already, reducing redundant values in the box.
             {
                 builtModels.Clear();
 
@@ -124,6 +129,7 @@ namespace NETLDashboard.UserControls
             }
         }
 
+        //Dynamically populates the drop down box with the correct values
         private void BindPredictionAlgos(String currentModel)
         {
             List<MLPredictionInfo> temp = new List<MLPredictionInfo>();
@@ -146,7 +152,9 @@ namespace NETLDashboard.UserControls
 
         }
 
-        // Makes a call to the database to retrieve all the machine learning algorithm names and adds to dropdown list
+        /* Stats the model building process, depending on the level overview, the function does something different. System level builds models for 
+         the entire system, including the individual sensors and the components. The component level just builds models for the components, and the sensor level
+        just builds models for the sensors.*/
         private void Run_Button_Click(object sender, RoutedEventArgs e)
         {
            
@@ -159,7 +167,7 @@ namespace NETLDashboard.UserControls
                     return;
                 }
 
-                for (int i = 0; i < builtModels.Count; i++)
+                for (int i = 0; i < builtModels.Count; i++) //verifies if the model name exists in the database already. If it does, the user has to rename the model.
                 {
                     if (ModelName.Text == builtModels[i].ModelName)
                     {
@@ -178,7 +186,7 @@ namespace NETLDashboard.UserControls
                     for (int j = 0; j < selectedAlgorithms.Count; j++)
                     {
                         String Procedure = "SensorModel_" + componentNamesList[i] + "_" + selectedAlgorithms[j];
-                        fiu.runModels(Procedure, modelID); //Starts the model building
+                        fiu.runModels(Procedure, modelID); //Starts the model building for the components
                     }
                 }
 
@@ -187,11 +195,11 @@ namespace NETLDashboard.UserControls
                     for (int j = 0; j < selectedAlgorithms.Count; j++)
                     {
                         String Procedure = "SensorModel_" + sensorNamesList[i] + "_" + selectedAlgorithms[j];
-                        fiu.runModels(Procedure, modelID); //Starts the model building
+                        fiu.runModels(Procedure, modelID); //Starts the model building for the sensors
                     }
                 }
 
-                BindDropDownModels();
+                BindDropDownModels(); //Updates the built models drop down on the prediction section.
 
             }
             if (isComponentLevelChecked == true)
@@ -230,7 +238,7 @@ namespace NETLDashboard.UserControls
                     fiu.runModels(Procedure, modelID); //Starts the model building
                 }
 
-                BindDropDownModels();
+                BindDropDownModels(); //Updates the built models drop down on the prediction section.
             }
             if (isSensorLevelChecked == true)
             {
@@ -267,15 +275,15 @@ namespace NETLDashboard.UserControls
                     fiu.runModels(Procedure, modelID); //Starts the model building
                 }
 
-                BindDropDownModels();
+                BindDropDownModels(); //Updates the built models drop down on the prediction section.
             }
         }
 
+        //Resets the fields. 
         private void Reset_Button_Click(object sender, RoutedEventArgs e)
         {
             ModelName.Clear();
             Description.Clear();
-            
         }
 
         private void PredictionRunClicked(object sender, RoutedEventArgs e)
@@ -285,6 +293,7 @@ namespace NETLDashboard.UserControls
             List<MLResults> results = new List<MLResults>();
             MLIdAndAlgo dataVal = new MLIdAndAlgo();
             resultsGrid.Children.Clear();
+
             try
             {
                 String ModelName = PredictionsModelName.SelectedValue.ToString();
@@ -295,8 +304,7 @@ namespace NETLDashboard.UserControls
                 MessageBox.Show("Please make sure that you have selected a model and its corresponding algorithms",ex.Message);
             }
             
-            
-
+            //This takes the selected algorithms from the predictions page and passes them into the database function to filter the results and pull the correct ones.
             for (int i = 0; i < SelectedPredAlgorithms.Count; i++)
             {
                 algoIdList.Add(fiu.getAlgorithmId(SelectedPredAlgorithms[i]));
@@ -304,30 +312,24 @@ namespace NETLDashboard.UserControls
 
             }
 
-
-
+            //Takes the results from the previous database and plots them onto the machine learning page.
             for (int i = 0; i < algoResults.Count; i++)
             {
                 resultsGrid.RowDefinitions.Add(new RowDefinition());
                 resultsGrid.RowDefinitions[i].Height = new GridLength(200);
                 results.Add(new MLResults(algoResults[i].AlgorithmName, algoResults[i].ComponentName, "Accuracy: " + (100 * algoResults[i].SimilarityScore).ToString("#.00") + "%", algoResults[i].Result, algoResults[i].SimilarityScore));
-                Console.WriteLine(algoResults[i].AlgorithmName);
-                Console.WriteLine(algoResults[i].ComponentName);
-                Console.WriteLine(algoResults[i].SimilarityScore);
-                Console.WriteLine(algoResults[i].Result);
                 resultsGrid.Children.Add(results[i]);
                 Grid.SetRow(results[i], i);
             }
         }
 
-       
-
-
+        //Event handler for the model name drop down menu on the predictions side
         private void PredictionsModelName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BindPredictionAlgos(PredictionsModelName.SelectedValue.ToString());
         }
 
+        //Event handler for the algorithms drop down menu on the predictions side.
         private void PredictCheckAlgos_Checked(object sender, RoutedEventArgs e)
         {
             SelectedPredAlgorithms.Clear();
@@ -340,9 +342,9 @@ namespace NETLDashboard.UserControls
                     
                 }
             }
-
         }
 
+        //The next three functions are self explanitory. 
         private void SystemLevel_RadioButton_Checked(object sender, RoutedEventArgs e)
         {
             isSystemLevelChecked = true;
@@ -376,6 +378,7 @@ namespace NETLDashboard.UserControls
         }
     }
 
+    //Used in the algorithm drop down list, this is to create an object of it with the ID and name
     public class DDLAlgorithm
     {
         public int AlgorithmId
@@ -394,7 +397,7 @@ namespace NETLDashboard.UserControls
             set;
         }
     }
-
+    //An object used for the Prediction section
     public class MLPredictionInfo
     {
         public String ModelName { get; set; }
@@ -408,6 +411,7 @@ namespace NETLDashboard.UserControls
         public Boolean CheckedStatus{ get; set; }
 
     }
+
     // Class to hold an id and comma seperated algorithms 
     public class MLIdAndAlgo
     {
@@ -417,6 +421,7 @@ namespace NETLDashboard.UserControls
 
     }
 
+    // Class to hold the values pulled from the database to be plotted
     public class MLValidationResults
     {
         public double SimilarityScore { get; set; }

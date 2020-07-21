@@ -15,12 +15,13 @@ namespace NETLDashboard
         bool component = false;
         public MainWindow()
         {
-           
+
             InitializeComponent();
             MainGrid.Children.Add(MLDash);
 
         }
-
+        /* This is a function used to prevent the parent tree item from running when you select the child. 
+         This forces it to stay selected on the child object.*/
         private void Tree_Item_Furnace_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (!component && Tree_Item_Furnace.IsSelected)
@@ -35,6 +36,8 @@ namespace NETLDashboard
                 component = false;
             }
         }
+
+        /* This function takes the selected child, passes in the stored procedures, and a y-axis label to the user control that creates the graphs.*/
         private void TreeViewItem_Furnace_FurnaceTempPhys_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             component = false;
@@ -44,6 +47,7 @@ namespace NETLDashboard
 
         }
 
+        /* This function takes the selected child, passes in the stored procedures, and a y-axis label to the user control that creates the graphs.*/
         private void TreeViewItem_Furnace_FurnaceGasVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             component = false;
@@ -53,6 +57,7 @@ namespace NETLDashboard
 
         }
 
+        /* This function takes the selected child, passes in the stored procedures, and a y-axis label to the user control that creates the graphs.*/
         private void TreeViewItem_Furnace_FurnaceAirFlowVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             component = false;
@@ -61,6 +66,8 @@ namespace NETLDashboard
             MainGrid.Children.Add(virtualAirflow);
 
         }
+
+        /* This function takes the selected child, passes in the stored procedures, and a y-axis label to the user control that creates the graphs.*/
         private void TreeViewItem_Furnace_FurnaceParticulateVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             component = false;
@@ -70,6 +77,8 @@ namespace NETLDashboard
 
         }
 
+        /* This is a function used to prevent the parent tree item from running when you select the child. 
+         This forces it to stay selected on the child object.*/
         private void Tree_Item_Boiler_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (!component && Tree_Item_Boiler.IsSelected)
@@ -86,6 +95,7 @@ namespace NETLDashboard
             }
         }
 
+        /* This function takes the selected child, passes in the stored procedures, and a y-axis label to the user control that creates the graphs.*/
         private void TreeViewItem_BoilerPressurePhys_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             component = false;
@@ -95,6 +105,7 @@ namespace NETLDashboard
 
         }
 
+        /* This function takes the selected child, passes in the stored procedures, and a y-axis label to the user control that creates the graphs.*/
         private void TreeViewItem_BoilerTempVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             component = false;
@@ -104,6 +115,7 @@ namespace NETLDashboard
 
         }
 
+        /* This function takes the selected child, passes in the stored procedures, and a y-axis label to the user control that creates the graphs.*/
         private void TreeViewItem_BoilerPhVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             component = false;
@@ -113,6 +125,7 @@ namespace NETLDashboard
 
         }
 
+        /* This function takes the selected child, passes in the stored procedures, and a y-axis label to the user control that creates the graphs.*/
         private void TreeViewItem_BoilerWaterLevelVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             component = false;
@@ -122,6 +135,8 @@ namespace NETLDashboard
 
         }
 
+        /* This is a function used to prevent the parent tree item from running when you select the child. 
+         This forces it to stay selected on the child object.*/
         private void Tree_Item_Stack_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (!component && Tree_Item_Stack.IsSelected)
@@ -137,6 +152,8 @@ namespace NETLDashboard
                 component = false;
             }
         }
+
+        /* This function takes the selected child, passes in the stored procedures, and a y-axis label to the user control that creates the graphs.*/
         private void TreeViewItem_StackGasPhys_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             component = false;
@@ -145,6 +162,7 @@ namespace NETLDashboard
             MainGrid.Children.Add(physicalGas);
         }
 
+        /* This function takes the selected child, passes in the stored procedures, and a y-axis label to the user control that creates the graphs.*/
         private void TreeViewItem_StackTempVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             component = false;
@@ -153,6 +171,7 @@ namespace NETLDashboard
             MainGrid.Children.Add(virtualTemp);
         }
 
+        /* This function takes the selected child, passes in the stored procedures, and a y-axis label to the user control that creates the graphs.*/
         private void TreeViewItem_StackParticulateVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             component = false;
@@ -161,6 +180,7 @@ namespace NETLDashboard
             MainGrid.Children.Add(virtualParticulate);
         }
 
+        /* This function takes the selected child, passes in the stored procedures, and a y-axis label to the user control that creates the graphs.*/
         private void TreeViewItem_StackAirFlowVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             component = false;
@@ -169,6 +189,8 @@ namespace NETLDashboard
             MainGrid.Children.Add(virtualAirFlow);
         }
 
+        /* This is a function used to prevent the parent tree item from running when you select the child. 
+         This forces it to stay selected on the child object.*/
         private void Tree_Item_Turbine_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (!component && Tree_Item_Turbine.IsSelected)
@@ -186,6 +208,7 @@ namespace NETLDashboard
 
         }
 
+        /* This function takes the selected child, passes in the stored procedures, and a y-axis label to the user control that creates the graphs.*/
         private void TreeViewItem_TurbineVibrationPhys_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             component = false;
@@ -195,228 +218,188 @@ namespace NETLDashboard
 
         }
 
-        private void Tree_Item_Tubes_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            //    if (!component && Tree_Item_Tubes.IsSelected)
-            //    {
-            //        component = true;
-            //    }
-            //    if (component && Tree_Item_Tubes.IsSelected)
-            //    {
-            //        LiveGraph.Visibility = Visibility.Hidden;
-            //        HistoricalGraph.Visibility = Visibility.Hidden;
-            //        GraphGrid.Children.Clear();
-            //        TubesOverview tubesOverview = new TubesOverview(3);
-            //        GraphGrid.Children.Add(tubesOverview);
-            //        component = false;
-            //    }            
-
-        }
-
-        private void Tree_Item_Container_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            //    if (!component && Tree_Item_Container.IsSelected)
-            //    {
-            //        component = true;
-            //    }
-            //    if (component && Tree_Item_Container.IsSelected)
-            //    {
-            //        LiveGraph.Visibility = Visibility.Hidden;
-            //        HistoricalGraph.Visibility = Visibility.Hidden;
-            //        GraphGrid.Children.Clear();
-            //        ContainerOverview containerOverview = new ContainerOverview(3);
-            //        GraphGrid.Children.Add(containerOverview);
-            //        component = false;
-            //    }
-
-        }
-
-        private void Tree_Item_Condenser_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            //    if (!component && Tree_Item_Condenser.IsSelected)
-            //    {
-            //        component = true;
-            //    }
-            //    if (component && Tree_Item_Condenser.IsSelected)
-            //    {
-            //        LiveGraph.Visibility = Visibility.Hidden;
-            //        HistoricalGraph.Visibility = Visibility.Hidden;
-            //        GraphGrid.Children.Clear();
-            //        CondenserOverview condenserOverview = new CondenserOverview(3);
-            //        GraphGrid.Children.Add(condenserOverview);
-            //        component = false;
-            //    }
-
-        }
-
-        private void Tree_Item_Generator_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            //    if (!component && Tree_Item_Generator.IsSelected)
-            //    {
-            //        component = true;
-            //    }
-            //    if (component && Tree_Item_Generator.IsSelected)
-            //    {
-            //        LiveGraph.Visibility = Visibility.Hidden;
-            //        HistoricalGraph.Visibility = Visibility.Hidden;
-            //        GraphGrid.Children.Clear();
-            //        GeneratorOverview generatorOverview = new GeneratorOverview(3);
-            //        GraphGrid.Children.Add(generatorOverview);
-            //        component = false;
-            //    }
-
-        }
-
-        private void Tree_Item_Transformer_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            //    if (!component && Tree_Item_Transformer.IsSelected)
-            //    {
-            //        component = true;
-            //    }
-            //    if (component && Tree_Item_Transformer.IsSelected)
-            //    {
-            //        LiveGraph.Visibility = Visibility.Hidden;
-            //        HistoricalGraph.Visibility = Visibility.Hidden;
-            //        GraphGrid.Children.Clear();
-            //        TransformerOverview transformerOverview = new TransformerOverview(3);
-            //        GraphGrid.Children.Add(transformerOverview);
-            //        component = false;
-            //    }
-
-        }
-
-        private void Tree_Item_Pulverizer_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            //    if (!component && Tree_Item_Pulverizer.IsSelected)
-            //    {
-            //        component = true;
-            //    }
-            //    if (component && Tree_Item_Pulverizer.IsSelected)
-            //    {
-            //        LiveGraph.Visibility = Visibility.Hidden;
-            //        HistoricalGraph.Visibility = Visibility.Hidden;
-            //        GraphGrid.Children.Clear();
-            //        PulverizerOverview pulverizerOverview = new PulverizerOverview(3);
-            //        GraphGrid.Children.Add(pulverizerOverview);
-            //        component = false;
-            //    }
-
-        }
-
-        private void Tree_Item_Coal_Supplier_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            //    if (!component && Tree_Item_Coal_Supplier.IsSelected)
-            //    {
-            //        component = true;
-            //    }
-            //    if (component && Tree_Item_Coal_Supplier.IsSelected)
-            //    {
-            //        LiveGraph.Visibility = Visibility.Hidden;
-            //        HistoricalGraph.Visibility = Visibility.Hidden;
-            //        GraphGrid.Children.Clear();
-            //        CoalSupplierOverview coalSupplierOverview = new CoalSupplierOverview(3);
-            //        GraphGrid.Children.Add(coalSupplierOverview);
-            //        component = false;
-            //    }
-
-        }
-
-        private void Tree_Item_Conveyor_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            //    if (!component && Tree_Item_Conveyor.IsSelected)
-            //    {
-            //        component = true;
-            //    }
-            //    if (component && Tree_Item_Conveyor.IsSelected)
-            //    {
-            //        LiveGraph.Visibility = Visibility.Hidden;
-            //        HistoricalGraph.Visibility = Visibility.Hidden;
-            //        GraphGrid.Children.Clear();
-            //        ConveyorOverview conveyorOverview = new ConveyorOverview(3);
-            //        GraphGrid.Children.Add(conveyorOverview);
-            //        component = false;
-            //    }
-
-        }
-
-        private void Tree_Item_Transmission_Lines_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            //    if (!component && Tree_Item_Transmission_Lines.IsSelected)
-            //    {
-            //        component = true;
-            //    }
-            //    if (component && Tree_Item_Transmission_Lines.IsSelected)
-            //    {
-            //        LiveGraph.Visibility = Visibility.Hidden;
-            //        HistoricalGraph.Visibility = Visibility.Hidden;
-            //        GraphGrid.Children.Clear();
-            //        TransmissionLinesOverview transmissionLinesOverview = new TransmissionLinesOverview(3);
-            //        GraphGrid.Children.Add(transmissionLinesOverview);
-            //        component = false;
-            //    }
-
-        }
-
-        private void TreeViewItem__TempSensorPhys_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            //    component = false;
-            //    GraphGrid.Children.Clear();
-            //    //Currently a placeholder until the backend is in the final iteration.
-            //    LiveGraph.Visibility = Visibility.Visible;
-            //    HistoricalGraph.Visibility = Visibility.Visible;
-            //    LiveGraph.IsChecked = false;
-            //    LiveGraph.IsChecked = true;
-            //    Physical.IsSelected = true;
-            //    Virtual.IsSelected = false;
-        }
-
-        private void TreeViewItem_TempSensorVirtual_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            //    component = false;
-            //    GraphGrid.Children.Clear();
-            //    LiveGraph.Visibility = Visibility.Visible;
-            //    HistoricalGraph.Visibility = Visibility.Visible;
-            //    LiveGraph.IsChecked = false;
-            //    LiveGraph.IsChecked = true;
-            //    Physical.IsSelected = false;
-            //    Virtual.IsSelected = true;
-        }
-
+        /* This is a function used to prevent the parent tree item from running when you select the child. 
+         This forces it to stay selected on the child object.*/
         private void Tree_Item_Machine_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (!component && Tree_Item_Machine_Learning.IsSelected)
+            if(!component && Tree_Item_Machine_Learning.IsSelected)
             {
                 component = true;
             }
             if (component && Tree_Item_Machine_Learning.IsSelected)
             {
                 MainGrid.Children.Clear();
-                //MLDash.MLTabControl.SelectedIndex = 0;
                 MainGrid.Children.Add(MLDash);
                 component = false;
             }
 
         }
+        /* All the fucntions below this point are for controling the tree-view behavior. This is to prevent the parent from being
+        selected when you click a child of the tree view. They're all slightly different but do the same thing with the main
+        difference being the overview page that is generated. As you add more components just uncomment the code and it should
+        work. */
 
-        private void TreeViewItem_ModelBuilding_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Tree_Item_Tubes_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            MainGrid.Children.Clear();
-            //MLDash.MLTabControl.SelectedIndex = 0;
-            MainGrid.Children.Add(MLDash);
+            //if (!component && Tree_Item_Tubes.IsSelected)
+            //{
+            //    component = true;
+            //}
+            //if (component && Tree_Item_Tubes.IsSelected)
+            //{
+            //    LiveGraph.Visibility = Visibility.Hidden;
+            //    HistoricalGraph.Visibility = Visibility.Hidden;
+            //    GraphGrid.Children.Clear();
+            //    TubesOverview tubesOverview = new TubesOverview(3);
+            //    GraphGrid.Children.Add(tubesOverview);
+            //    component = false;
+            //}
+
         }
 
-        private void TreeViewItem_Prediction_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Tree_Item_Container_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            MainGrid.Children.Clear();
-            //MLDash.MLTabControl.SelectedIndex = 1;
-            MainGrid.Children.Add(MLDash);
+            //if (!component && Tree_Item_Container.IsSelected)
+            //{
+            //    component = true;
+            //}
+            //if (component && Tree_Item_Container.IsSelected)
+            //{
+            //    LiveGraph.Visibility = Visibility.Hidden;
+            //    HistoricalGraph.Visibility = Visibility.Hidden;
+            //    GraphGrid.Children.Clear();
+            //    ContainerOverview containerOverview = new ContainerOverview(3);
+            //    GraphGrid.Children.Add(containerOverview);
+            //    component = false;
+            //}
+
         }
 
-        private void TreeViewItem_Help_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Tree_Item_Condenser_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            MainGrid.Children.Clear();
-            //MLDash.MLTabControl.SelectedIndex = 2;
-            MainGrid.Children.Add(MLDash);
+            //if (!component && Tree_Item_Condenser.IsSelected)
+            //{
+            //    component = true;
+            //}
+            //if (component && Tree_Item_Condenser.IsSelected)
+            //{
+            //    LiveGraph.Visibility = Visibility.Hidden;
+            //    HistoricalGraph.Visibility = Visibility.Hidden;
+            //    GraphGrid.Children.Clear();
+            //    CondenserOverview condenserOverview = new CondenserOverview(3);
+            //    GraphGrid.Children.Add(condenserOverview);
+            //    component = false;
+            //}
+
         }
+
+        private void Tree_Item_Generator_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //if (!component && Tree_Item_Generator.IsSelected)
+            //{
+            //    component = true;
+            //}
+            //if (component && Tree_Item_Generator.IsSelected)
+            //{
+            //    LiveGraph.Visibility = Visibility.Hidden;
+            //    HistoricalGraph.Visibility = Visibility.Hidden;
+            //    GraphGrid.Children.Clear();
+            //    GeneratorOverview generatorOverview = new GeneratorOverview(3);
+            //    GraphGrid.Children.Add(generatorOverview);
+            //    component = false;
+            //}
+
+        }
+
+        private void Tree_Item_Transformer_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //if (!component && Tree_Item_Transformer.IsSelected)
+            //{
+            //    component = true;
+            //}
+            //if (component && Tree_Item_Transformer.IsSelected)
+            //{
+            //    LiveGraph.Visibility = Visibility.Hidden;
+            //    HistoricalGraph.Visibility = Visibility.Hidden;
+            //    GraphGrid.Children.Clear();
+            //    TransformerOverview transformerOverview = new TransformerOverview(3);
+            //    GraphGrid.Children.Add(transformerOverview);
+            //    component = false;
+            //}
+
+        }
+
+        private void Tree_Item_Pulverizer_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //if (!component && Tree_Item_Pulverizer.IsSelected)
+            //{
+            //    component = true;
+            //}
+            //if (component && Tree_Item_Pulverizer.IsSelected)
+            //{
+            //    LiveGraph.Visibility = Visibility.Hidden;
+            //    HistoricalGraph.Visibility = Visibility.Hidden;
+            //    GraphGrid.Children.Clear();
+            //    PulverizerOverview pulverizerOverview = new PulverizerOverview(3);
+            //    GraphGrid.Children.Add(pulverizerOverview);
+            //    component = false;
+            //}
+
+        }
+
+        private void Tree_Item_Coal_Supplier_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //if (!component && Tree_Item_Coal_Supplier.IsSelected)
+            //{
+            //    component = true;
+            //}
+            //if (component && Tree_Item_Coal_Supplier.IsSelected)
+            //{
+            //    LiveGraph.Visibility = Visibility.Hidden;
+            //    HistoricalGraph.Visibility = Visibility.Hidden;
+            //    GraphGrid.Children.Clear();
+            //    CoalSupplierOverview coalSupplierOverview = new CoalSupplierOverview(3);
+            //    GraphGrid.Children.Add(coalSupplierOverview);
+            //    component = false;
+            //}
+
+        }
+
+        private void Tree_Item_Conveyor_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //if (!component && Tree_Item_Conveyor.IsSelected)
+            //{
+            //    component = true;
+            //}
+            //if (component && Tree_Item_Conveyor.IsSelected)
+            //{
+            //    LiveGraph.Visibility = Visibility.Hidden;
+            //    HistoricalGraph.Visibility = Visibility.Hidden;
+            //    GraphGrid.Children.Clear();
+            //    ConveyorOverview conveyorOverview = new ConveyorOverview(3);
+            //    GraphGrid.Children.Add(conveyorOverview);
+            //    component = false;
+            //}
+
+        }
+
+        private void Tree_Item_Transmission_Lines_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //if (!component && Tree_Item_Transmission_Lines.IsSelected)
+            //{
+            //    component = true;
+            //}
+            //if (component && Tree_Item_Transmission_Lines.IsSelected)
+            //{
+            //    LiveGraph.Visibility = Visibility.Hidden;
+            //    HistoricalGraph.Visibility = Visibility.Hidden;
+            //    GraphGrid.Children.Clear();
+            //    TransmissionLinesOverview transmissionLinesOverview = new TransmissionLinesOverview(3);
+            //    GraphGrid.Children.Add(transmissionLinesOverview);
+            //    component = false;
+            //}
+
+        }
+
     }
 }

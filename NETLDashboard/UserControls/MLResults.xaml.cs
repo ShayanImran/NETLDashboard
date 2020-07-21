@@ -21,7 +21,7 @@ namespace NETLDashboard.UserControls
     /// </summary>
     public partial class MLResults : UserControl
     {
-       
+       //This user control was made to make it easier to display the data in an easy to read format. Allows for the dynamic creation of results.
         public MLResults(String algorithmName, String componentName, String accuracyScore, String results, double pieChartCorrVals)
         {
             InitializeComponent();
@@ -37,16 +37,7 @@ namespace NETLDashboard.UserControls
             resultsGrid.Children.Add(chart);
             Grid.SetColumn(chart, 4);
 
-            //Model.Content = "Model Name";
-            //Algorithm.Content = "Algorithm";
-            //Accuracy.Content = "Accuracy Score";
-            //F1.Content = "F1 Score";
         }
-
-        //public String ModelName { get; set; }
-        //public String AlgoType { get; set; }
-        //public String AccScore { get; set; }
-        //public String F1Score { get; set; }
 
     }
 }
