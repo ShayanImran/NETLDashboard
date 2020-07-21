@@ -112,6 +112,7 @@ namespace NETLDashboard__.NET_Framework_
           
             connection.Close(); // closes the connection to the database
         }
+
         //getModelId is used to get the modelId after it was inserted into the database.
         public int getModelId(String ModelName)
         {
@@ -210,10 +211,23 @@ namespace NETLDashboard__.NET_Framework_
                 while (reader.Read()) //Reads all the rows that match the ModelId and AlgorithmId
                 {
                     MLValidationResults temp = new MLValidationResults();
+
+                    if (String.IsNullOrWhiteSpace(reader[1].ToString()))
+                    {
+                        temp.ComponentName = reader[4].ToString();
+                    }
+                    else
+                    {
+                        temp.ComponentName = reader[1].ToString();
+                    }
+
                     temp.SimilarityScore = double.Parse(reader[0].ToString());
-                    temp.ComponentName = reader[1].ToString();
-                    temp.Result = reader[2].ToString();
+
+                   
+                    temp.AlgorithmName = reader[2].ToString();
+                    temp.Result = reader[3].ToString();
                     data.Add(temp);//Adds it to a list to populate dynamically in window.
+
                 }
             }
             connection.Close(); // closes the connection to the database

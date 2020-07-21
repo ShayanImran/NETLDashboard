@@ -25,9 +25,8 @@ namespace NETLDashboard
     {
         private double _axisMax;
         private double _axisMin;
-        private string _yAxisName;
         private string procedureName;
-        string yLabelName;
+        
 
         // Name space and class names need to be same
         public LiveGraph()

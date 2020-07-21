@@ -22,6 +22,8 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
         public ZoomingAndPanning(string procedureName)
         {
             InitializeComponent();
+            Start.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(90);
+            End.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(90);
             this.procedureName = procedureName;
             startDate = Start.SelectedDate.Value.Date.ToString("yyyyMMdd");
             endDate =   End.SelectedDate.Value.Date.ToString("yyyyMMdd");
@@ -108,7 +110,15 @@ namespace Wpf.CartesianChart.ZoomingAndPanning
             }
             startDate = Start.SelectedDate.Value.Date.ToString("yyyyMMdd");
             endDate = End.SelectedDate.Value.Date.ToString("yyyyMMdd");
+
+            if(startDate.CompareTo(endDate) > 0)
+            {
+                MessageBox.Show("Start date cannot be after end date.", "Dates Mismatched");
+                return;
+            }
+
             SeriesCollection = new SeriesCollection //Creates the series to fill the graph
+
             {
                 new LineSeries
                 {
