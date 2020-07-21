@@ -133,10 +133,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\DateTimeWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControls\GraphSelectButtons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,9 +206,6 @@
     </Compile>
     <Compile Include="UserControls\ComponentOverviews\TurbineOverview.xaml.cs">
       <DependentUpon>TurbineOverview.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\DateTimeWindow.xaml.cs">
-      <DependentUpon>DateTimeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Db.cs" />
     <Compile Include="UserControls\GraphSelectButtons.xaml.cs">

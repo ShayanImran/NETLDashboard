@@ -11,6 +11,7 @@ using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using NETLDashboard__.NET_Framework_;
 
+//This is taken from the LiveCharts documentation, and modified to fit the project: https://lvcharts.net/App/examples/v1/wpf/Zooming%20and%20panning
 namespace NETLDashboard
 {
     public partial class HistoricalGraph : INotifyPropertyChanged
@@ -68,35 +69,14 @@ namespace NETLDashboard
             }
         }
 
-        private void ToogleZoomingMode(object sender, RoutedEventArgs e)
-        {
-            switch (ZoomingMode)
-            {
-                case ZoomingOptions.None:
-                    ZoomingMode = ZoomingOptions.X;
-                    break;
-                case ZoomingOptions.X:
-                    ZoomingMode = ZoomingOptions.Y;
-                    break;
-                case ZoomingOptions.Y:
-                    ZoomingMode = ZoomingOptions.Xy;
-                    break;
-                case ZoomingOptions.Xy:
-                    ZoomingMode = ZoomingOptions.None;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
         public ChartValues<DateTimePoint> GetData(String start, String end)
         {
             Db fiu = new Db();
             List<DateTimePoint> dateTimePointList = fiu.getHistoricalDataPoints(procedureName, start, end).ToList();
             var values = new ChartValues<DateTimePoint>();
-            List<DateTimePoint> plottedVals = new List<DateTimePoint>();
-       
-            for (int i = 0; i < dateTimePointList.Count(); i += 50)
+            List<DateTimePoint> plottedVals = new List<DateTimePoint>(); //DateTimePoint is a LiveGraph data type used for this particular graph type
+
+            for (int i = 0; i < dateTimePointList.Count(); i += 50)//Right now this is used to speed up load times. Once you use the geared library, compression is almost pointless.
             {
                 plottedVals.Add(dateTimePointList[i]); //This adds the values from the data list, then increments the days by 1.
             }
@@ -110,41 +90,6 @@ namespace NETLDashboard
         {
             if (PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        /*
-        private void ResetZoomOnClick(object sender, RoutedEventArgs e)
-        {
-            //Use the axis MinValue/MaxValue properties to specify the values to display.
-            //use double.Nan to clear it.
 
-            X.MinValue = double.NaN;
-            X.MaxValue = double.NaN;
-            Y.MinValue = double.NaN;
-            Y.MaxValue = double.NaN;
-        }
-        */
-        public class ZoomingModeCoverter : IValueConverter
-        {
-            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-            {
-                switch ((ZoomingOptions)value)
-                {
-                    case ZoomingOptions.None:
-                        return "None";
-                    case ZoomingOptions.X:
-                        return "X";
-                    case ZoomingOptions.Y:
-                        return "Y";
-                    case ZoomingOptions.Xy:
-                        return "XY";
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-
-            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            {
-                throw new NotImplementedException();
-            }
-        }
     }
 }

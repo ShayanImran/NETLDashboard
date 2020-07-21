@@ -11,9 +11,6 @@
     <d:DataContext>
         "{d:DesignInstance local:ZoomingAndPanning}"
     </d:DataContext>
-    <UserControl.Resources>
-        <zoomingAndPanning:ZoomingModeCoverter x:Key="ZoomingModeCoverter"></zoomingAndPanning:ZoomingModeCoverter>
-    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>

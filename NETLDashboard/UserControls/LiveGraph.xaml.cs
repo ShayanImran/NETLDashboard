@@ -8,7 +8,8 @@ using System.Threading;
 using System.ComponentModel;
 using NETLDashboard__.NET_Framework_;
 
-
+/*The LiveGraph is from the LiveCharts documentation: https://lvcharts.net/App/examples/v1/wpf/Constant%20Changes 
+ * and  https://lvcharts.net/App/examples/v1/wpf/Point%20State */
 namespace NETLDashboard
 {
     public class MeasureModel
@@ -66,10 +67,10 @@ namespace NETLDashboard
             colr = "blue";
             this.procedureName = procedureName;
             yaxis.Title = yLabel;
-            var mapper = Mappers.Xy<MeasureModel>()
+            var mapper = Mappers.Xy<MeasureModel>() //This is used to set a range of values to fill the correct color.
                 .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
                 .Y(model => model.Value)
-                .Fill(item => item.Value > 570 || item.Value < 540 ? DangerBrush : null);
+                .Fill(item => item.Value > 570 || item.Value < 540 ? DangerBrush : null); //The range of values we want to be red
 
             DangerBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
 
