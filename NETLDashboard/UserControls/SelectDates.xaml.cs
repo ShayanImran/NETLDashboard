@@ -32,8 +32,9 @@ namespace NETLDashboard
             graphNameArray = new HistoricalGraph[numberOfGraphs];
             
             InitializeComponent();
+            Start.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(90);
+            End.DisplayDateStart = DateTime.Now - TimeSpan.FromDays(90);
 
-           
 
             for (int i = 0; i < 2; i++)
             {
@@ -97,6 +98,12 @@ namespace NETLDashboard
 
                 startDate = Start.SelectedDate.Value.Date.ToString("yyyyMMdd");
                 endDate = End.SelectedDate.Value.Date.ToString("yyyyMMdd");
+
+                if (startDate.CompareTo(endDate) > 0)
+                {
+                    MessageBox.Show("Start date cannot be after end date.", "Dates Mismatched");
+                    return;
+                }
 
                 graphNameArray[i].SeriesCollection = new SeriesCollection
                 {

@@ -191,6 +191,7 @@ namespace NETLDashboard__.NET_Framework_
             connection.Close(); // closes the connection to the database
         }
 
+
         public int getModelId(String ModelName)
         {
             int temp = 0;
@@ -286,10 +287,22 @@ namespace NETLDashboard__.NET_Framework_
                 while (reader.Read())
                 {
                     MLValidationResults temp = new MLValidationResults();
+
+                    if (String.IsNullOrWhiteSpace(reader[1].ToString()))
+                    {
+                        temp.ComponentName = reader[4].ToString();
+                    }
+                    else
+                    {
+                        temp.ComponentName = reader[1].ToString();
+                    }
+
                     temp.SimilarityScore = double.Parse(reader[0].ToString());
-                    temp.ComponentName = reader[1].ToString();
-                    temp.Result = reader[2].ToString();
+                   
+                    temp.AlgorithmName = reader[2].ToString();
+                    temp.Result = reader[3].ToString();
                     data.Add(temp);
+
                 }
             }
             connection.Close(); // closes the connection to the database

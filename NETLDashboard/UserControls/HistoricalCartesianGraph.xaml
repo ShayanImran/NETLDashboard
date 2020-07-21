@@ -23,8 +23,8 @@
 
         <StackPanel Grid.Row="1">
             <Button Click="ResetZoomOnClick" Width="95" HorizontalAlignment="Right" VerticalAlignment="Top">Reset Zoom</Button>
-            <DatePicker x:Name="End" SelectedDate="{x:Static sys:DateTime.Today}" Margin="100,0,100,0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-            <DatePicker Name="Start" SelectedDate="{x:Static sys:DateTime.Today}" Margin="100,-50,100,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <DatePicker x:Name="End" SelectedDate="{x:Static sys:DateTime.Today}" Margin="100,0,100,0" VerticalAlignment="Top" HorizontalAlignment="Center" DisplayDateEnd="{x:Static sys:DateTime.Today}" />
+            <DatePicker Name="Start" SelectedDate="{x:Static sys:DateTime.Today}" Margin="100,-50,100,0" HorizontalAlignment="Center" VerticalAlignment="Top" DisplayDateEnd="{x:Static sys:DateTime.Today}"/>
             <Button Content="View" Margin="0,-25,0,0" Click="SelectDates" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="95"/>
             <Label Foreground="White" FontSize="18" Margin="0,-55,0,0" Content="Start Date:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Label Foreground="White" FontSize="18" Margin="5,-25,0,0" Content="End Date:" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
