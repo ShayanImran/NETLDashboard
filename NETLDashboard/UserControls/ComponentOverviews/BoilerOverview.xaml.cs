@@ -34,7 +34,7 @@ namespace NETLDashboard.UserControls.ComponentOverviews
         {
             if (!hasChild)
             {
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < 2; i++) //Creates the correct number of rows and columns for the number of sensors each component has.
                 {
                     viewableArea.RowDefinitions.Add(new RowDefinition());
                     viewableArea.ColumnDefinitions.Add(new ColumnDefinition());
@@ -60,6 +60,7 @@ namespace NETLDashboard.UserControls.ComponentOverviews
                 viewableArea.Children.Add(l3);
                 viewableArea.Children.Add(l4);
 
+                //Places them in the corect row and column
                 Grid.SetRow(l1, 0);
                 Grid.SetColumn(l1, 0);
 
@@ -83,7 +84,7 @@ namespace NETLDashboard.UserControls.ComponentOverviews
                 {
                     viewableArea.RowDefinitions.Add(new RowDefinition());
                     viewableArea.ColumnDefinitions.Add(new ColumnDefinition());
-                    viewableArea.RowDefinitions[i].Height = new GridLength(25, GridUnitType.Star);
+                    viewableArea.RowDefinitions[i].Height = new GridLength(25, GridUnitType.Star); //The star unit type is used because it means the row will take up 25% of the screen
                     viewableArea.ColumnDefinitions[i].Width = new GridLength(25, GridUnitType.Star);
                 }
                 //Creation of our live graph from the user control
@@ -118,7 +119,7 @@ namespace NETLDashboard.UserControls.ComponentOverviews
             }
 
         }
-
+        //Creates the historical graphs for the overview page. Clears the grid of the live graphs, then plots the historical graphs.
         private void HistoricalGraphs_Checked(object sender, RoutedEventArgs e)
         {
             viewableArea.RowDefinitions.Clear();
