@@ -6,13 +6,16 @@
              xmlns:local="clr-namespace:NETLDashboard.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Name="GraphSelectGrid">
+    <Border BorderBrush="Gray" BorderThickness="1">
+
+        <Grid Name="GraphSelectGrid" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <RadioButton x:Name="LiveG" Foreground="White" Content="Live Graph" Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,125,0" VerticalAlignment="Center"  Checked="LiveGraph_Checked" FontSize="14" />
-        <RadioButton x:Name="HistoricalG" Foreground="White" Content="Historical Graph" Grid.Row="0" HorizontalAlignment="Center" Margin="125,0,0,0" VerticalAlignment="Center" Checked="HistoricalGraph_Checked" FontSize="14" />
+        <RadioButton x:Name="LiveG"  Foreground="Black" Content="Live Graph" Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,125,0" VerticalAlignment="Center"  Checked="LiveGraph_Checked" FontSize="14" />
+        <RadioButton x:Name="HistoricalG"  Foreground="Black" Content="Historical Graph" Grid.Row="0" HorizontalAlignment="Center" Margin="125,0,0,0" VerticalAlignment="Center" Checked="HistoricalGraph_Checked" FontSize="14" />
         <Grid x:Name="viewableArea" Background="Black" Grid.Row="1"></Grid>
-    </Grid>
+        </Grid>
+    </Border>
 </UserControl>

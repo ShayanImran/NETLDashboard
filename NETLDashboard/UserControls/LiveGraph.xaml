@@ -21,7 +21,7 @@
                                 LineSmoothness="10"
                                 StrokeThickness="3"
                                 PointForeground="Green"
-                                Stroke="Beige"
+                                Stroke="White"
                                 />
                 </lvc:CartesianChart.Series>
             <lvc:CartesianChart.AxisX>

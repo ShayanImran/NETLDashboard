@@ -17,6 +17,7 @@ namespace NETLDashboard
         {
            
             InitializeComponent();
+            MainGrid.Children.Add(MLDash);
 
         }
 

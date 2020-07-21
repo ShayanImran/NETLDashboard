@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:NETLDashboard.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    <Grid x:Name="MLDashboard" Background="White">
+    <Border BorderBrush="Gray" BorderThickness="1">
+        <Grid x:Name="MLDashboard" Background="White">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Grid.Column="0" Margin="0,0,0,0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Label HorizontalAlignment="Center" FontSize="22" >Please select a category</Label>
@@ -16,60 +16,78 @@
                     <RadioButton Margin="10,0" FontSize="16" Checked="ComponentLevel_RadioButton_Checked">Component Level</RadioButton>
                     <RadioButton Margin="10,0,0,0" FontSize="16" Checked="SensorLevel_RadioButton_Checked">Sensor Level</RadioButton>
                 </StackPanel>
-               
-                <Label Content="Model Name:" FontSize="20" Foreground="Black" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-                <TextBox Name="ModelName" HorizontalAlignment="Center" FontSize="20"  Height="30"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="287"/>
-                <Label Content="Description:" Foreground="Black" FontSize="22" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-                <TextBox Name="Description" HorizontalAlignment="Center" FontSize="20"  Height="100" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="287"/>
-                <Label Name="selectCompLabel"  Content="Select Component:" Foreground="Black" FontSize="22" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-                <ComboBox Name="ComponentBox"  SelectionChanged="ComponentBox_SelectionChanged" HorizontalAlignment="Center" Height="30" Margin="0,0,0,0" VerticalAlignment="Center" Width="287">
-                    
-                </ComboBox>
-                <Label Content="Select Algorithm(s):" Grid.Column="1" Foreground="Black" FontSize="22" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-                <ComboBox Name="AlgorithmsBox" IsEditable="False" IsTextSearchEnabled="False"  Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="287" Height="30">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <CheckBox Name="checkAlgorithms" Width="220" Checked="AllComponents_CheckedAndUnchecked" Unchecked="AllComponents_CheckedAndUnchecked" 
+
+                <StackPanel Orientation="Horizontal">
+
+                    <StackPanel Orientation="Vertical" Margin="20,30,0,0">
+                        <Label Content="Enter New Model Name:" FontSize="20" Foreground="Black" Grid.Column="1" HorizontalAlignment="Center"/>
+                        <TextBox Name="ModelName" FontSize="20"  Height="35"  TextWrapping="Wrap" Text="" Width="285"/>
+
+                        <Label Content="Description:" Foreground="Black" FontSize="22" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+                        <TextBox Name="Description" HorizontalAlignment="Center" FontSize="20"  Height="100" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="287"/>
+                        <Label Name="selectCompLabel"  Content="Select Component:" Foreground="Black" FontSize="22" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Center"/>
+                        <ComboBox Name="ComponentBox"  SelectionChanged="ComponentBox_SelectionChanged" HorizontalAlignment="Center" Height="30" Margin="0,20,0,0" VerticalAlignment="Center" Width="287"/>
+                        <Label Content="Select Algorithm(s):" Grid.Column="1" Foreground="Black" FontSize="22" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                        <ComboBox Name="AlgorithmsBox" IsEditable="False" IsTextSearchEnabled="False"  Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="287" Height="30">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox Name="checkAlgorithms" Width="220" Checked="AllComponents_CheckedAndUnchecked" Unchecked="AllComponents_CheckedAndUnchecked" 
                                           Content="{Binding AlgorithmName}" IsChecked="{Binding CheckedStatus}">
 
-                            </CheckBox>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Content="Run" Grid.Column="1" VerticalAlignment="Center" Width="75" Click="Run_Button_Click" Margin="0,10,0,10" HorizontalAlignment="Center"  />
-                    <Button Content="Reset"  VerticalAlignment="Center" Width="74" Click="Reset_Button_Click" Margin="30,0,0,0" HorizontalAlignment="Center" />
+                                    </CheckBox>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Button Content="Run" Grid.Column="1" VerticalAlignment="Center" Width="75" Click="Run_Button_Click" Margin="0,10,0,10" HorizontalAlignment="Center"  />
+                            <Button Content="Reset"  VerticalAlignment="Center" Width="74" Click="Reset_Button_Click" Margin="30,0,0,0" HorizontalAlignment="Center" />
+                        </StackPanel>
+
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="300,275,0,0">
+                        <Label Content="Select Model Name:" FontSize="20" Foreground="Black" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                        <ComboBox Name="PredictionsModelName" Grid.Column="1" ItemsSource="{Binding ModelName}" SelectionChanged="PredictionsModelName_SelectionChanged"  HorizontalAlignment="Center" FontSize="20"  Height="35"  VerticalAlignment="Center" Width="287">
+                        </ComboBox>
+                        <Label Content="Select Algorithm(s):" Grid.Column="1" Foreground="Black" FontSize="22" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                        <ComboBox Name="PredictionsAlgorithmsBox" IsEditable="False" IsTextSearchEnabled="False" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="287" Height="30">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox Name="PredictCheckAlgos" Width="220" Checked="PredictCheckAlgos_Checked" Unchecked="PredictCheckAlgos_Checked"
+                                          Content="{Binding ModelAlgos}" IsChecked="{Binding CheckedStatus}">
+                                    </CheckBox>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Button Content="Run" Grid.Column="1" VerticalAlignment="Center" Width="75" Click="PredictionRunClicked" Margin="0,10,0,10" HorizontalAlignment="Center" />
+                            <Button Content="Reset"  VerticalAlignment="Center" Width="74" Click="Reset_Button_Click" Margin="30,0,0,0" HorizontalAlignment="Center" />
+                        </StackPanel>
+
+
+                    </StackPanel>
+
                 </StackPanel>
 
-                <Label Content="Model Name:" FontSize="20" Foreground="Black" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-                <ComboBox Name="PredictionsModelName" Grid.Column="1" ItemsSource="{Binding ModelName}" SelectionChanged="PredictionsModelName_SelectionChanged"  HorizontalAlignment="Center" FontSize="20"  Height="30"  VerticalAlignment="Center" Width="287">
-                </ComboBox>
-                <Label Content="Select Algorithm(s):" Grid.Column="1" Foreground="Black" FontSize="22" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-                <ComboBox Name="PredictionsAlgorithmsBox" IsEditable="False" IsTextSearchEnabled="False" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="287" Height="30">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <CheckBox Name="PredictCheckAlgos" Width="220" Checked="PredictCheckAlgos_Checked" Unchecked="PredictCheckAlgos_Checked"
-                                          Content="{Binding ModelAlgos}" IsChecked="{Binding CheckedStatus}">
-                            </CheckBox>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Content="Run" Grid.Column="1" VerticalAlignment="Center" Width="75" Click="PredictionRunClicked" Margin="0,10,0,10" HorizontalAlignment="Center" />
-                    <Button Content="Reset"  VerticalAlignment="Center" Width="74" Click="Reset_Button_Click" Margin="30,0,0,0" HorizontalAlignment="Center" />
-                </StackPanel>
-                <Border  BorderThickness="5" BorderBrush="Gray">
-                <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Visible" Height="700" Width="1000">
-                    
-                    <Grid Name="resultsGrid"  Background="White" >
-                       
-                        
-                    </Grid>
-                </ScrollViewer>
+
+
+
+
+
+                <Border  BorderThickness="3" BorderBrush="Gray">
+                    <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Visible" Height="700" Width="1000">
+
+                        <Grid Name="resultsGrid"  Background="White" >
+
+
+                        </Grid>
+                    </ScrollViewer>
                 </Border>
                 <Grid Height="100"/>
             </StackPanel>
         </ScrollViewer>
-            
-    </Grid>
+
+        </Grid>
+    </Border>
 </UserControl>

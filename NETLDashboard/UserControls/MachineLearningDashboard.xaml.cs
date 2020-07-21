@@ -149,24 +149,24 @@ namespace NETLDashboard.UserControls
         // Makes a call to the database to retrieve all the machine learning algorithm names and adds to dropdown list
         private void Run_Button_Click(object sender, RoutedEventArgs e)
         {
-            // checks to see that the user has input all necessary fields
-            if(String.IsNullOrWhiteSpace(ModelName.Text) || String.IsNullOrWhiteSpace(Description.Text) || !(ComponentBox.SelectedIndex>-1) || String.IsNullOrWhiteSpace(algorithmsString))
-            {
-                MessageBox.Show("Please make sure that all fields are filled out before clicking run", "Required field(s) empty");
-                return;
-            }
-            
-            for(int i = 0; i<builtModels.Count;i++)
-            {
-                if(ModelName.Text == builtModels[i].ModelName)
-                {
-                    MessageBox.Show("This model name already exists in the database", "Model exists in database");
-                    return;
-                }
-            }
+           
             if(isSystemLevelChecked == true)
             {
-               
+                // checks to see that the user has input all necessary fields
+                if (String.IsNullOrWhiteSpace(ModelName.Text) || String.IsNullOrWhiteSpace(Description.Text) || String.IsNullOrWhiteSpace(algorithmsString))
+                {
+                    MessageBox.Show("Please make sure that all fields are filled out before clicking run", "Required field(s) empty");
+                    return;
+                }
+
+                for (int i = 0; i < builtModels.Count; i++)
+                {
+                    if (ModelName.Text == builtModels[i].ModelName)
+                    {
+                        MessageBox.Show("This model name already exists in the database", "Model exists in database");
+                        return;
+                    }
+                }
                 // Removing the comma at the end of the string
                 algorithmsString = algorithmsString.Remove(algorithmsString.Length - 1);
                 fiu.InsertModelRun(ModelName.Text, Description.Text, "test", "System Level", algorithmsString); //remove modelType
@@ -196,6 +196,21 @@ namespace NETLDashboard.UserControls
             }
             if (isComponentLevelChecked == true)
             {
+                // checks to see that the user has input all necessary fields
+                if (String.IsNullOrWhiteSpace(ModelName.Text) || String.IsNullOrWhiteSpace(Description.Text) || !(ComponentBox.SelectedIndex > -1) || String.IsNullOrWhiteSpace(algorithmsString))
+                {
+                    MessageBox.Show("Please make sure that all fields are filled out before clicking run", "Required field(s) empty");
+                    return;
+                }
+
+                for (int i = 0; i < builtModels.Count; i++)
+                {
+                    if (ModelName.Text == builtModels[i].ModelName)
+                    {
+                        MessageBox.Show("This model name already exists in the database", "Model exists in database");
+                        return;
+                    }
+                }
 
                 // Removing the comma at the end of the string
                 algorithmsString = algorithmsString.Remove(algorithmsString.Length - 1);
@@ -219,7 +234,21 @@ namespace NETLDashboard.UserControls
             }
             if (isSensorLevelChecked == true)
             {
+                // checks to see that the user has input all necessary fields
+                if (String.IsNullOrWhiteSpace(ModelName.Text) || String.IsNullOrWhiteSpace(Description.Text) || !(ComponentBox.SelectedIndex > -1) || String.IsNullOrWhiteSpace(algorithmsString))
+                {
+                    MessageBox.Show("Please make sure that all fields are filled out before clicking run", "Required field(s) empty");
+                    return;
+                }
 
+                for (int i = 0; i < builtModels.Count; i++)
+                {
+                    if (ModelName.Text == builtModels[i].ModelName)
+                    {
+                        MessageBox.Show("This model name already exists in the database", "Model exists in database");
+                        return;
+                    }
+                }
                 // Removing the comma at the end of the string
                 algorithmsString = algorithmsString.Remove(algorithmsString.Length - 1);
 
