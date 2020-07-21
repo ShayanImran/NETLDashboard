@@ -27,11 +27,12 @@ namespace NETLDashboard.UserControls
         // Using this array to build the string for each components stored procedure
         string[] componentNamesList = { "Furnace", "Boiler", "Stack", "Turbine" };
 
-        string[] sensorNamesList = { "Temperature", "Pressure", "pH", "Vibration" };
+        string[] sensorNamesList = { "Temperature", "Pressure", "pH", "Vibration", "AirFlow", "Gas", "Particulate","WaterLevel" };
 
         public MachineLearningDashboard()
         {
             InitializeComponent();
+            systemLevelRadioButton.IsChecked = true;
             algorithmList = new List<DDLAlgorithm>();
             builtModels = new List<MLPredictionInfo>();
             selectedAlgorithms = new List<String>();
@@ -139,6 +140,21 @@ namespace NETLDashboard.UserControls
         // Makes a call to the database to retrieve all the machine learning algorithm names and adds to dropdown list
         private void Run_Button_Click(object sender, RoutedEventArgs e)
         {
+            // checks to see that the user has input all necessary fields
+            if(String.IsNullOrWhiteSpace(ModelName.Text) || String.IsNullOrWhiteSpace(Description.Text) || !(ComponentBox.SelectedIndex>-1) || String.IsNullOrWhiteSpace(algorithmsString))
+            {
+                MessageBox.Show("Please make sure that all fields are filled out before clicking run", "Required field(s) empty");
+                return;
+            }
+            
+            for(int i = 0; i<builtModels.Count;i++)
+            {
+                if(ModelName.Text == builtModels[i].ModelName)
+                {
+                    MessageBox.Show("This model name already exists in the database", "Model exists in database");
+                    return;
+                }
+            }
             if(isSystemLevelChecked == true)
             {
                
@@ -153,6 +169,15 @@ namespace NETLDashboard.UserControls
                     for (int j = 0; j < selectedAlgorithms.Count; j++)
                     {
                         String Procedure = "SensorModel_" + componentNamesList[i] + "_" + selectedAlgorithms[j];
+                        fiu.runModels(Procedure, modelID); //Starts the model building
+                    }
+                }
+
+                for (int i = 0; i < sensorNamesList.Length; i++)
+                {
+                    for (int j = 0; j < selectedAlgorithms.Count; j++)
+                    {
+                        String Procedure = "SensorModel_" + sensorNamesList[i] + "_" + selectedAlgorithms[j];
                         fiu.runModels(Procedure, modelID); //Starts the model building
                     }
                 }
@@ -201,7 +226,7 @@ namespace NETLDashboard.UserControls
                 {
                     String Procedure = "SensorModel_" + ComponentBox.SelectedValue.ToString() + "_" + selectedAlgorithms[i];
 
-                    fiu.runModels(Procedure); //Starts the model building
+                    fiu.runModels(Procedure, modelID); //Starts the model building
                 }
 
                 BindDropDownModels();
@@ -222,30 +247,42 @@ namespace NETLDashboard.UserControls
             List<MLResults> results = new List<MLResults>();
             MLIdAndAlgo dataVal = new MLIdAndAlgo();
             resultsGrid.Children.Clear();
+            try
+            {
+                String ModelName = PredictionsModelName.SelectedValue.ToString();
+                dataVal = fiu.getModelAlgoandID(ModelName);
+            } catch(NullReferenceException ex)
+            {
+     
+                MessageBox.Show("Please make sure that you have selected a model and its corresponding algorithms",ex.Message);
+            }
             
-            String ModelName = PredictionsModelName.SelectedValue.ToString();
-            dataVal = fiu.getModelAlgoandID(ModelName);
             
-            for (int i =0; i<SelectedPredAlgorithms.Count; i++)
+
+            for (int i = 0; i < SelectedPredAlgorithms.Count; i++)
             {
                 algoIdList.Add(fiu.getAlgorithmId(SelectedPredAlgorithms[i]));
                 fiu.getValidationResults(algoResults, dataVal.ModelId, algoIdList[i]);
-                
+
             }
 
-                for (int i = 0; i < algoResults.Count; i++)
+
+
+            for (int i = 0; i < algoResults.Count; i++)
             {
-                for (int j = 0; j < SelectedPredAlgorithms.Count; j++)
-                {
-                    resultsGrid.RowDefinitions.Add(new RowDefinition());
-                    resultsGrid.RowDefinitions[i].Height = new GridLength(200);
-                    results.Add(new MLResults(SelectedPredAlgorithms[j], algoResults[i].ComponentName, "Accuracy: " + (100 * algoResults[i].SimilarityScore).ToString("#.00") + "%", algoResults[i].Result, algoResults[i].SimilarityScore));
-                }
+                resultsGrid.RowDefinitions.Add(new RowDefinition());
+                resultsGrid.RowDefinitions[i].Height = new GridLength(200);
+                results.Add(new MLResults(algoResults[i].AlgorithmName, algoResults[i].ComponentName, "Accuracy: " + (100 * algoResults[i].SimilarityScore).ToString("#.00") + "%", algoResults[i].Result, algoResults[i].SimilarityScore));
+                Console.WriteLine(algoResults[i].AlgorithmName);
+                Console.WriteLine(algoResults[i].ComponentName);
+                Console.WriteLine(algoResults[i].SimilarityScore);
+                Console.WriteLine(algoResults[i].Result);
                 resultsGrid.Children.Add(results[i]);
                 Grid.SetRow(results[i], i);
             }
-
         }
+
+       
 
 
         private void PredictionsModelName_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -294,7 +331,7 @@ namespace NETLDashboard.UserControls
             isSensorLevelChecked = true;
             isSystemLevelChecked = false;
             isComponentLevelChecked = false;
-
+            selectCompLabel.Visibility = Visibility.Visible;
             ComponentBox.Visibility = Visibility.Visible;
             ComponentBox.ItemsSource = sensorNamesList;
             selectCompLabel.Content = "Select Sensor:";
@@ -349,6 +386,8 @@ namespace NETLDashboard.UserControls
         public String ComponentName { get; set; }
 
         public String Result { get; set; }
+
+        public String AlgorithmName { get; set; }
     }
 
 }
