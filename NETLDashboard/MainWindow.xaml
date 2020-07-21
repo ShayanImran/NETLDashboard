@@ -1,53 +1,60 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NETLDashboard"
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:Points="clr-namespace:LiveCharts.Wpf.Points;assembly=LiveCharts.Wpf" xmlns:ZoomingAndPanning="clr-namespace:Wpf.CartesianChart.ZoomingAndPanning" x:Class="NETLDashboard.MainWindow"
         mc:Ignorable="d"
-
+        
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="11.5"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        
+    
         Title="NETL Command Center" Height="924" Width="1600.5" ResizeMode="CanResizeWithGrip" MinWidth="720" MinHeight="700">
-    <Grid Background="Gray" ClipToBounds="True">
+    <Grid Background="#1E88E5" ClipToBounds="True">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="TreeGridColumn" Width="180">
+            <ColumnDefinition x:Name="TreeGridColumn" Width="195">
             </ColumnDefinition>
             <ColumnDefinition>
             </ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TreeView x:Name="sensorTreeList" Grid.Column="0"  Margin="0,0,0,0" HorizontalAlignment="Left" Width="180" >
+        <TreeView x:Name="sensorTreeList" Grid.Column="0"  Margin="0,0,0,0" HorizontalAlignment="Left" Width="195" >
 
-            <TreeViewItem Name="Tree_Item_Machine_Learning" Header="Machine Learning" IsSelected="True" MouseLeftButtonUp = "Tree_Item_Machine_MouseLeftButtonUp">
+            <TreeViewItem Foreground="White" Name="Tree_Item_Machine_Learning" Header="Machine Learning" IsSelected="True" MouseLeftButtonUp = "Tree_Item_Machine_MouseLeftButtonUp">
             </TreeViewItem>
-            
-            <TreeViewItem Name="Tree_Item_Component_List" Header="Power Plant Components">
-                
-            <TreeViewItem Name="Tree_Item_Furnace" Header="Furnace" IsSelected="True" MouseLeftButtonUp = "Tree_Item_Furnace_MouseLeftButtonUp">
-                <TreeViewItem Header="Temp Sensor (P)" x:Name="FurnaceTempPhys" MouseLeftButtonUp="TreeViewItem_Furnace_FurnaceTempPhys_MouseLeftButtonUp"/>
-                <TreeViewItem Header="Gas Sensor (V)" x:Name="FurnaceGasVirtual" MouseLeftButtonUp="TreeViewItem_Furnace_FurnaceGasVirtual_MouseLeftButtonUp"/>
-                <TreeViewItem Header="Air Flow Sensor (V)" x:Name="FurnaceAirFlowVirtual" MouseLeftButtonUp="TreeViewItem_Furnace_FurnaceAirFlowVirtual_MouseLeftButtonUp"/>
-                <TreeViewItem Header="Particulate Sensor (V)" x:Name="FurnaceParticulateVirtual" MouseLeftButtonUp="TreeViewItem_Furnace_FurnaceParticulateVirtual_MouseLeftButtonUp"/>
-            </TreeViewItem>
-                
-            <TreeViewItem Name="Tree_Item_Boiler" Header="Boiler" IsSelected="True" MouseLeftButtonUp ="Tree_Item_Boiler_MouseLeftButtonUp">
-                <TreeViewItem Header="Pressure Sensor (P)" Name="BoilerPressurePhys" MouseLeftButtonUp="TreeViewItem_BoilerPressurePhys_MouseLeftButtonUp"/>
-                <TreeViewItem Header="Temp Sensor (V)" Name="BoilerTempVirtual" MouseLeftButtonUp="TreeViewItem_BoilerTempVirtual_MouseLeftButtonUp"/>
-                <TreeViewItem Header="pH Sensor (V)"  Name="BoilerPhVirtual" MouseLeftButtonUp="TreeViewItem_BoilerPhVirtual_MouseLeftButtonUp"/>
-                <TreeViewItem Header="Water Level Sensor (V)" Name="BoilerWaterLevelVirtual" MouseLeftButtonUp="TreeViewItem_BoilerWaterLevelVirtual_MouseLeftButtonUp"/>
-            </TreeViewItem>
-                
-            <TreeViewItem Name="Tree_Item_Stack" Header="Stack" IsSelected="True" MouseLeftButtonUp="Tree_Item_Stack_MouseLeftButtonUp">
-                <TreeViewItem Header="Gas Sensor (P)" Name="StackGasPhys" MouseLeftButtonUp="TreeViewItem_StackGasPhys_MouseLeftButtonUp"/>
-                <TreeViewItem Header="Temp Sensor (V)" Name="StackTempVirtual" MouseLeftButtonUp="TreeViewItem_StackTempVirtual_MouseLeftButtonUp"/>
-                <TreeViewItem Header="Particulate Sensor (V)" Name="StackParticulateVirtual" MouseLeftButtonUp="TreeViewItem_StackParticulateVirtual_MouseLeftButtonUp"/>
-                <TreeViewItem Header="Air Flow Sensor (V)" Name="StackAirFlowVirtual" MouseLeftButtonUp="TreeViewItem_StackAirFlowVirtual_MouseLeftButtonUp"/>
-            </TreeViewItem>
-                
-            <TreeViewItem Name="Tree_Item_Turbine" Header="Turbine" IsSelected="True" MouseLeftButtonUp="Tree_Item_Turbine_MouseLeftButtonUp">
-                <TreeViewItem Header="Vibration Sensor (P)" Name="TurbineVibrationPhys" MouseLeftButtonUp="TreeViewItem_TurbineVibrationPhys_MouseLeftButtonUp"/>
-            </TreeViewItem>
-                
-                <TreeViewItem Name="Tree_Item_Tubes" Header="Tubes" IsSelected="True" MouseLeftButtonUp="Tree_Item_Tubes_MouseLeftButtonUp"/>
+
+            <TreeViewItem Foreground="White" Name="Tree_Item_Component_List" Header="Power Plant Components" >
+
+                <TreeViewItem Foreground="White" Name="Tree_Item_Furnace" Header="Furnace" IsSelected="True" MouseLeftButtonUp = "Tree_Item_Furnace_MouseLeftButtonUp">
+                    <TreeViewItem Foreground="White" Header="Temp Sensor (P)" x:Name="FurnaceTempPhys" MouseLeftButtonUp="TreeViewItem_Furnace_FurnaceTempPhys_MouseLeftButtonUp"/>
+                    <TreeViewItem Foreground="White" Header="Gas Sensor (V)" x:Name="FurnaceGasVirtual" MouseLeftButtonUp="TreeViewItem_Furnace_FurnaceGasVirtual_MouseLeftButtonUp"/>
+                    <TreeViewItem Foreground="White" Header="Air Flow Sensor (V)" x:Name="FurnaceAirFlowVirtual" MouseLeftButtonUp="TreeViewItem_Furnace_FurnaceAirFlowVirtual_MouseLeftButtonUp"/>
+                    <TreeViewItem Foreground="White" Header="Particulate Sensor (V)" x:Name="FurnaceParticulateVirtual" MouseLeftButtonUp="TreeViewItem_Furnace_FurnaceParticulateVirtual_MouseLeftButtonUp"/>
+                </TreeViewItem>
+
+                <TreeViewItem Foreground="White" Name="Tree_Item_Boiler" Header="Boiler" IsSelected="True" MouseLeftButtonUp ="Tree_Item_Boiler_MouseLeftButtonUp">
+                    <TreeViewItem Foreground="White" Header="Pressure Sensor (P)" Name="BoilerPressurePhys" MouseLeftButtonUp="TreeViewItem_BoilerPressurePhys_MouseLeftButtonUp"/>
+                    <TreeViewItem Foreground="White" Header="Temp Sensor (V)" Name="BoilerTempVirtual" MouseLeftButtonUp="TreeViewItem_BoilerTempVirtual_MouseLeftButtonUp"/>
+                    <TreeViewItem Foreground="White" Header="pH Sensor (V)"  Name="BoilerPhVirtual" MouseLeftButtonUp="TreeViewItem_BoilerPhVirtual_MouseLeftButtonUp"/>
+                    <TreeViewItem Foreground="White" Header="Water Level Sensor (V)" Name="BoilerWaterLevelVirtual" MouseLeftButtonUp="TreeViewItem_BoilerWaterLevelVirtual_MouseLeftButtonUp"/>
+                </TreeViewItem>
+
+                <TreeViewItem Foreground="White"  Name="Tree_Item_Stack" Header="Stack" IsSelected="True" MouseLeftButtonUp="Tree_Item_Stack_MouseLeftButtonUp">
+                    <TreeViewItem Foreground="White" Header="Gas Sensor (P)" Name="StackGasPhys" MouseLeftButtonUp="TreeViewItem_StackGasPhys_MouseLeftButtonUp"/>
+                    <TreeViewItem Foreground="White" Header="Temp Sensor (V)" Name="StackTempVirtual" MouseLeftButtonUp="TreeViewItem_StackTempVirtual_MouseLeftButtonUp"/>
+                    <TreeViewItem Foreground="White" Header="Particulate Sensor (V)" Name="StackParticulateVirtual" MouseLeftButtonUp="TreeViewItem_StackParticulateVirtual_MouseLeftButtonUp"/>
+                    <TreeViewItem Foreground="White" Header="Air Flow Sensor (V)" Name="StackAirFlowVirtual" MouseLeftButtonUp="TreeViewItem_StackAirFlowVirtual_MouseLeftButtonUp"/>
+                </TreeViewItem>
+
+                <TreeViewItem Foreground="White" Name="Tree_Item_Turbine" Header="Turbine" IsSelected="True" MouseLeftButtonUp="Tree_Item_Turbine_MouseLeftButtonUp">
+                    <TreeViewItem Foreground="White" Header="Vibration Sensor (P)" Name="TurbineVibrationPhys" MouseLeftButtonUp="TreeViewItem_TurbineVibrationPhys_MouseLeftButtonUp"/>
+                </TreeViewItem>
+
+                <!--<TreeViewItem Name="Tree_Item_Tubes" Header="Tubes" IsSelected="True" MouseLeftButtonUp="Tree_Item_Tubes_MouseLeftButtonUp"/>
                 <TreeViewItem Name="Tree_Item_Container" Header="Container" IsSelected="True" MouseLeftButtonUp="Tree_Item_Container_MouseLeftButtonUp"/>
                 <TreeViewItem Name="Tree_Item_Condenser" Header="Condenser" IsSelected="True" MouseLeftButtonUp="Tree_Item_Condenser_MouseLeftButtonUp"/>
                 <TreeViewItem Name="Tree_Item_Generator" Header="Generator" IsSelected="True" MouseLeftButtonUp="Tree_Item_Generator_MouseLeftButtonUp"/>
@@ -55,11 +62,12 @@
                 <TreeViewItem Name="Tree_Item_Pulverizer" Header="Pulverizer" IsSelected="True" MouseLeftButtonUp="Tree_Item_Pulverizer_MouseLeftButtonUp"/>
                 <TreeViewItem Name="Tree_Item_Coal_Supplier" Header="Coal Supplier" IsSelected="True" MouseLeftButtonUp="Tree_Item_Coal_Supplier_MouseLeftButtonUp"/>
                 <TreeViewItem Name="Tree_Item_Conveyor" Header="Conveyor" IsSelected="True" MouseLeftButtonUp="Tree_Item_Conveyor_MouseLeftButtonUp"/>
-                <TreeViewItem Name="Tree_Item_Transmission_Lines" Header="Transmission Lines" IsSelected="True" MouseLeftButtonUp="Tree_Item_Transmission_Lines_MouseLeftButtonUp"/>
+                <TreeViewItem Name="Tree_Item_Transmission_Lines" Header="Transmission Lines" IsSelected="True" MouseLeftButtonUp="Tree_Item_Transmission_Lines_MouseLeftButtonUp"/>-->
 
             </TreeViewItem>
         </TreeView>
-            
+
         <Grid Background="Black" Name="MainGrid" Margin="0,0,0,0" Grid.Column="1"/>
+        <Image Margin="40,800,44,10" Source="fiu-main-logo.png"/>
     </Grid>
 </Window>
